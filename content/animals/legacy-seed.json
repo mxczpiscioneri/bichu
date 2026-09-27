@@ -20,7 +20,8 @@
         "group": "Ursidae"
       },
       "media": {
-        "image": "assets/animals/images/bear.png",
+        "image": "assets/animals/art/bear.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/bear.mp3",
         "nameAudio": "assets/animals/names/bear_name.mp3",
         "model3d": null

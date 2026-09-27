@@ -4,7 +4,7 @@ import type { AnimalMediaModules } from './media';
 
 export const ANIMAL_MEDIA: Record<string, AnimalMediaModules> = {
   bear: {
-    image: require('../../assets/animals/images/bear.png'),
+    image: require('../../assets/animals/art/bear.png'),
     sound: require('../../assets/animals/sounds/bear.mp3'),
     nameAudio: require('../../assets/animals/names/bear_name.mp3'),
     model3d: null,
