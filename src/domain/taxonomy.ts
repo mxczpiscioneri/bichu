@@ -15,14 +15,7 @@ export const ANIMAL_CLASSES = [
 ] as const;
 export type AnimalClass = (typeof ANIMAL_CLASSES)[number];
 
-export const DIETS = [
-  'herbivore',
-  'carnivore',
-  'omnivore',
-  'insectivore',
-  'nectar_pollen',
-  'varies',
-] as const;
+export const DIETS = ['herbivore', 'carnivore', 'omnivore', 'insectivore', 'nectar_pollen', 'varies'] as const;
 export type Diet = (typeof DIETS)[number];
 
 export const HABITATS = [
@@ -104,8 +97,8 @@ export const HABITAT_GROUPS = {
 export type HabitatGroup = keyof typeof HABITAT_GROUPS;
 
 export function habitatGroupOf(habitat: Habitat): HabitatGroup | null {
-  const entry = (Object.entries(HABITAT_GROUPS) as [HabitatGroup, readonly Habitat[]][]).find(
-    ([, habitats]) => habitats.includes(habitat),
+  const entry = (Object.entries(HABITAT_GROUPS) as [HabitatGroup, readonly Habitat[]][]).find(([, habitats]) =>
+    habitats.includes(habitat),
   );
   return entry ? entry[0] : null;
 }

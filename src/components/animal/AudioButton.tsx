@@ -45,9 +45,9 @@ export function AudioButton({ label, clipKey, onPress, icon = 'speaker', accent 
       onPress={onPress}
       accessibilityLabel={label}
       accessibilityState={{ busy: playing }}
-      style={[styles.button, playing && { borderColor: accent }]}
-    >
-      <Animated.View style={[styles.iconWrap, { backgroundColor: playing ? colors.sunSoft : colors.leafSoft }, iconStyle]}>
+      style={[styles.button, playing && { borderColor: accent }]}>
+      <Animated.View
+        style={[styles.iconWrap, { backgroundColor: playing ? colors.sunSoft : colors.leafSoft }, iconStyle]}>
         <Icon name={icon} size={36} />
       </Animated.View>
       <View style={styles.textWrap}>

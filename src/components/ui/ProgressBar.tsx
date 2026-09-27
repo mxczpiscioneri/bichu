@@ -12,7 +12,13 @@ interface ProgressBarProps {
   height?: number;
 }
 
-export function ProgressBar({ value, max, color = colors.leaf, track = colors.cacaoSoft, height = 14 }: ProgressBarProps) {
+export function ProgressBar({
+  value,
+  max,
+  color = colors.leaf,
+  track = colors.cacaoSoft,
+  height = 14,
+}: ProgressBarProps) {
   const ratio = max > 0 ? Math.min(1, value / max) : 0;
   const progress = useSharedValue(0);
   useEffect(() => {
@@ -24,8 +30,7 @@ export function ProgressBar({ value, max, color = colors.leaf, track = colors.ca
     <View
       style={[styles.track, { height, backgroundColor: track }]}
       accessibilityRole="progressbar"
-      accessibilityValue={{ min: 0, max, now: value }}
-    >
+      accessibilityValue={{ min: 0, max, now: value }}>
       <Animated.View style={[styles.fill, { backgroundColor: color }, fill]} />
     </View>
   );

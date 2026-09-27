@@ -28,7 +28,16 @@ export function buildAnimalSession(params: {
   const available = availableTemplatesFor(animal, level, animals, templateIds, rng);
   const done = new Set(progress.completedTemplates(animal.id));
   // Not-yet-completed challenges first, so each visit moves discovery forward.
-  const ordered = [...shuffle(available.filter((id) => !done.has(id)), rng), ...shuffle(available.filter((id) => done.has(id)), rng)];
+  const ordered = [
+    ...shuffle(
+      available.filter((id) => !done.has(id)),
+      rng,
+    ),
+    ...shuffle(
+      available.filter((id) => done.has(id)),
+      rng,
+    ),
+  ];
   return ordered
     .slice(0, rounds)
     .map((templateId) => generateChallenge({ templateId, animal, level, animals, rng }))
@@ -49,7 +58,12 @@ export function buildTypeSession(params: {
     if (progress.isDiscovered(animal.id)) return 2;
     return progress.completedTemplates(animal.id).includes(templateId) ? 1 : 0;
   };
-  const ordered = [0, 1, 2].flatMap((p) => shuffle(animals.filter((a) => priority(a) === p), rng));
+  const ordered = [0, 1, 2].flatMap((p) =>
+    shuffle(
+      animals.filter((a) => priority(a) === p),
+      rng,
+    ),
+  );
   const challenges: Challenge[] = [];
   for (const animal of ordered) {
     if (challenges.length >= rounds) break;

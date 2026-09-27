@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
 
 import { AnimalCard } from '@/components/animal/AnimalCard';
 import { Mascot } from '@/components/brand/Mascot';
@@ -14,10 +14,16 @@ import { countDiscovered, totalStars } from '@/progress/selectors';
 import { useProgressStore } from '@/stores/progressStore';
 import { colors, radius, spacing, tones } from '@/theme';
 
+const MEMBER_GAP = spacing.sm + 2;
+
 export default function CollectionScreen() {
   const progress = useProgressStore((state) => state.byAnimal);
   const bottomInset = useTabBarInset();
   const discovered = countDiscovered(animals, progress);
+  const stars = totalStars(progress);
+  const { width } = useWindowDimensions();
+  // Three cards per row inside the collection panel.
+  const cardWidth = Math.floor((Math.min(width, 600) - (spacing.lg - 4) * 2 - spacing.md * 2 - MEMBER_GAP * 2) / 3);
 
   return (
     <Screen bottomInset={bottomInset}>
@@ -32,7 +38,9 @@ export default function CollectionScreen() {
           <AppText variant="body">{discovered === 0 ? 'Descubra seu primeiro animal!' : 'animais descobertos'}</AppText>
           <View style={styles.stars}>
             <Icon name="star" size={24} />
-            <AppText variant="label">{totalStars(progress)} estrelas</AppText>
+            <AppText variant="label">
+              {stars} {stars === 1 ? 'estrela' : 'estrelas'}
+            </AppText>
           </View>
         </View>
       </Card>
@@ -56,7 +64,7 @@ export default function CollectionScreen() {
             <ProgressBar value={found} max={members.length} color={tone.accent} track="rgba(255,255,255,0.8)" />
             <View style={styles.members}>
               {members.map((animal) => (
-                <AnimalCard key={animal.id} animal={animal} size="sm" width={104} veiled />
+                <AnimalCard key={animal.id} animal={animal} size="sm" width={cardWidth} veiled />
               ))}
             </View>
           </View>
@@ -83,5 +91,5 @@ const styles = StyleSheet.create({
   collection: { borderRadius: radius.lg, padding: spacing.md, gap: spacing.md },
   collectionHeader: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm + 2 },
   collectionTitle: { flex: 1 },
-  members: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm + 2 },
+  members: { flexDirection: 'row', flexWrap: 'wrap', gap: MEMBER_GAP },
 });

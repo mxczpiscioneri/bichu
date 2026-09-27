@@ -32,8 +32,11 @@ export function BigButton({ label, onPress, icon, variant = 'primary', style, ac
       onPress={onPress}
       accessibilityLabel={label}
       accessibilityHint={accessibilityHint}
-      style={[styles.button, { backgroundColor: palette.background, boxShadow: `0px 5px 0px ${palette.shadow}` }, style]}
-    >
+      style={[
+        styles.button,
+        { backgroundColor: palette.background, boxShadow: `0px 5px 0px ${palette.shadow}` },
+        style,
+      ]}>
       <View style={styles.content}>
         {icon ? <Icon name={icon} size={36} /> : null}
         <AppText style={[styles.label, { color: palette.text }]} numberOfLines={1}>

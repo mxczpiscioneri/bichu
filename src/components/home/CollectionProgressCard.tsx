@@ -21,8 +21,7 @@ export function CollectionProgressCard({ discovered, total, stars, highlight }: 
       onPress={() => router.navigate('/collection')}
       accessibilityLabel={`Bichupédia: ${discovered} de ${total} animais descobertos`}
       style={styles.card}
-      pressedScale={0.97}
-    >
+      pressedScale={0.97}>
       <View style={styles.header}>
         <Icon name="books" size={52} />
         <View style={styles.headerText}>

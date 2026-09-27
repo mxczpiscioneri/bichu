@@ -15,8 +15,7 @@ export function PlayShortcutCard() {
       onPress={() => router.push({ pathname: '/challenge/[type]', params: { type: 'sound_to_animal' } })}
       accessibilityLabel="Brincar: Que animal é esse?"
       style={styles.card}
-      pressedScale={0.97}
-    >
+      pressedScale={0.97}>
       <View style={styles.text}>
         <AppText variant="overline" color={colors.white}>
           Vamos brincar?
@@ -27,7 +26,7 @@ export function PlayShortcutCard() {
         <View style={styles.pill}>
           <Icon name="speaker" size={24} />
           <AppText variant="label" color={colors.forest}>
-            Ouvir e adivinhar
+            Adivinhar
           </AppText>
         </View>
       </View>

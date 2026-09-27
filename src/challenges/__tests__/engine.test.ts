@@ -85,7 +85,9 @@ describe('distractor safety', () => {
   it('lion food: meat is right, and only clearly wrong foods are offered', () => {
     const challenge = gen('food', requireAnimal('lion'), 'adventurer');
     expect(challenge?.correctOptionIds).toEqual(['meat']);
-    challenge?.options.filter((o) => o.id !== 'meat').forEach((o) => expect(['grass', 'nectar', 'fruits', 'leaves', 'seeds']).toContain(o.id));
+    challenge?.options
+      .filter((o) => o.id !== 'meat')
+      .forEach((o) => expect(['grass', 'nectar', 'fruits', 'leaves', 'seeds']).toContain(o.id));
     expect(challenge?.prompt).toBe('O que o leão come?');
     expect(challenge?.explanation).toBe('O leão come carne.');
   });
@@ -121,7 +123,11 @@ describe('distractor safety', () => {
 
 describe('sound_to_animal', () => {
   it('never mixes animals with confusable sounds', () => {
-    const groups: Record<string, string[]> = { chicken: ['chick', 'chicken', 'cock'], roar: ['lion', 'tiger', 'bear'], canine: ['dog', 'wolf'] };
+    const groups: Record<string, string[]> = {
+      chicken: ['chick', 'chicken', 'cock'],
+      roar: ['lion', 'tiger', 'bear'],
+      canine: ['dog', 'wolf'],
+    };
     for (const members of Object.values(groups)) {
       for (const id of members) {
         for (let seed = 1; seed <= 30; seed += 1) {
@@ -160,7 +166,14 @@ describe('sessions', () => {
   });
 
   it('type session uses distinct animals and skips animals without the flag', () => {
-    const session = buildTypeSession({ templateId: 'food', level: 'explorer', animals, progress: noProgress, rng: createRng(9), rounds: 20 });
+    const session = buildTypeSession({
+      templateId: 'food',
+      level: 'explorer',
+      animals,
+      progress: noProgress,
+      rng: createRng(9),
+      rounds: 20,
+    });
     const ids = session.map((c) => c.animalId);
     expect(new Set(ids).size).toBe(ids.length);
     expect(ids).not.toContain('bear');
@@ -170,7 +183,14 @@ describe('sessions', () => {
   it('every animal can be discovered at every level (≥ 2 challenge types)', () => {
     for (const animal of animals) {
       for (const level of LEVELS) {
-        const session = buildAnimalSession({ animal, level, animals, progress: noProgress, rng: createRng(5), rounds: 10 });
+        const session = buildAnimalSession({
+          animal,
+          level,
+          animals,
+          progress: noProgress,
+          rng: createRng(5),
+          rounds: 10,
+        });
         expect(new Set(session.map((c) => c.templateId)).size).toBeGreaterThanOrEqual(2);
       }
     }

@@ -7,9 +7,12 @@ import { colors, radius, spacing } from '@/theme';
 import { AppText } from '../ui/AppText';
 import { Icon } from '../ui/Icon';
 
-function Step({ done, icon, label }: { done: boolean; icon: IconName; label: string }) {
+function Step({ done, icon, label, a11yLabel }: { done: boolean; icon: IconName; label: string; a11yLabel?: string }) {
   return (
-    <View style={[styles.step, done && styles.stepDone]} accessibilityLabel={`${label}: ${done ? 'feito' : 'falta'}`} accessible>
+    <View
+      style={[styles.step, done && styles.stepDone]}
+      accessibilityLabel={`${a11yLabel ?? label} ${a11yLabel ? label : ''}: ${done ? 'feito' : 'falta'}`}
+      accessible>
       <View style={[styles.iconWrap, done && styles.iconDone]}>
         <Icon name={done ? 'check' : icon} size={24} />
       </View>
@@ -28,7 +31,12 @@ export function DiscoverySteps({ progress }: { progress: AnimalProgress | undefi
     <View style={styles.row}>
       <Step done={steps.heardName} icon="speaker" label="Nome" />
       <Step done={steps.heardSound} icon="speaker" label="Som" />
-      <Step done={challengesDone} icon="puzzle" label={`Desafios ${steps.challenges}/${steps.challengesNeeded}`} />
+      <Step
+        done={challengesDone}
+        icon="puzzle"
+        label={`${steps.challenges}/${steps.challengesNeeded}`}
+        a11yLabel="Desafios"
+      />
     </View>
   );
 }
@@ -46,7 +54,14 @@ const styles = StyleSheet.create({
     paddingRight: spacing.sm,
   },
   stepDone: { backgroundColor: colors.surface },
-  iconWrap: { width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.cacaoSoft },
+  iconWrap: {
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.cacaoSoft,
+  },
   iconDone: { backgroundColor: colors.leafSoft },
   label: { flexShrink: 1, fontFamily: 'Nunito_800ExtraBold', color: colors.ink },
 });

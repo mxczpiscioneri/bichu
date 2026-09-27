@@ -23,8 +23,7 @@ export function AnimalOfTheDayCard({ animal }: { animal: Animal }) {
         onPress={() => void AudioService.playAnimalName(animal.id)}
         accessibilityLabel={`Ouvir o nome: ${animal.name.ptBR}`}
         style={styles.imageButton}
-        pressedScale={0.97}
-      >
+        pressedScale={0.97}>
         <View style={styles.halo} />
         <AnimalImage animalId={animal.id} size={188} />
       </PressableScale>

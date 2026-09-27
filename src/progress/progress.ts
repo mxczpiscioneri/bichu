@@ -67,11 +67,7 @@ export interface ApplyResult {
 }
 
 /** Applies an event. Idempotent: repeating an event never double-counts. */
-export function applyProgressEvent(
-  current: AnimalProgress,
-  event: ProgressEvent,
-  now: Date = new Date(),
-): ApplyResult {
+export function applyProgressEvent(current: AnimalProgress, event: ProgressEvent, now: Date = new Date()): ApplyResult {
   const next: AnimalProgress = { ...current, challengesCompleted: [...current.challengesCompleted] };
   let starsEarned = 0;
 

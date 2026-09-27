@@ -6,7 +6,15 @@ import { colors, radius, spacing } from '@/theme';
 import { AppText } from '../ui/AppText';
 import { Icon } from '../ui/Icon';
 
-export function FactCard({ text, icon = 'leaves', highlight = false }: { text: string; icon?: IconName; highlight?: boolean }) {
+export function FactCard({
+  text,
+  icon = 'leaves',
+  highlight = false,
+}: {
+  text: string;
+  icon?: IconName;
+  highlight?: boolean;
+}) {
   return (
     <View style={[styles.card, highlight && styles.highlight]}>
       <Icon name={icon} size={34} />

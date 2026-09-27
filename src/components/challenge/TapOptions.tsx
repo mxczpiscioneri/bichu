@@ -1,6 +1,12 @@
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring, withTiming } from 'react-native-reanimated';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 
 import type { Challenge, ChallengeOption } from '@/challenges/types';
 import { colors, radius, shadows, spacing } from '@/theme';
@@ -18,13 +24,32 @@ interface TapOptionsProps {
   disabled: boolean;
 }
 
-function OptionCard({ option, status, onChoose, disabled, large }: { option: ChallengeOption; status: OptionStatus; onChoose: () => void; disabled: boolean; large: boolean }) {
+function OptionCard({
+  option,
+  status,
+  onChoose,
+  disabled,
+  large,
+}: {
+  option: ChallengeOption;
+  status: OptionStatus;
+  onChoose: () => void;
+  disabled: boolean;
+  large: boolean;
+}) {
   const shake = useSharedValue(0);
   const pop = useSharedValue(1);
 
   useEffect(() => {
     if (status === 'tried') {
-      shake.set(withSequence(withTiming(-10, { duration: 60 }), withTiming(10, { duration: 80 }), withTiming(-6, { duration: 70 }), withTiming(0, { duration: 60 })));
+      shake.set(
+        withSequence(
+          withTiming(-10, { duration: 60 }),
+          withTiming(10, { duration: 80 }),
+          withTiming(-6, { duration: 70 }),
+          withTiming(0, { duration: 60 }),
+        ),
+      );
     }
     if (status === 'correct') pop.set(withSequence(withSpring(1.08, { damping: 8 }), withSpring(1)));
   }, [pop, shake, status]);
@@ -38,8 +63,12 @@ function OptionCard({ option, status, onChoose, disabled, large }: { option: Cha
         disabled={disabled || status !== 'idle'}
         accessibilityLabel={option.label}
         accessibilityState={{ disabled: status === 'tried', selected: status === 'correct' }}
-        style={[styles.card, large && styles.cardLarge, status === 'correct' && styles.cardCorrect, status === 'tried' && styles.cardTried]}
-      >
+        style={[
+          styles.card,
+          large && styles.cardLarge,
+          status === 'correct' && styles.cardCorrect,
+          status === 'tried' && styles.cardTried,
+        ]}>
         <OptionContent option={option} size={large ? 128 : 88} />
         {status === 'correct' ? (
           <View style={styles.badge}>

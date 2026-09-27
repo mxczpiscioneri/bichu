@@ -16,8 +16,16 @@ import { useSettingsStore } from '@/stores/settingsStore';
 import { colors, radius, spacing } from '@/theme';
 
 const LEVEL_OPTIONS: { level: Level; title: string; description: string }[] = [
-  { level: 'explorer', title: 'Explorador', description: 'Cerca de 2 a 4 anos. Áudio primeiro, pouco texto, 2 alternativas.' },
-  { level: 'adventurer', title: 'Aventureiro', description: 'Cerca de 5 a 8 anos. Mais informações, curiosidades e 3 alternativas.' },
+  {
+    level: 'explorer',
+    title: 'Explorador',
+    description: 'Cerca de 2 a 4 anos. Áudio primeiro, pouco texto, 2 alternativas.',
+  },
+  {
+    level: 'adventurer',
+    title: 'Aventureiro',
+    description: 'Cerca de 5 a 8 anos. Mais informações, curiosidades e 3 alternativas.',
+  },
 ];
 
 export default function ParentsScreen() {
@@ -49,8 +57,7 @@ export default function ParentsScreen() {
                   onPress={() => setLevel(option.level)}
                   accessibilityRole="radio"
                   accessibilityState={{ checked: active }}
-                  style={[styles.option, active && styles.optionActive]}
-                >
+                  style={[styles.option, active && styles.optionActive]}>
                   <View style={[styles.radio, active && styles.radioActive]} />
                   <View style={styles.optionText}>
                     <AppText variant="subheading">{option.title}</AppText>
@@ -76,8 +83,7 @@ export default function ParentsScreen() {
                     reset();
                     setConfirmReset(false);
                   }}
-                  style={[styles.smallButton, styles.danger]}
-                >
+                  style={[styles.smallButton, styles.danger]}>
                   <AppText variant="label" color={colors.white}>
                     Apagar tudo
                   </AppText>
@@ -97,7 +103,8 @@ export default function ParentsScreen() {
               enviado para servidores.
             </AppText>
             <AppText variant="body">
-              A câmera só é usada na realidade aumentada (experimental), para mostrar o animal no ambiente. Nenhuma imagem é salva.
+              A câmera só é usada na realidade aumentada (experimental), para mostrar o animal no ambiente. Nenhuma
+              imagem é salva.
             </AppText>
           </Card>
 
@@ -134,7 +141,13 @@ const styles = StyleSheet.create({
   radioActive: { borderColor: colors.forest, backgroundColor: colors.forest },
   optionText: { flex: 1, gap: 2 },
   resetRow: { flexDirection: 'row', gap: spacing.sm },
-  smallButton: { minHeight: 52, borderRadius: radius.pill, alignItems: 'center', justifyContent: 'center', paddingHorizontal: spacing.lg },
+  smallButton: {
+    minHeight: 52,
+    borderRadius: radius.pill,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: spacing.lg,
+  },
   cancel: { backgroundColor: colors.cacaoSoft },
   danger: { backgroundColor: colors.flame },
 });

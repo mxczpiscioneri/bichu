@@ -14,9 +14,12 @@ export function ParentGate({ onUnlock }: { onUnlock: () => void }) {
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [holding, setHolding] = useState(false);
 
-  useEffect(() => () => {
-    if (timer.current) clearTimeout(timer.current);
-  }, []);
+  useEffect(
+    () => () => {
+      if (timer.current) clearTimeout(timer.current);
+    },
+    [],
+  );
 
   const start = () => {
     setHolding(true);
@@ -40,7 +43,12 @@ export function ParentGate({ onUnlock }: { onUnlock: () => void }) {
       <AppText variant="body" align="center">
         Mantenha o botão pressionado por alguns segundos para continuar.
       </AppText>
-      <Pressable onPressIn={start} onPressOut={cancel} accessibilityRole="button" accessibilityLabel="Segure para entrar na área dos adultos" style={styles.button}>
+      <Pressable
+        onPressIn={start}
+        onPressOut={cancel}
+        accessibilityRole="button"
+        accessibilityLabel="Segure para entrar na área dos adultos"
+        style={styles.button}>
         <Animated.View style={[styles.fill, fill]} />
         <AppText variant="label" color={colors.white}>
           {holding ? 'Continue segurando…' : 'Segure aqui'}

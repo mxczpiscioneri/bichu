@@ -45,8 +45,10 @@ const jobs = [
 ];
 
 function looksValid(buffer: Buffer, target: string): boolean {
-  if (target.endsWith('.png')) return buffer.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
-  if (target.endsWith('.mp3')) return buffer.subarray(0, 3).toString('latin1') === 'ID3' || (buffer[0] === 0xff && (buffer[1] & 0xe0) === 0xe0);
+  if (target.endsWith('.png'))
+    return buffer.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
+  if (target.endsWith('.mp3'))
+    return buffer.subarray(0, 3).toString('latin1') === 'ID3' || (buffer[0] === 0xff && (buffer[1] & 0xe0) === 0xe0);
   return buffer.length > 0;
 }
 
@@ -54,7 +56,9 @@ function download(url: string, destination: string): boolean {
   mkdirSync(path.dirname(destination), { recursive: true });
   const partial = `${destination}.part`;
   // curl honours HTTPS_PROXY and system CA configuration out of the box.
-  const result = spawnSync('curl', ['-fsSL', '--retry', '3', '-o', partial, url], { stdio: ['ignore', 'ignore', 'pipe'] });
+  const result = spawnSync('curl', ['-fsSL', '--retry', '3', '-o', partial, url], {
+    stdio: ['ignore', 'ignore', 'pipe'],
+  });
   if (result.status !== 0) {
     rmSync(partial, { force: true });
     console.error(`  ✖ ${url}\n    ${result.stderr?.toString().trim()}`);

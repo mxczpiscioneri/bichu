@@ -134,15 +134,20 @@ function DraggableToken({ option, correct, status, disabled, slotRef, onDrop }: 
   return (
     <GestureDetector gesture={Gesture.Race(pan, tap)}>
       <Animated.View
-        ref={tokenRef}
-        style={[styles.token, status === 'tried' && styles.tokenTried, status === 'correct' && styles.tokenCorrect, style]}
+        style={[
+          styles.token,
+          (status === 'tried' || (disabled && status === 'idle')) && styles.tokenTried,
+          status === 'correct' && styles.tokenCorrect,
+          style,
+        ]}
         accessible
-        accessibilityRole="button"
         accessibilityLabel={option.label}
         accessibilityHint="Arraste até o animal ou toque para escolher"
-        onAccessibilityTap={() => scheduleOnUI(settle, 0, 0, true)}
-      >
-        <OptionContent option={option} size={72} />
+        onAccessibilityTap={() => scheduleOnUI(settle, 0, 0, true)}>
+        {/* Measured separately: GestureDetector needs its own ref on the outer view. */}
+        <Animated.View ref={tokenRef} collapsable={false}>
+          <OptionContent option={option} size={72} />
+        </Animated.View>
       </Animated.View>
     </GestureDetector>
   );
@@ -191,7 +196,7 @@ export function DragBoard({ challenge, statusOf, onChoose, disabled }: DragBoard
 }
 
 const styles = StyleSheet.create({
-  board: { alignItems: 'center', gap: spacing.xl, flex: 1, justifyContent: 'space-between' },
+  board: { alignItems: 'center', gap: spacing.xl, flex: 1, justifyContent: 'space-evenly' },
   slot: {
     width: 232,
     height: 232,

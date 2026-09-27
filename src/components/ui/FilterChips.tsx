@@ -21,7 +21,11 @@ interface FilterChipsProps {
 
 export function FilterChips({ options, selected, onSelect }: FilterChipsProps) {
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.row} style={styles.scroller}>
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={styles.row}
+      style={styles.scroller}>
       {options.map((option) => {
         const active = option.id === selected;
         return (
@@ -31,8 +35,7 @@ export function FilterChips({ options, selected, onSelect }: FilterChipsProps) {
             accessibilityRole="button"
             accessibilityState={{ selected: active }}
             accessibilityLabel={`Filtro: ${option.label}`}
-            style={[styles.chip, active && styles.chipActive]}
-          >
+            style={[styles.chip, active && styles.chipActive]}>
             <Icon name={option.icon} size={28} />
             <AppText variant="label" color={active ? colors.white : colors.ink}>
               {option.label}
@@ -46,7 +49,7 @@ export function FilterChips({ options, selected, onSelect }: FilterChipsProps) {
 
 const styles = StyleSheet.create({
   scroller: { marginHorizontal: -spacing.lg + 4 },
-  row: { gap: spacing.sm, paddingHorizontal: spacing.lg - 4, paddingVertical: 4 },
+  row: { gap: spacing.sm, paddingHorizontal: spacing.lg - 4, paddingVertical: spacing.sm + 2 },
   chip: {
     flexDirection: 'row',
     alignItems: 'center',

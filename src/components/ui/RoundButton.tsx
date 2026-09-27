@@ -18,16 +18,29 @@ interface RoundButtonProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export function RoundButton({ onPress, accessibilityLabel, icon, glyph, size = touch.childPreferred - 8, background = colors.white, style }: RoundButtonProps) {
+export function RoundButton({
+  onPress,
+  accessibilityLabel,
+  icon,
+  glyph,
+  size = touch.childPreferred - 8,
+  background = colors.white,
+  style,
+}: RoundButtonProps) {
   return (
     <PressableScale
       onPress={onPress}
       accessibilityLabel={accessibilityLabel}
       hitSlop={8}
-      style={[styles.button, { width: size, height: size, borderRadius: size / 2, backgroundColor: background }, style]}
-    >
+      style={[
+        styles.button,
+        { width: size, height: size, borderRadius: size / 2, backgroundColor: background },
+        style,
+      ]}>
       {icon ? <Icon name={icon} size={size * 0.55} /> : null}
-      {glyph ? <AppText style={[styles.glyph, { fontSize: size * 0.46, lineHeight: size * 0.56 }]}>{glyph}</AppText> : null}
+      {glyph ? (
+        <AppText style={[styles.glyph, { fontSize: size * 0.46, lineHeight: size * 0.56 }]}>{glyph}</AppText>
+      ) : null}
     </PressableScale>
   );
 }

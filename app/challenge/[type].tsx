@@ -52,11 +52,15 @@ function ChallengeFlow({ source }: { source: SessionSource }) {
   }
 
   const animal = current ? getAnimal(current.animalId) : undefined;
-  const tone = animal ? tones[toneForAnimal(animal)] : tones.forest;
-  const bubbleText = session.lastWrongAt && !solved ? phrase(PHRASES.tryAgain, session.tried.length) : (current?.prompt ?? '');
+  // The sound quiz stays neutral: a habitat colour could give the answer away.
+  const tone = animal && !current?.promptIsAnimalSound ? tones[toneForAnimal(animal)] : tones.savanna;
+  const bubbleText =
+    session.lastWrongAt && !solved ? phrase(PHRASES.tryAgain, session.tried.length) : (current?.prompt ?? '');
 
   return (
-    <SafeAreaView style={[styles.root, { backgroundColor: finished ? colors.cream : tone.background }]} edges={['top', 'bottom']}>
+    <SafeAreaView
+      style={[styles.root, { backgroundColor: finished ? colors.cream : tone.background }]}
+      edges={['top', 'bottom']}>
       <View style={styles.header}>
         <RoundButton glyph="×" accessibilityLabel="Sair da brincadeira" onPress={close} />
         <RoundProgress total={rounds.length} current={index} />
@@ -91,19 +95,33 @@ function ChallengeFlow({ source }: { source: SessionSource }) {
           />
           <View style={styles.stage}>
             {current.interaction === 'drag' ? (
-              <DragBoard key={current.id} challenge={current} statusOf={session.statusOf} onChoose={session.choose} disabled={solved} />
+              <DragBoard
+                key={current.id}
+                challenge={current}
+                statusOf={session.statusOf}
+                onChoose={session.choose}
+                disabled={solved}
+              />
             ) : (
-              <TapOptions key={current.id} challenge={current} statusOf={session.statusOf} onChoose={session.choose} disabled={solved} />
+              <TapOptions
+                key={current.id}
+                challenge={current}
+                statusOf={session.statusOf}
+                onChoose={session.choose}
+                disabled={solved}
+              />
             )}
           </View>
           {solved ? (
-            <FeedbackPanel
-              title={phrase(PHRASES.correct, index)}
-              explanation={current.explanation}
-              earnedStar={session.roundStar}
-              continueLabel={index + 1 >= rounds.length ? 'Terminar' : 'Continuar'}
-              onContinue={session.next}
-            />
+            <View style={styles.feedback}>
+              <FeedbackPanel
+                title={phrase(PHRASES.correct, index)}
+                explanation={current.explanation}
+                earnedStar={session.roundStar}
+                continueLabel={index + 1 >= rounds.length ? 'Terminar' : 'Continuar'}
+                onContinue={session.next}
+              />
+            </View>
           ) : null}
         </View>
       ) : null}
@@ -134,4 +152,6 @@ const styles = StyleSheet.create({
   },
   body: { flex: 1, padding: spacing.md, gap: spacing.lg },
   stage: { flex: 1, justifyContent: 'center' },
+  // Overlay: the board must not reflow once the token has snapped into place.
+  feedback: { position: 'absolute', left: spacing.md, right: spacing.md, bottom: spacing.md },
 });

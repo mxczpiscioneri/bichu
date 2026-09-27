@@ -31,8 +31,7 @@ function createScene(viro: ViroModule, animal: Animal) {
             const current = useArStore.getState().status;
             if (current === 'starting') setStatus('searching');
           }
-        }}
-      >
+        }}>
         <viro.ViroAmbientLight color="#ffffff" intensity={250} />
         <viro.ViroDirectionalLight color="#ffffff" direction={[0, -1, -0.3]} castsShadow />
         <viro.ViroARPlaneSelector
@@ -43,8 +42,7 @@ function createScene(viro: ViroModule, animal: Animal) {
             if (useArStore.getState().status !== 'placed') setStatus('surfaceFound');
             return true;
           }}
-          onPlaneSelected={() => setStatus('placed')}
-        >
+          onPlaneSelected={() => setStatus('placed')}>
           {model !== null ? (
             <viro.ViroNode position={[0, meta?.groundOffset ?? 0, 0]} dragType="FixedToPlane" onDrag={() => undefined}>
               <viro.Viro3DObject

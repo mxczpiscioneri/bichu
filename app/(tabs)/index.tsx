@@ -25,7 +25,9 @@ export default function HomeScreen() {
   const featured = useMemo(() => animalOfTheDay(animals), []);
 
   const recent = recentAnimals(animals, progress);
-  const row = recent.length > 0 ? recent : suggestedAnimals(animals, progress, [featured.id]);
+  // Recent animals first, topped up with suggestions so the row never looks empty.
+  const suggestions = suggestedAnimals(animals, progress, [featured.id, ...recent.map((a) => a.id)]);
+  const row = [...recent, ...suggestions].slice(0, 8);
   const discovered = countDiscovered(animals, progress);
 
   // Highlight the collection closest to completion (but not complete).
@@ -59,7 +61,11 @@ export default function HomeScreen() {
 
       <View style={styles.section}>
         <SectionHeader title={recent.length > 0 ? 'Continue explorando' : 'Comece por aqui'} icon="footprints" />
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.carousel}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.carouselScroller}
+          contentContainerStyle={styles.carousel}>
           {row.map((animal) => (
             <AnimalCard key={animal.id} animal={animal} size="sm" width={132} />
           ))}
@@ -85,5 +91,6 @@ const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm + 4 },
   greeting: { flex: 1, gap: 2 },
   section: { gap: spacing.sm + 4 },
-  carousel: { gap: spacing.sm + 4, paddingVertical: spacing.sm, paddingHorizontal: 2 },
+  carouselScroller: { marginHorizontal: -(spacing.lg - 4) },
+  carousel: { gap: spacing.sm + 4, paddingVertical: spacing.sm, paddingHorizontal: spacing.lg - 4 },
 });

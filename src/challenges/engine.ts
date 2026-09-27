@@ -19,7 +19,11 @@ export interface GenerateInput {
 function soundsConfusable(a: Animal, b: Animal): boolean {
   if (a.id === b.id) return true;
   if (a.soundGroup && a.soundGroup === b.soundGroup) return true;
-  return a.parentAnimalId === b.id || b.parentAnimalId === a.id || (!!a.parentAnimalId && a.parentAnimalId === b.parentAnimalId);
+  return (
+    a.parentAnimalId === b.id ||
+    b.parentAnimalId === a.id ||
+    (!!a.parentAnimalId && a.parentAnimalId === b.parentAnimalId)
+  );
 }
 
 function makeChallenge(
@@ -45,7 +49,11 @@ function makeChallenge(
   };
 }
 
-function generateSoundChallenge(input: GenerateInput, template: ChallengeTemplate, optionCount: number): Challenge | null {
+function generateSoundChallenge(
+  input: GenerateInput,
+  template: ChallengeTemplate,
+  optionCount: number,
+): Challenge | null {
   const { animal, animals, level, rng } = input;
   const pool = animals.filter((other) => !soundsConfusable(animal, other));
   const distractors: Animal[] = [];

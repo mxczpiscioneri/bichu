@@ -22,7 +22,7 @@ export const TAB_BAR_HEIGHT = 84;
 export function TabBar({ state, navigation }: BottomTabBarProps) {
   const insets = useSafeAreaInsets();
   return (
-    <View style={[styles.wrap, { paddingBottom: Math.max(insets.bottom, spacing.sm) }]} pointerEvents="box-none">
+    <View style={[styles.wrap, { paddingBottom: Math.max(insets.bottom, spacing.sm) }]}>
       <View style={styles.bar} accessibilityRole="tablist">
         {state.routes.map((route, index) => {
           const tab = TABS[route.name];
@@ -38,8 +38,7 @@ export function TabBar({ state, navigation }: BottomTabBarProps) {
                 const event = navigation.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });
                 if (!focused && !event.defaultPrevented) navigation.navigate(route.name);
               }}
-              style={[styles.item, focused && styles.itemActive]}
-            >
+              style={[styles.item, focused && styles.itemActive]}>
               <Icon name={tab.icon} size={focused ? 34 : 30} style={!focused && styles.iconIdle} />
               <AppText style={[styles.label, focused && styles.labelActive]} numberOfLines={1}>
                 {tab.label}
@@ -53,7 +52,14 @@ export function TabBar({ state, navigation }: BottomTabBarProps) {
 }
 
 const styles = StyleSheet.create({
-  wrap: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: spacing.md },
+  wrap: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    paddingHorizontal: spacing.md,
+    pointerEvents: 'box-none',
+  },
   bar: {
     flexDirection: 'row',
     backgroundColor: colors.surface,

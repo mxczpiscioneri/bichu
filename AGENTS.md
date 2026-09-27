@@ -25,7 +25,7 @@ Run lint and typecheck before declaring any task done.
 
 ## Navigation & Routing
 
-- Use **Expo Router** for all navigation. Routes live in `src/app/` — every file there is a screen, `_layout.tsx` files define navigators. Keep non-route code (components, hooks, utils) outside `src/app/`.
+- Use **Expo Router** for all navigation. Routes live in `app/` (repository root) — every file there is a screen, `_layout.tsx` files define navigators. Keep non-route code in `src/`.
 - Import `Link`, `router`, and `useLocalSearchParams` from `expo-router`.
 - Docs: https://docs.expo.dev/router/introduction.md
 
@@ -39,3 +39,12 @@ Docs: https://docs.expo.dev/eas/index.md
 - If `ios/` and `android/` directories do not exist, they are generated (Continuous Native Generation). Never create or edit them by hand — configure native behavior in `app.json` and config plugins.
 - Expo Go only includes its bundled native modules. After adding a library with native code, the app needs a development build: `npx expo run:ios|android` locally, or `eas build --profile development`.
 - Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md
+
+## Bichu project rules
+
+- Read `README.md` (architecture, how to add animals/challenges/models) and `docs/` before changing behavior.
+- Content is data: animals live in `content/animals/legacy-seed.json`, challenge templates in `content/challenges/templates.json`. Never hardcode questions per animal.
+- Media paths are generated: after touching the seed run `npm run assets:registry`.
+- Distractor rules in `src/challenges/rules.ts` must never mark a biologically plausible answer as wrong; when in doubt, leave it out or disable the flag.
+- Child privacy: no new permissions, trackers, ads or network calls without an explicit product decision.
+- Run `npm run validate` before declaring any task done.

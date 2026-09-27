@@ -42,8 +42,7 @@ export default function PlayScreen() {
               accessibilityLabel={template.title}
               accessibilityHint={template.subtitle}
               style={[styles.card, { backgroundColor: tone.background }, featured && styles.featured]}
-              pressedScale={0.97}
-            >
+              pressedScale={0.97}>
               <View style={[styles.iconWrap, featured && styles.iconWrapFeatured]}>
                 <Icon name={template.icon} size={featured ? 64 : 48} />
               </View>

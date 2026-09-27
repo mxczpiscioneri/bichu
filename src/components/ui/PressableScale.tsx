@@ -12,7 +12,15 @@ interface PressableScaleProps extends Omit<PressableProps, 'style'> {
 }
 
 /** Soft "squish" feedback used by every tappable surface. */
-export function PressableScale({ style, pressedScale = 0.95, haptic = true, onPressIn, onPressOut, onPress, ...rest }: PressableScaleProps) {
+export function PressableScale({
+  style,
+  pressedScale = 0.95,
+  haptic = true,
+  onPressIn,
+  onPressOut,
+  onPress,
+  ...rest
+}: PressableScaleProps) {
   const scale = useSharedValue(1);
   const animatedStyle = useAnimatedStyle(() => ({ transform: [{ scale: scale.get() }] }));
 

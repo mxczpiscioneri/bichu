@@ -5,7 +5,5 @@
 const AR_ENABLED = process.env.BICHU_AR === '1';
 
 module.exports = {
-  dependencies: AR_ENABLED
-    ? {}
-    : { '@reactvision/react-viro': { platforms: { android: null, ios: null } } },
+  dependencies: AR_ENABLED ? {} : { '@reactvision/react-viro': { platforms: { android: null, ios: null } } },
 };

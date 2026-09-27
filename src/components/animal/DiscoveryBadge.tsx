@@ -19,8 +19,7 @@ export function DiscoveryBadge({ state, compact = false }: { state: DiscoverySta
   return (
     <View
       style={[styles.badge, { backgroundColor: badge.background }, compact && styles.compact]}
-      accessibilityLabel={badge.label}
-    >
+      accessibilityLabel={badge.label}>
       <Icon name={badge.icon} size={compact ? 22 : 20} />
       {compact ? null : (
         <AppText variant="caption" style={[styles.text, { color: badge.color }]}>

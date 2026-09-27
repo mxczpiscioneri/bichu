@@ -8,9 +8,9 @@
     "@react-native-async-storage/async-storage": "2.2.0",
     "@reactvision/react-viro": "^3.0.1",
     "expo": "~57.0.25",
+    "expo-asset": "~57.0.18",
     "expo-audio": "~57.0.5",
     "expo-constants": "~57.0.19",
-    "expo-dev-client": "~57.0.19",
     "expo-font": "~57.0.4",
     "expo-haptics": "~57.0.3",
     "expo-image": "~57.0.5",
@@ -39,6 +39,7 @@
     "eslint-config-expo": "~57.0.2",
     "jest": "~29.7.0",
     "jest-expo": "~57.0.5",
+    "prettier": "^3.9.9",
     "tsx": "^4.23.15",
     "typescript": "~6.0.3"
   },
@@ -55,7 +56,12 @@
     "test": "jest",
     "validate": "npm run lint && npm run typecheck && npm run validate:content && npm test",
     "start:ar": "BICHU_AR=1 expo start --dev-client",
-    "prebuild:ar": "BICHU_AR=1 expo prebuild --clean"
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "run:android": "expo run:android",
+    "run:ios": "expo run:ios",
+    "run:android:ar": "BICHU_AR=1 expo run:android",
+    "run:ios:ar": "BICHU_AR=1 expo run:ios"
   },
   "private": true,
   "overrides": {
@@ -68,6 +74,15 @@
     ],
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
+    }
+  },
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "exclude": [
+          "@reactvision/react-viro"
+        ]
+      }
     }
   }
 }

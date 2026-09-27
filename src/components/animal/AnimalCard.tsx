@@ -30,8 +30,7 @@ export function AnimalCard({ animal, size = 'md', veiled = false, width }: Anima
     <PressableScale
       onPress={() => router.push({ pathname: '/animal/[id]', params: { id: animal.id } })}
       accessibilityLabel={hidden ? `${animal.name.ptBR}, ainda não descoberto` : animal.name.ptBR}
-      style={[styles.card, size === 'sm' && styles.cardSm, width ? { width } : styles.flex]}
-    >
+      style={[styles.card, size === 'sm' && styles.cardSm, width ? { width } : styles.flex]}>
       <View style={[styles.imageWrap, { backgroundColor: tone.background }]}>
         <AnimalImage animalId={animal.id} size={imageSize} dimmed={hidden} />
         {hidden ? (

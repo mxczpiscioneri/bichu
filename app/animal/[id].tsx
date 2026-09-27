@@ -52,7 +52,10 @@ function AnimalDetail({ animal }: { animal: Animal }) {
   // Clips run in sequence on the single audio channel — never overlapping.
   useFocusEffect(
     useCallback(() => {
-      const timer = level === 'explorer' ? setTimeout(() => void AudioService.playNameThenSound(animal.id), AUTOPLAY_DELAY_MS) : undefined;
+      const timer =
+        level === 'explorer'
+          ? setTimeout(() => void AudioService.playNameThenSound(animal.id), AUTOPLAY_DELAY_MS)
+          : undefined;
       return () => {
         if (timer) clearTimeout(timer);
         AudioService.stop();
@@ -72,8 +75,7 @@ function AnimalDetail({ animal }: { animal: Animal }) {
             onPress={() => void AudioService.playAnimalName(animal.id)}
             accessibilityLabel={`Ouvir o nome: ${animal.name.ptBR}`}
             style={styles.imageButton}
-            pressedScale={0.97}
-          >
+            pressedScale={0.97}>
             <View style={styles.halo} />
             <AnimalImage animalId={animal.id} size={220} />
           </PressableScale>
@@ -85,7 +87,11 @@ function AnimalDetail({ animal }: { animal: Animal }) {
 
         <View style={styles.body}>
           <View style={styles.audioRow}>
-            <AudioButton label="Ouvir o nome" clipKey={clipKeys.name(animal.id)} onPress={() => void AudioService.playAnimalName(animal.id)} />
+            <AudioButton
+              label="Ouvir o nome"
+              clipKey={clipKeys.name(animal.id)}
+              onPress={() => void AudioService.playAnimalName(animal.id)}
+            />
             <AudioButton
               label={soundLabel}
               clipKey={clipKeys.sound(animal.id)}
@@ -103,7 +109,9 @@ function AnimalDetail({ animal }: { animal: Animal }) {
               label="Brincar"
               icon="puzzle"
               variant="warm"
-              onPress={() => router.push({ pathname: '/challenge/[type]', params: { type: 'animal', animalId: animal.id } })}
+              onPress={() =>
+                router.push({ pathname: '/challenge/[type]', params: { type: 'animal', animalId: animal.id } })
+              }
             />
             {isArAvailableFor(animal) ? (
               <BigButton
@@ -123,19 +131,33 @@ function AnimalDetail({ animal }: { animal: Animal }) {
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  scroll: { paddingBottom: spacing.xxl },
-  hero: { paddingHorizontal: spacing.lg - 4, paddingTop: spacing.sm, paddingBottom: spacing.lg, gap: spacing.sm, alignItems: 'center' },
+  scroll: { flexGrow: 1 },
+  hero: {
+    paddingHorizontal: spacing.lg - 4,
+    paddingTop: spacing.sm,
+    paddingBottom: spacing.lg,
+    gap: spacing.sm,
+    alignItems: 'center',
+  },
   topBar: { alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   imageButton: { alignItems: 'center', justifyContent: 'center', padding: spacing.sm },
-  halo: { position: 'absolute', width: 250, height: 250, borderRadius: 125, backgroundColor: colors.white, opacity: 0.6 },
+  halo: {
+    position: 'absolute',
+    width: 250,
+    height: 250,
+    borderRadius: 125,
+    backgroundColor: colors.white,
+    opacity: 0.6,
+  },
   body: {
     backgroundColor: colors.cream,
     borderTopLeftRadius: radius.lg + 12,
     borderTopRightRadius: radius.lg + 12,
     paddingHorizontal: spacing.lg - 4,
     paddingTop: spacing.lg,
+    paddingBottom: spacing.xxl,
     gap: spacing.lg,
-    minHeight: 600,
+    flexGrow: 1,
   },
   audioRow: { flexDirection: 'row', gap: spacing.sm + 4 },
   actions: { gap: spacing.md },

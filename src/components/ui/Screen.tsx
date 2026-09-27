@@ -14,14 +14,20 @@ interface ScreenProps {
   bottomInset?: number;
 }
 
-export function Screen({ children, scroll = true, edges = ['top'], background = colors.cream, contentStyle, bottomInset = spacing.xl }: ScreenProps) {
+export function Screen({
+  children,
+  scroll = true,
+  edges = ['top'],
+  background = colors.cream,
+  contentStyle,
+  bottomInset = spacing.xl,
+}: ScreenProps) {
   return (
     <SafeAreaView edges={edges} style={[styles.root, { backgroundColor: background }]}>
       {scroll ? (
         <ScrollView
           contentContainerStyle={[styles.content, { paddingBottom: bottomInset }, contentStyle]}
-          showsVerticalScrollIndicator={false}
-        >
+          showsVerticalScrollIndicator={false}>
           {children}
         </ScrollView>
       ) : (

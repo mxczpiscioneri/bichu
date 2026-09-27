@@ -34,13 +34,15 @@ export function Mascot({ pose = 'wave', height, animated = true }: MascotProps) 
 
   useEffect(() => {
     if (!animated || reduceMotion) return;
-    offset.set(withRepeat(
-      withSequence(
-        withTiming(-6, { duration: 900, easing: Easing.inOut(Easing.quad) }),
-        withTiming(0, { duration: 900, easing: Easing.inOut(Easing.quad) }),
+    offset.set(
+      withRepeat(
+        withSequence(
+          withTiming(-6, { duration: 900, easing: Easing.inOut(Easing.quad) }),
+          withTiming(0, { duration: 900, easing: Easing.inOut(Easing.quad) }),
+        ),
+        -1,
       ),
-      -1,
-    ));
+    );
   }, [animated, offset, reduceMotion]);
 
   const style = useAnimatedStyle(() => ({ transform: [{ translateY: offset.get() }] }));

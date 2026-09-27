@@ -57,7 +57,7 @@ function ArScreenContent({ animal, viro }: { animal: Animal; viro: NonNullable<R
   return (
     <View style={styles.root}>
       <ArExperience viro={viro} animal={animal} />
-      <SafeAreaView style={styles.overlay} pointerEvents="box-none">
+      <SafeAreaView style={styles.overlay}>
         <View style={styles.top}>
           <RoundButton glyph="×" accessibilityLabel="Sair da realidade aumentada" onPress={() => router.back()} />
           <View style={styles.tag}>
@@ -65,7 +65,7 @@ function ArScreenContent({ animal, viro }: { animal: Animal; viro: NonNullable<R
           </View>
         </View>
         <MascotBubble text={STATUS_TEXT[status](animal)} />
-        <View style={styles.spacer} pointerEvents="none" />
+        <View style={styles.spacer} />
         {status === 'placed' ? (
           playing ? (
             <ArChallenge animal={animal} onDone={() => setPlaying(false)} />
@@ -75,7 +75,11 @@ function ArScreenContent({ animal, viro }: { animal: Animal; viro: NonNullable<R
                 {animal.name.ptBR}
               </AppText>
               <View style={styles.row}>
-                <AudioButton label="Nome" clipKey={clipKeys.name(animal.id)} onPress={() => void AudioService.playAnimalName(animal.id)} />
+                <AudioButton
+                  label="Nome"
+                  clipKey={clipKeys.name(animal.id)}
+                  onPress={() => void AudioService.playAnimalName(animal.id)}
+                />
                 <AudioButton
                   label={soundNameOf(animal)}
                   clipKey={clipKeys.sound(animal.id)}
@@ -137,12 +141,24 @@ function ArUnavailable({ animal }: { animal: Animal }) {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: colors.ink },
-  overlay: { ...StyleSheet.absoluteFill, padding: spacing.md, gap: spacing.md },
+  overlay: { ...StyleSheet.absoluteFill, padding: spacing.md, gap: spacing.md, pointerEvents: 'box-none' },
   top: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  tag: { backgroundColor: colors.sunSoft, borderRadius: radius.pill, paddingHorizontal: spacing.md, paddingVertical: 6 },
-  spacer: { flex: 1 },
+  tag: {
+    backgroundColor: colors.sunSoft,
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing.md,
+    paddingVertical: 6,
+  },
+  spacer: { flex: 1, pointerEvents: 'none' },
   panel: { backgroundColor: colors.cream, borderRadius: radius.lg, padding: spacing.md, gap: spacing.md },
   row: { flexDirection: 'row', gap: spacing.sm },
-  unavailable: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing.md, padding: spacing.lg, backgroundColor: colors.cream },
+  unavailable: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacing.md,
+    padding: spacing.lg,
+    backgroundColor: colors.cream,
+  },
   back: { alignSelf: 'stretch' },
 });

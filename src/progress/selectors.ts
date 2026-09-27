@@ -28,7 +28,12 @@ export function animalOfTheDay(animals: readonly Animal[], date: Date = new Date
 }
 
 /** Suggestions when there is no history yet: undiscovered animals first. */
-export function suggestedAnimals(animals: readonly Animal[], progress: ProgressMap, exclude: string[], limit = 6): Animal[] {
+export function suggestedAnimals(
+  animals: readonly Animal[],
+  progress: ProgressMap,
+  exclude: string[],
+  limit = 6,
+): Animal[] {
   return animals
     .filter((a) => !exclude.includes(a.id) && discoveryState(progress[a.id]) !== 'discovered')
     .slice(0, limit);

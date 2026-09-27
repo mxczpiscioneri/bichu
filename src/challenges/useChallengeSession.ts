@@ -110,7 +110,39 @@ export function useChallengeSession(source: SessionSource, level: Level) {
   );
 
   return useMemo(
-    () => ({ rounds, index, current, finished, solved, tried, starsEarned, roundStar, discovered, lastWrongAt, choose, next, restart, statusOf, playPrompt }),
-    [rounds, index, current, finished, solved, tried, starsEarned, roundStar, discovered, lastWrongAt, choose, next, restart, statusOf, playPrompt],
+    () => ({
+      rounds,
+      index,
+      current,
+      finished,
+      solved,
+      tried,
+      starsEarned,
+      roundStar,
+      discovered,
+      lastWrongAt,
+      choose,
+      next,
+      restart,
+      statusOf,
+      playPrompt,
+    }),
+    [
+      rounds,
+      index,
+      current,
+      finished,
+      solved,
+      tried,
+      starsEarned,
+      roundStar,
+      discovered,
+      lastWrongAt,
+      choose,
+      next,
+      restart,
+      statusOf,
+      playPrompt,
+    ],
   );
 }

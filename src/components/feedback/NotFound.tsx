@@ -24,6 +24,13 @@ export function NotFound({ message = 'Esse bichinho se escondeu!' }: { message?:
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing.md, padding: spacing.lg, backgroundColor: colors.cream },
+  root: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacing.md,
+    padding: spacing.lg,
+    backgroundColor: colors.cream,
+  },
   button: { alignSelf: 'stretch' },
 });

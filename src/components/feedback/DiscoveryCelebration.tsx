@@ -48,7 +48,13 @@ export function DiscoveryCelebration({ animal, onClose }: DiscoveryCelebrationPr
 }
 
 const styles = StyleSheet.create({
-  backdrop: { flex: 1, backgroundColor: colors.overlay, alignItems: 'center', justifyContent: 'center', padding: spacing.lg },
+  backdrop: {
+    flex: 1,
+    backgroundColor: colors.overlay,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: spacing.lg,
+  },
   card: {
     width: '100%',
     maxWidth: 420,
