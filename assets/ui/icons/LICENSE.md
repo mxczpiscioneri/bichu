@@ -1,5 +1,9 @@
 # Ícones de UI
 
+**Alimentos** (meat, fish, squid, crab, shrimp, bug, worm, seedling, wood, carrot, cherry, banana, corn, peanuts, herb, hay, leaves, sunflower, blossom, bowl): arte própria do Bichu, separada da prancha de alimentos enviada pelo time.
+
+**Demais ícones:**
+
 Os ícones desta pasta são do **Microsoft Fluent Emoji** (estilo 3D), obtidos em
 https://github.com/microsoft/fluentui-emoji e distribuídos sob a licença MIT.
 
