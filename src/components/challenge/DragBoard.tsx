@@ -6,7 +6,7 @@ import { isCorrect, type Challenge, type ChallengeOption } from '@/challenges/ty
 import { getAnimal } from '@/content/animals';
 import { colors, radius, shadows, spacing } from '@/theme';
 
-import { AnimalMedallion } from '../animal/AnimalMedallion';
+import { AnimalArt } from '../animal/AnimalArt';
 import { AppText } from '../ui/AppText';
 import { HabitatScene, sceneForAnimal } from '../ui/HabitatScene';
 import { Draggable } from './Draggable';
@@ -34,7 +34,7 @@ export function DragBoard({ challenge, statusOf, onChoose, disabled }: BoardProp
       <View style={styles.stage}>
         {animal ? <HabitatScene scene={sceneForAnimal(animal)} /> : null}
         <Animated.View ref={slotRef} style={[styles.slot, solved && styles.slotSolved]}>
-          <AnimalMedallion animalId={challenge.animalId} size={176} />
+          <AnimalArt animalId={challenge.animalId} size={176} />
         </Animated.View>
         {!solved ? (
           <View style={styles.hint}>

@@ -158,6 +158,13 @@
               "type": "string"
             }
           }
+        },
+        "imageStyle": {
+          "enum": [
+            "badge",
+            "cutout"
+          ],
+          "description": "badge: ilustração circular legada (assets/animals/images). cutout: arte nova de corpo inteiro com fundo transparente (assets/animals/art). Padrão: badge."
         }
       }
     },

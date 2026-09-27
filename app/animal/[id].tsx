@@ -4,7 +4,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AnimalFacts } from '@/components/animal/AnimalFacts';
-import { AnimalMedallion } from '@/components/animal/AnimalMedallion';
+import { AnimalArt } from '@/components/animal/AnimalArt';
 import { AnimalTraits } from '@/components/animal/AnimalTraits';
 import { AudioButton } from '@/components/animal/AudioButton';
 import { DiscoveryBadge } from '@/components/animal/DiscoveryBadge';
@@ -77,7 +77,7 @@ function AnimalDetail({ animal }: { animal: Animal }) {
             onPress={() => void AudioService.playAnimalName(animal.id)}
             accessibilityLabel={`Ouvir o nome: ${animal.name.ptBR}`}
             pressedScale={0.97}>
-            <AnimalMedallion animalId={animal.id} size={210} />
+            <AnimalArt animalId={animal.id} size={210} />
           </PressableScale>
         </View>
 

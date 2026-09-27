@@ -18,7 +18,8 @@ describe('animal loader', () => {
 
   it('keeps media paths predictable (id-based)', () => {
     for (const animal of animals) {
-      expect(animal.media.image).toBe(`assets/animals/images/${animal.id}.png`);
+      const folder = animal.media.imageStyle === 'cutout' ? 'art' : 'images';
+      expect(animal.media.image).toBe(`assets/animals/${folder}/${animal.id}.png`);
       expect(animal.media.sound).toBe(`assets/animals/sounds/${animal.id}.mp3`);
       expect(animal.media.nameAudio).toBe(`assets/animals/names/${animal.id}_name.mp3`);
     }

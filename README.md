@@ -89,6 +89,16 @@ O script (`scripts/fetch-legacy-assets.ts`) baixa **somente** os arquivos do man
 
 ---
 
+## Arte nova dos animais
+
+As ilustrações antigas (circulares) estão sendo trocadas por artes de corpo inteiro com fundo transparente. As duas convivem: cada animal usa a nova assim que ela existe (`media.imageStyle: "cutout"`) e a antiga (`"badge"`, em medalhão) até lá. Com arte nova, o animal aparece em pé sobre o cenário e, na Bichupédia, os ainda não descobertos viram silhueta.
+
+Para adicionar ou trocar uma arte:
+
+1. Salve em `assets/animals/art/<id>.png`: PNG **quadrado** (768×768), fundo **transparente**, animal inteiro com margem de ~5% e patas na mesma linha de base dos outros.
+2. `npm run assets:art`. O comando aponta o seed para a arte nova, regenera o registro de mídia, confere se o PNG é quadrado e transparente e lista quem ainda está com a ilustração antiga.
+3. `npm run validate`.
+
 ## Como adicionar um novo animal
 
 1. Coloque os arquivos seguindo o id (slug em inglês):
@@ -223,4 +233,4 @@ A documentação do handoff é a fonte primária. Pequenas inconsistências enco
 - A silabação acende as sílabas enquanto a locução toca, mas **não é sincronizada** sílaba a sílaba (não há marcação de tempo nos áudios).
 - Enunciados dos desafios não têm narração própria; a criança ouve o nome do animal (ou o som, no “Que animal é esse?”) ao começar cada rodada.
 - Apenas pt-BR. No web, o navegador pode bloquear o áudio automático antes do primeiro toque.
-- **Conteúdo legado a revisar:** a imagem `turkey.png` (“Peru”) do app antigo é, na verdade, um **pavão**. Não alterei o dado; precisa de uma ilustração de peru ou de uma decisão de conteúdo.
+- **Conteúdo legado a revisar:** a imagem antiga `turkey.png` (“Peru”) é, na verdade, um **pavão**; some quando a arte nova do peru entrar em `assets/animals/art/turkey.png`.

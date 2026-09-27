@@ -5,7 +5,7 @@ import { isCorrect, type Challenge, type ChallengeOption } from '@/challenges/ty
 import { HABITATS, isOneOf } from '@/domain/taxonomy';
 import { colors, fonts, radius, shadows, spacing } from '@/theme';
 
-import { AnimalMedallion } from '../animal/AnimalMedallion';
+import { AnimalArt } from '../animal/AnimalArt';
 import { AppText } from '../ui/AppText';
 import { HabitatScene, sceneForHabitat } from '../ui/HabitatScene';
 import { PressableScale } from '../ui/PressableScale';
@@ -47,7 +47,7 @@ export function PlaceBoard({ challenge, statusOf, onChoose, disabled }: BoardPro
           disabled={disabled}
           accessibilityLabel="Arraste o animal até o lugar certo"
           style={styles.animalToken}>
-          <AnimalMedallion animalId={challenge.animalId} size={84} />
+          <AnimalArt animalId={challenge.animalId} size={84} />
         </Draggable>
       </View>
       <View style={styles.places}>

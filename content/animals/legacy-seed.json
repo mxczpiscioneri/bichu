@@ -100,7 +100,8 @@
         "group": "Anthophila"
       },
       "media": {
-        "image": "assets/animals/images/bee.png",
+        "image": "assets/animals/art/bee.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/bee.mp3",
         "nameAudio": "assets/animals/names/bee_name.mp3",
         "model3d": null
@@ -328,7 +329,8 @@
         "group": "Phasianidae"
       },
       "media": {
-        "image": "assets/animals/images/chicken.png",
+        "image": "assets/animals/art/chicken.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/chicken.mp3",
         "nameAudio": "assets/animals/names/chicken_name.mp3",
         "model3d": null
@@ -551,7 +553,8 @@
         "group": "Canidae"
       },
       "media": {
-        "image": "assets/animals/images/dog.png",
+        "image": "assets/animals/art/dog.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/dog.mp3",
         "nameAudio": "assets/animals/names/dog_name.mp3",
         "model3d": null
@@ -781,7 +784,8 @@
         "group": "Elephantidae"
       },
       "media": {
-        "image": "assets/animals/images/elephant.png",
+        "image": "assets/animals/art/elephant.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/elephant.mp3",
         "nameAudio": "assets/animals/names/elephant_name.mp3",
         "model3d": null
@@ -1249,7 +1253,8 @@
         "group": "Suidae"
       },
       "media": {
-        "image": "assets/animals/images/pig.png",
+        "image": "assets/animals/art/pig.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/pig.mp3",
         "nameAudio": "assets/animals/names/pig_name.mp3",
         "model3d": null

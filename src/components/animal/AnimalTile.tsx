@@ -10,7 +10,7 @@ import { AppText } from '../ui/AppText';
 import { HabitatScene, sceneForAnimal } from '../ui/HabitatScene';
 import { LineIcon } from '../ui/LineIcon';
 import { PressableScale } from '../ui/PressableScale';
-import { AnimalMedallion } from './AnimalMedallion';
+import { AnimalArt } from './AnimalArt';
 
 interface AnimalTileProps {
   animal: Animal;
@@ -34,7 +34,7 @@ export function AnimalTile({ animal, width, lockUndiscovered = false }: AnimalTi
       pressedScale={0.96}>
       <View style={[styles.scene, { height: Math.round(width * 0.88) }, locked && styles.sceneLocked]}>
         {locked ? null : <HabitatScene scene={sceneForAnimal(animal)} />}
-        <AnimalMedallion animalId={animal.id} size={imageSize} dimmed={locked} />
+        <AnimalArt animalId={animal.id} size={imageSize} dimmed={locked} />
         {discovered ? (
           <View style={[styles.badge, styles.star]}>
             <LineIcon name="starFill" size={16} color={colors.white} />

@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import type { Animal } from '@/domain/animal';
 import { colors, fonts, radius, shadows, spacing } from '@/theme';
 
-import { AnimalMedallion } from '../animal/AnimalMedallion';
+import { AnimalArt } from '../animal/AnimalArt';
 import { AppText } from '../ui/AppText';
 import { HabitatScene, sceneForAnimal } from '../ui/HabitatScene';
 import { LineIcon } from '../ui/LineIcon';
@@ -41,7 +41,7 @@ export function AnimalOfTheDayCard({ animal }: { animal: Animal }) {
         </View>
       </View>
       <View style={styles.image}>
-        <AnimalMedallion animalId={animal.id} size={138} />
+        <AnimalArt animalId={animal.id} size={138} />
       </View>
     </PressableScale>
   );

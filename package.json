@@ -61,7 +61,8 @@
     "run:android": "expo run:android",
     "run:ios": "expo run:ios",
     "run:android:ar": "BICHU_AR=1 expo run:android",
-    "run:ios:ar": "BICHU_AR=1 expo run:ios"
+    "run:ios:ar": "BICHU_AR=1 expo run:ios",
+    "assets:art": "tsx scripts/apply-animal-art.ts"
   },
   "private": true,
   "overrides": {

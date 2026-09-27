@@ -38,8 +38,16 @@ export interface Model3dMeta {
 }
 
 /** Media paths are repository-relative and follow `assets/animals/<kind>/<id>…`. */
+/**
+ * badge: legacy circular illustration (assets/animals/images).
+ * cutout: new full-body art on a transparent background (assets/animals/art).
+ */
+export type ImageStyle = 'badge' | 'cutout';
+
 export interface AnimalMedia {
   image: string;
+  /** Defaults to 'badge'. */
+  imageStyle?: ImageStyle;
   sound: string;
   nameAudio: string;
   model3d?: string | null;

@@ -45,9 +45,9 @@ function normalize(text: string): string {
 }
 
 /** Expected media paths derived from the id — keeps assets predictable. */
-export function expectedMediaPaths(id: string) {
+export function expectedMediaPaths(id: string, imageStyle: unknown = 'badge') {
   return {
-    image: `assets/animals/images/${id}.png`,
+    image: imageStyle === 'cutout' ? `assets/animals/art/${id}.png` : `assets/animals/images/${id}.png`,
     sound: `assets/animals/sounds/${id}.mp3`,
     nameAudio: `assets/animals/names/${id}_name.mp3`,
   } as const;
@@ -86,7 +86,10 @@ function validateAnimal(raw: unknown, index: number, options: ValidationOptions)
   if (!isObject(media)) {
     error('media', 'Obrigatório.');
   } else if (typeof raw.id === 'string') {
-    const expected = expectedMediaPaths(raw.id);
+    if (media.imageStyle !== undefined && media.imageStyle !== 'badge' && media.imageStyle !== 'cutout') {
+      error('media.imageStyle', 'Use "badge" ou "cutout".');
+    }
+    const expected = expectedMediaPaths(raw.id, media.imageStyle);
     for (const key of ['image', 'sound', 'nameAudio'] as const) {
       const value = media[key];
       if (typeof value !== 'string' || value === '') {

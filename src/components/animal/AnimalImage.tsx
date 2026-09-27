@@ -1,7 +1,9 @@
 import { Image } from 'expo-image';
-import type { StyleProp, ImageStyle } from 'react-native';
+import type { ImageStyle, StyleProp } from 'react-native';
 
+import { getAnimal } from '@/content/animals';
 import { mediaFor } from '@/content/media';
+import { colors } from '@/theme';
 
 interface AnimalImageProps {
   animalId: string;
@@ -10,12 +12,14 @@ interface AnimalImageProps {
   style?: StyleProp<ImageStyle>;
 }
 
-/** Legacy illustrations are circular, so they sit well on any tinted surface. */
+/** Plain animal illustration. Dimmed cutouts turn into a silhouette ("who is it?"). */
 export function AnimalImage({ animalId, size, dimmed = false, style }: AnimalImageProps) {
+  const cutout = getAnimal(animalId)?.media.imageStyle === 'cutout';
   return (
     <Image
       source={mediaFor(animalId).image}
-      style={[{ width: size, height: size, opacity: dimmed ? 0.35 : 1 }, style]}
+      style={[{ width: size, height: size, opacity: dimmed ? (cutout ? 0.5 : 0.35) : 1 }, style]}
+      tintColor={dimmed && cutout ? colors.cacao : undefined}
       contentFit="contain"
       transition={120}
     />

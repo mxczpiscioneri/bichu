@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { ChallengeOption } from '@/challenges/types';
 import { colors, radius, spacing } from '@/theme';
 
-import { AnimalMedallion } from '../animal/AnimalMedallion';
+import { AnimalArt } from '../animal/AnimalArt';
 import { Mascot } from '../brand/Mascot';
 import { AppText } from '../ui/AppText';
 import { BigButton } from '../ui/BigButton';
@@ -43,7 +43,7 @@ export function SuccessScreen({ title, explanation, answer, earnedStar, isLast, 
           {explanation}
         </AppText>
         {answer?.icon ? <Icon name={answer.icon} size={112} /> : null}
-        {answer?.animalId ? <AnimalMedallion animalId={answer.animalId} size={112} /> : null}
+        {answer?.animalId ? <AnimalArt animalId={answer.animalId} size={112} /> : null}
         {earnedStar ? (
           <View style={styles.starChip} accessibilityLabel="Você ganhou uma estrela" accessible>
             <Icon name="star" size={24} />
