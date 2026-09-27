@@ -1,16 +1,15 @@
 import { ScrollView, StyleSheet } from 'react-native';
 
-import type { IconName } from '@/content/icons';
-import { colors, radius, shadows, spacing } from '@/theme';
+import { colors, fonts, radius, spacing } from '@/theme';
 
 import { AppText } from './AppText';
-import { Icon } from './Icon';
 import { PressableScale } from './PressableScale';
 
 export interface FilterOption {
   id: string;
   label: string;
-  icon: IconName;
+  /** Optional progress shown in the pill, e.g. "3/11". */
+  count?: string;
 }
 
 interface FilterChipsProps {
@@ -34,12 +33,12 @@ export function FilterChips({ options, selected, onSelect }: FilterChipsProps) {
             onPress={() => onSelect(option.id)}
             accessibilityRole="button"
             accessibilityState={{ selected: active }}
-            accessibilityLabel={`Filtro: ${option.label}`}
+            accessibilityLabel={`Filtro: ${option.label}${option.count ? `, ${option.count}` : ''}`}
             style={[styles.chip, active && styles.chipActive]}>
-            <Icon name={option.icon} size={28} />
-            <AppText variant="label" color={active ? colors.white : colors.ink}>
-              {option.label}
-            </AppText>
+            <AppText style={[styles.label, active && styles.labelActive]}>{option.label}</AppText>
+            {option.count ? (
+              <AppText style={[styles.count, active && styles.labelActive]}>{option.count}</AppText>
+            ) : null}
           </PressableScale>
         );
       })}
@@ -48,18 +47,21 @@ export function FilterChips({ options, selected, onSelect }: FilterChipsProps) {
 }
 
 const styles = StyleSheet.create({
-  scroller: { marginHorizontal: -spacing.lg + 4 },
-  row: { gap: spacing.sm, paddingHorizontal: spacing.lg - 4, paddingVertical: spacing.sm + 2 },
+  scroller: { marginHorizontal: -spacing.lg + 4, flexGrow: 0 },
+  row: { gap: spacing.sm, paddingHorizontal: spacing.lg - 4, paddingVertical: 2 },
   chip: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.sm,
-    minHeight: 52,
-    paddingLeft: spacing.sm + 2,
-    paddingRight: spacing.md + 2,
+    gap: 6,
+    minHeight: 44,
+    paddingHorizontal: spacing.md + 2,
     borderRadius: radius.pill,
     backgroundColor: colors.surface,
-    ...shadows.card,
+    borderWidth: 1.5,
+    borderColor: colors.line,
   },
-  chipActive: { backgroundColor: colors.forest },
+  chipActive: { backgroundColor: colors.forest, borderColor: colors.forest },
+  label: { fontFamily: fonts.bodyBold, fontSize: 15, color: colors.ink },
+  count: { fontFamily: fonts.body, fontSize: 13, color: colors.inkSoft },
+  labelActive: { color: colors.white },
 });

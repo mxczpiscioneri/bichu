@@ -1,23 +1,18 @@
-import { router } from 'expo-router';
 import { useMemo } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
-import { AnimalCard } from '@/components/animal/AnimalCard';
-import { Logo } from '@/components/brand/Logo';
+import { AnimalTile } from '@/components/animal/AnimalTile';
 import { Mascot } from '@/components/brand/Mascot';
 import { AnimalOfTheDayCard } from '@/components/home/AnimalOfTheDayCard';
 import { CollectionProgressCard } from '@/components/home/CollectionProgressCard';
-import { PlayShortcutCard } from '@/components/home/PlayShortcutCard';
 import { AppText } from '@/components/ui/AppText';
-import { RoundButton } from '@/components/ui/RoundButton';
 import { Screen } from '@/components/ui/Screen';
-import { SectionHeader } from '@/components/ui/SectionHeader';
+import { SettingsButton } from '@/components/ui/ScreenHeader';
 import { animals } from '@/content/animals';
-import { animalsInCollection, BICHUPEDIA_COLLECTION_IDS, getCollection } from '@/content/collections';
 import { useTabBarInset } from '@/hooks/useTabBarInset';
-import { animalOfTheDay, countDiscovered, recentAnimals, suggestedAnimals, totalStars } from '@/progress/selectors';
+import { animalOfTheDay, countDiscovered, recentAnimals, suggestedAnimals } from '@/progress/selectors';
 import { useProgressStore } from '@/stores/progressStore';
-import { colors, spacing } from '@/theme';
+import { spacing } from '@/theme';
 
 export default function HomeScreen() {
   const progress = useProgressStore((state) => state.byAnimal);
@@ -28,69 +23,48 @@ export default function HomeScreen() {
   // Recent animals first, topped up with suggestions so the row never looks empty.
   const suggestions = suggestedAnimals(animals, progress, [featured.id, ...recent.map((a) => a.id)]);
   const row = [...recent, ...suggestions].slice(0, 8);
-  const discovered = countDiscovered(animals, progress);
-
-  // Highlight the collection closest to completion (but not complete).
-  const highlight = BICHUPEDIA_COLLECTION_IDS.map((id) => {
-    const members = animalsInCollection(animals, id);
-    return { label: getCollection(id).label, discovered: countDiscovered(members, progress), total: members.length };
-  })
-    .filter((c) => c.discovered < c.total)
-    .sort((a, b) => b.discovered / b.total - a.discovered / a.total)[0];
 
   return (
     <Screen bottomInset={bottomInset}>
       <View style={styles.header}>
-        <Mascot pose="avatar" height={60} animated={false} />
-        <View style={styles.greeting}>
-          <Logo width={96} withTagline={false} />
-          <AppText variant="subheading" color={colors.cacao}>
-            Vamos descobrir?
-          </AppText>
-        </View>
-        <RoundButton
-          glyph="⋯"
-          size={44}
-          accessibilityLabel="Área dos adultos"
-          onPress={() => router.push('/parents')}
-          background={colors.cacaoSoft}
-        />
+        <Mascot pose="avatar" height={48} animated={false} />
+        <AppText variant="subheading" style={styles.greeting}>
+          Olá, pequeno explorador!
+        </AppText>
+        <SettingsButton />
       </View>
 
       <AnimalOfTheDayCard animal={featured} />
 
       <View style={styles.section}>
-        <SectionHeader title={recent.length > 0 ? 'Continue explorando' : 'Comece por aqui'} icon="footprints" />
+        <AppText variant="subheading" accessibilityRole="header">
+          {recent.length > 0 ? 'Continue explorando' : 'Comece por aqui'}
+        </AppText>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
           style={styles.carouselScroller}
           contentContainerStyle={styles.carousel}>
           {row.map((animal) => (
-            <AnimalCard key={animal.id} animal={animal} size="sm" width={132} />
+            <AnimalTile key={animal.id} animal={animal} width={112} />
           ))}
         </ScrollView>
       </View>
 
-      <PlayShortcutCard />
-
-      <View style={styles.section}>
-        <SectionHeader title="Sua Bichupédia" icon="books" />
-        <CollectionProgressCard
-          discovered={discovered}
-          total={animals.length}
-          stars={totalStars(progress)}
-          highlight={highlight}
-        />
-      </View>
+      <CollectionProgressCard
+        title="Sua Bichupédia"
+        discovered={countDiscovered(animals, progress)}
+        total={animals.length}
+        linkToCollection
+      />
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  header: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm + 4 },
-  greeting: { flex: 1, gap: 2 },
-  section: { gap: spacing.sm + 4 },
+  header: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm + 2 },
+  greeting: { flex: 1 },
+  section: { gap: spacing.sm },
   carouselScroller: { marginHorizontal: -(spacing.lg - 4) },
   carousel: { gap: spacing.sm + 4, paddingVertical: spacing.sm, paddingHorizontal: spacing.lg - 4 },
 });

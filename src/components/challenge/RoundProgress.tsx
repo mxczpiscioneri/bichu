@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { colors, radius } from '@/theme';
 
+/** ● ● ━━ ○ ○ — done, current, still to go. */
 export function RoundProgress({ total, current }: { total: number; current: number }) {
   return (
     <View style={styles.row} accessibilityLabel={`Rodada ${Math.min(current + 1, total)} de ${total}`} accessible>
@@ -13,8 +14,8 @@ export function RoundProgress({ total, current }: { total: number; current: numb
 }
 
 const styles = StyleSheet.create({
-  row: { flexDirection: 'row', gap: 8, alignItems: 'center' },
-  dot: { width: 14, height: 14, borderRadius: radius.pill, backgroundColor: colors.cacaoSoft },
+  row: { flexDirection: 'row', gap: 6, alignItems: 'center' },
+  dot: { width: 12, height: 12, borderRadius: radius.pill, backgroundColor: colors.line },
   done: { backgroundColor: colors.leaf },
-  active: { width: 32, backgroundColor: colors.sun },
+  active: { width: 36, backgroundColor: colors.sun },
 });

@@ -29,13 +29,13 @@ function OptionCard({
   status,
   onChoose,
   disabled,
-  large,
+  imageSize,
 }: {
   option: ChallengeOption;
   status: OptionStatus;
   onChoose: () => void;
   disabled: boolean;
-  large: boolean;
+  imageSize: number;
 }) {
   const shake = useSharedValue(0);
   const pop = useSharedValue(1);
@@ -63,16 +63,11 @@ function OptionCard({
         disabled={disabled || status !== 'idle'}
         accessibilityLabel={option.label}
         accessibilityState={{ disabled: status === 'tried', selected: status === 'correct' }}
-        style={[
-          styles.card,
-          large && styles.cardLarge,
-          status === 'correct' && styles.cardCorrect,
-          status === 'tried' && styles.cardTried,
-        ]}>
-        <OptionContent option={option} size={large ? 128 : 88} />
+        style={[styles.card, status === 'correct' && styles.cardCorrect, status === 'tried' && styles.cardTried]}>
+        <OptionContent option={option} size={imageSize} />
         {status === 'correct' ? (
           <View style={styles.badge}>
-            <Icon name="check" size={36} />
+            <Icon name="check" size={34} />
           </View>
         ) : null}
       </PressableScale>
@@ -80,11 +75,12 @@ function OptionCard({
   );
 }
 
-/** Big picture cards. 2 options side by side; 3+ wrap into two columns. */
+/** Tall picture cards side by side (2 for Explorers, 3 for Adventurers). */
 export function TapOptions({ challenge, statusOf, onChoose, disabled }: TapOptionsProps) {
-  const large = challenge.options.length <= 2;
+  const count = challenge.options.length;
+  const imageSize = count <= 2 ? 128 : 88;
   return (
-    <View style={styles.grid}>
+    <View style={styles.row}>
       {challenge.options.map((option) => (
         <OptionCard
           key={option.id}
@@ -92,7 +88,7 @@ export function TapOptions({ challenge, statusOf, onChoose, disabled }: TapOptio
           status={statusOf(option.id)}
           onChoose={() => onChoose(option)}
           disabled={disabled}
-          large={large}
+          imageSize={imageSize}
         />
       ))}
     </View>
@@ -100,22 +96,21 @@ export function TapOptions({ challenge, statusOf, onChoose, disabled }: TapOptio
 }
 
 const styles = StyleSheet.create({
-  grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: spacing.md },
-  cardWrap: { width: '46%', minWidth: 140 },
+  row: { flexDirection: 'row', gap: spacing.sm + 4 },
+  cardWrap: { flex: 1 },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.lg,
-    paddingVertical: spacing.md,
-    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.lg,
+    paddingHorizontal: spacing.xs,
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 150,
+    minHeight: 190,
     borderWidth: 4,
     borderColor: 'transparent',
     ...shadows.card,
   },
-  cardLarge: { minHeight: 200 },
   cardCorrect: { borderColor: colors.leaf, backgroundColor: colors.leafSoft },
   cardTried: { opacity: 0.4 },
-  badge: { position: 'absolute', top: -14, right: -10 },
+  badge: { position: 'absolute', top: -12, right: -8 },
 });

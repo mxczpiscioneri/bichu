@@ -9,14 +9,7 @@ interface IconProps {
   style?: StyleProp<ImageStyle>;
 }
 
-/** Decorative by default: pair it with text or an accessibilityLabel on the parent. */
+/** Decorative (images are not accessibility elements by default): label the parent instead. */
 export function Icon({ name, size = 32, style }: IconProps) {
-  return (
-    <Image
-      source={ICONS[name]}
-      style={[{ width: size, height: size }, style]}
-      contentFit="contain"
-      accessible={false}
-    />
-  );
+  return <Image source={ICONS[name]} style={[{ width: size, height: size }, style]} contentFit="contain" />;
 }

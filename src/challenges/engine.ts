@@ -42,6 +42,7 @@ function makeChallenge(
     level,
     interaction: template.interaction,
     prompt: fillTemplate(template.prompt, { animal }),
+    hint: fillTemplate(template.hint, { animal }),
     explanation: fillTemplate(template.explanation, { animal, answer: answerPhrase }),
     options,
     correctOptionIds: [correct.id],

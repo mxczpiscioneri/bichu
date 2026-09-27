@@ -6,5 +6,5 @@ import { spacing } from '@/theme';
 /** Bottom padding so scrolled content clears the floating tab bar. */
 export function useTabBarInset(): number {
   const insets = useSafeAreaInsets();
-  return TAB_BAR_HEIGHT + Math.max(insets.bottom, spacing.sm) + spacing.lg;
+  return TAB_BAR_HEIGHT + Math.max(insets.bottom, spacing.sm) + spacing.md;
 }

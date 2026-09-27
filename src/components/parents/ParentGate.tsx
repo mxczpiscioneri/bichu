@@ -38,7 +38,7 @@ export function ParentGate({ onUnlock }: { onUnlock: () => void }) {
   return (
     <View style={styles.root}>
       <AppText variant="heading" align="center">
-        Área dos adultos
+        Só para adultos
       </AppText>
       <AppText variant="body" align="center">
         Mantenha o botão pressionado por alguns segundos para continuar.

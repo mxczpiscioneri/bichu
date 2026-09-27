@@ -4,9 +4,11 @@
 
 Bichu é um app infantil (≈ 2–8 anos) de descoberta do mundo animal, reescrito em **React Native + Expo + TypeScript** a partir do antigo Zoo Babies / AnimalSounds. A criança vê um animal, ouve o nome e a silabação gravados, ouve o som real, conhece fatos simples, completa desafios e adiciona o animal à **Bichupédia**. A realidade aumentada é um complemento experimental — o app funciona completo sem ela.
 
-| Início | Animal | Que animal é esse? | Arrastar | Bichupédia |
+| Boas-vindas | Início | Explorar | Animal | Que animal é esse? |
 |---|---|---|---|---|
-| ![Início](docs/screenshots/01-home.png) | ![Animal](docs/screenshots/02-animal.png) | ![Som](docs/screenshots/03-sound.png) | ![Arrastar](docs/screenshots/04-drag.png) | ![Bichupédia](docs/screenshots/06-bichupedia.png) |
+| ![Boas-vindas](docs/screenshots/00-welcome.png) | ![Início](docs/screenshots/01-home.png) | ![Explorar](docs/screenshots/02-explore.png) | ![Animal](docs/screenshots/03-animal.png) | ![Som](docs/screenshots/04-sound.png) |
+| **O que ele come?** | **Muito bem!** | **Onde ele vive?** | **Modo** | **Bichupédia** |
+| ![Arrastar](docs/screenshots/05-drag.png) | ![Acerto](docs/screenshots/06-success.png) | ![Habitat](docs/screenshots/07-habitat.png) | ![Modo](docs/screenshots/08-mode.png) | ![Bichupédia](docs/screenshots/09-bichupedia.png) |
 
 > Documentação de produto, marca e conteúdo do handoff: [`docs/PRODUCT.md`](docs/PRODUCT.md), [`docs/TECHNICAL.md`](docs/TECHNICAL.md), [`docs/BRAND.md`](docs/BRAND.md), [`docs/CONTENT_MODEL.md`](docs/CONTENT_MODEL.md).
 
@@ -126,7 +128,10 @@ Coleções (Explorar e Bichupédia) são filtros declarativos em [`src/content/c
 
 Os desafios são gerados a partir dos dados — não há perguntas escritas por animal.
 
-1. **Template:** adicione a entrada em [`content/challenges/templates.json`](content/challenges/templates.json) (`id`, `interaction` `tap`|`drag`, `title`, `subtitle`, `icon`, `levels`, `prompt`, `explanation`). Tokens: `{animal}` (o leão), `{Animal}` (O leão), `{deAnimal}` (do leão), `{answer}`.
+1. **Template:** adicione a entrada em [`content/challenges/templates.json`](content/challenges/templates.json) (`id`, `interaction`, `title`, `subtitle`, `icon`, `levels`, `prompt`, `hint`, `explanation`). Tokens: `{animal}` (o leão), `{Animal}` (O leão), `{deAnimal}` (do leão), `{answer}`. Interações:
+   - `tap` — toca numa alternativa (cartões grandes);
+   - `drag` — arrasta a alternativa até o animal (ex.: comida);
+   - `place` — arrasta o animal até a alternativa (ex.: habitat, mostrado como cenário).
 2. **Tipo:** inclua o id em `CHALLENGE_TEMPLATE_IDS` ([`src/challenges/types.ts`](src/challenges/types.ts)).
 3. **Regra:** crie um `AttributeRule` em [`src/challenges/rules.ts`](src/challenges/rules.ts): `correct(animal)` (todas as respostas certas), `distractors(animal)` (apenas respostas **seguramente** erradas, em ordem de preferência) e `label(value)`. Se não houver distrator seguro, o engine não gera o desafio — nunca gera um distrator plausível.
 4. **Flag:** se o desafio puder ser ambíguo por animal, adicione uma chave em `challengeFlags`.
@@ -172,10 +177,19 @@ Princípios aplicados:
 ### Regras de conteúdo e desafios
 
 - Progressão: animal **descoberto** = ouviu o nome + ouviu o som + completou 2 tipos de desafio diferentes. Cada tipo novo concluído vale 1 estrela (máx. 3 por animal).
-- Níveis: **Explorador** (2 alternativas, áudio automático, frases `preschool`) e **Aventureiro** (3 alternativas, fatos `kids` + curiosidades, desafio de classe). Mesmo app; o nível é escolhido pelo adulto em “⋯ → Para adultos”.
+- Níveis: **Explorador** (2 alternativas, áudio automático, frases `preschool`) e **Aventureiro** (3 alternativas, fatos `kids`, desafio de classe). Mesmo app: o modo é escolhido no primeiro uso (“Como você quer explorar hoje?”) e depois na Área dos pais (engrenagem), que também tem o liga/desliga do som.
 - Distratores seguros: alimentos agrupados em famílias (quem come `plants` nunca recebe `grass` como errado; onívoros só recebem néctar), habitats agrupados por paisagem (com paisagens vizinhas bloqueadas: savana ↔ floresta), locomoção só com opções claramente erradas (aves nunca recebem “voando” como errado; foca nunca recebe “rastejando”), sons confundíveis nunca juntos (`soundGroup`). Quando faltam distratores seguros, a pergunta fica com menos alternativas.
 
 ---
+
+## Linguagem visual
+
+A interface segue o mockup de referência das telas: cenários de habitat ilustrados, animal em destaque, cartões grandes, botões de áudio redondos (verde = nome, laranja = som), tela cheia de acerto com o Bichu e barra inferior simples.
+
+- **Duas famílias de ícones, com papéis separados:** traços próprios em SVG para a “moldura” do app (navegação, voltar, fechar, engrenagem, busca, alto-falante — `src/components/ui/LineIcon.tsx`) e Fluent Emoji 3D para o conteúdo (alimentos, habitats, locomoção — `Icon`).
+- **Cenários em vetor, desenhados no próprio código** (`src/components/ui/HabitatScene.tsx`: savana, floresta, oceano, fazenda, casa, montanhas, brejo), no mesmo estilo chapado das ilustrações legadas. O cenário de cada animal vem do seu primeiro habitat.
+- As ilustrações legadas são circulares, então aparecem como **medalhões** sobre os cenários. O mockup usa animais recortados em estilo pintado; testei recorte automático e o resultado não tinha qualidade (círculos residuais, partes do corpo perdidas). Esse visual exige novas ilustrações.
+- Itens do mockup **não implementados de propósito:** aba “Galeria” e “favoritar” (não há conteúdo nem uso definido), música de fundo (não há trilha licenciada), escolha de idioma (só pt-BR por enquanto), botão de captura e “Tamanho real” na AR (a regra de privacidade proíbe salvar imagens da câmera; a escala real depende de modelos normalizados).
 
 ## Decisões sobre o handoff
 
@@ -209,3 +223,4 @@ A documentação do handoff é a fonte primária. Pequenas inconsistências enco
 - A silabação acende as sílabas enquanto a locução toca, mas **não é sincronizada** sílaba a sílaba (não há marcação de tempo nos áudios).
 - Enunciados dos desafios não têm narração própria; a criança ouve o nome do animal (ou o som, no “Que animal é esse?”) ao começar cada rodada.
 - Apenas pt-BR. No web, o navegador pode bloquear o áudio automático antes do primeiro toque.
+- **Conteúdo legado a revisar:** a imagem `turkey.png` (“Peru”) do app antigo é, na verdade, um **pavão**. Não alterei o dado; precisa de uma ilustração de peru ou de uma decisão de conteúdo.

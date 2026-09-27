@@ -27,10 +27,10 @@ export function validateTemplates(input: unknown, knownIcons?: readonly string[]
     if (!(CHALLENGE_TEMPLATE_IDS as readonly string[]).includes(id)) {
       issues.push({ templateId: id, message: 'Tipo sem regra no Challenge Engine (src/challenges/rules.ts).' });
     }
-    if (template.interaction !== 'tap' && template.interaction !== 'drag') {
-      issues.push({ templateId: id, message: 'interaction deve ser "tap" ou "drag".' });
+    if (!['tap', 'drag', 'place'].includes(String(template.interaction))) {
+      issues.push({ templateId: id, message: 'interaction deve ser "tap", "drag" ou "place".' });
     }
-    for (const key of ['title', 'subtitle', 'prompt', 'explanation'] as const) {
+    for (const key of ['title', 'subtitle', 'prompt', 'hint', 'explanation'] as const) {
       if (typeof template[key] !== 'string' || template[key] === '') {
         issues.push({ templateId: id, message: `Campo obrigatório: ${key}.` });
       }

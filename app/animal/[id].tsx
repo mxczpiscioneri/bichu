@@ -1,31 +1,33 @@
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AnimalFacts } from '@/components/animal/AnimalFacts';
-import { AnimalImage } from '@/components/animal/AnimalImage';
+import { AnimalMedallion } from '@/components/animal/AnimalMedallion';
 import { AnimalTraits } from '@/components/animal/AnimalTraits';
 import { AudioButton } from '@/components/animal/AudioButton';
 import { DiscoveryBadge } from '@/components/animal/DiscoveryBadge';
 import { DiscoverySteps } from '@/components/animal/DiscoverySteps';
 import { SyllableRow } from '@/components/animal/SyllableRow';
+import { Mascot } from '@/components/brand/Mascot';
 import { DiscoveryCelebration } from '@/components/feedback/DiscoveryCelebration';
 import { NotFound } from '@/components/feedback/NotFound';
 import { AppText } from '@/components/ui/AppText';
 import { BigButton } from '@/components/ui/BigButton';
+import { HabitatScene, sceneForAnimal } from '@/components/ui/HabitatScene';
 import { PressableScale } from '@/components/ui/PressableScale';
 import { RoundButton } from '@/components/ui/RoundButton';
 import { isArAvailableFor } from '@/ar/availability';
 import { AudioService, clipKeys } from '@/audio/AudioService';
 import { getAnimal } from '@/content/animals';
-import { soundNameOf } from '@/content/labels';
+import { CLASS_LABELS, soundNameOf } from '@/content/labels';
 import type { Animal } from '@/domain/animal';
 import { useDiscoveryWatcher } from '@/hooks/useDiscoveryWatcher';
 import { discoveryState } from '@/progress/progress';
 import { useAnimalProgress, useProgressStore } from '@/stores/progressStore';
 import { useLevel } from '@/stores/settingsStore';
-import { colors, radius, spacing, toneForAnimal, tones } from '@/theme';
+import { colors, radius, spacing } from '@/theme';
 
 const AUTOPLAY_DELAY_MS = 450;
 
@@ -38,11 +40,10 @@ export default function AnimalScreen() {
 
 function AnimalDetail({ animal }: { animal: Animal }) {
   const level = useLevel();
+  const insets = useSafeAreaInsets();
   const progress = useAnimalProgress(animal.id);
   const record = useProgressStore((state) => state.record);
-  const tone = tones[toneForAnimal(animal)];
   const [celebrating, closeCelebration] = useDiscoveryWatcher([animal.id]);
-  const soundLabel = `Ouvir o ${soundNameOf(animal)}`;
 
   useEffect(() => {
     record(animal.id, { type: 'opened' });
@@ -64,44 +65,57 @@ function AnimalDetail({ animal }: { animal: Animal }) {
   );
 
   return (
-    <SafeAreaView edges={['top']} style={[styles.root, { backgroundColor: tone.background }]}>
-      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <View style={styles.hero}>
-          <View style={styles.topBar}>
-            <RoundButton glyph="‹" accessibilityLabel="Voltar" onPress={() => router.back()} />
+    <View style={styles.root}>
+      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} bounces={false}>
+        <View style={[styles.hero, { paddingTop: insets.top + spacing.sm }]}>
+          <HabitatScene scene={sceneForAnimal(animal)} />
+          <View style={[styles.topBar, { top: insets.top + spacing.sm }]}>
+            <RoundButton icon="back" accessibilityLabel="Voltar" onPress={() => router.back()} size={48} />
             <DiscoveryBadge state={discoveryState(progress)} />
           </View>
           <PressableScale
             onPress={() => void AudioService.playAnimalName(animal.id)}
             accessibilityLabel={`Ouvir o nome: ${animal.name.ptBR}`}
-            style={styles.imageButton}
             pressedScale={0.97}>
-            <View style={styles.halo} />
-            <AnimalImage animalId={animal.id} size={220} />
+            <AnimalMedallion animalId={animal.id} size={210} />
           </PressableScale>
-          <AppText variant="hero" align="center" accessibilityRole="header">
-            {animal.name.ptBR}
-          </AppText>
-          <SyllableRow syllables={animal.name.syllables} clipKey={clipKeys.name(animal.id)} />
         </View>
 
-        <View style={styles.body}>
+        <View style={styles.sheet}>
+          <View style={styles.titleRow}>
+            <AppText
+              variant="hero"
+              accessibilityRole="header"
+              style={styles.name}
+              numberOfLines={1}
+              adjustsFontSizeToFit>
+              {animal.name.ptBR}
+            </AppText>
+            <View style={styles.classTag}>
+              <AppText variant="caption" color={colors.forest} style={styles.classText}>
+                {CLASS_LABELS[animal.taxonomy.class].label}
+              </AppText>
+            </View>
+          </View>
+          <SyllableRow syllables={animal.name.syllables} clipKey={clipKeys.name(animal.id)} />
+          <AnimalTraits animal={animal} />
+
           <View style={styles.audioRow}>
             <AudioButton
-              label="Ouvir o nome"
+              label="Ouvir nome"
               clipKey={clipKeys.name(animal.id)}
+              color={colors.leaf}
               onPress={() => void AudioService.playAnimalName(animal.id)}
             />
             <AudioButton
-              label={soundLabel}
+              label={`Ouvir ${soundNameOf(animal)}`}
               clipKey={clipKeys.sound(animal.id)}
-              accent={colors.flame}
+              color={colors.terra}
               onPress={() => void AudioService.playAnimalSound(animal.id)}
             />
           </View>
 
           <DiscoverySteps progress={progress} />
-          <AnimalTraits animal={animal} />
           <AnimalFacts animal={animal} level={level} />
 
           <View style={styles.actions}>
@@ -122,43 +136,55 @@ function AnimalDetail({ animal }: { animal: Animal }) {
               />
             ) : null}
           </View>
+          <View style={styles.peek}>
+            <Mascot pose="explore" height={92} animated={false} />
+          </View>
         </View>
       </ScrollView>
       <DiscoveryCelebration animal={celebrating} onClose={closeCelebration} />
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1 },
+  root: { flex: 1, backgroundColor: colors.cream },
   scroll: { flexGrow: 1 },
   hero: {
-    paddingHorizontal: spacing.lg - 4,
-    paddingTop: spacing.sm,
-    paddingBottom: spacing.lg,
-    gap: spacing.sm,
+    minHeight: 360,
     alignItems: 'center',
+    justifyContent: 'flex-end',
+    paddingBottom: spacing.xl + 8,
+    overflow: 'hidden',
   },
-  topBar: { alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  imageButton: { alignItems: 'center', justifyContent: 'center', padding: spacing.sm },
-  halo: {
+  topBar: {
     position: 'absolute',
-    width: 250,
-    height: 250,
-    borderRadius: 125,
-    backgroundColor: colors.white,
-    opacity: 0.6,
+    left: spacing.md,
+    right: spacing.md,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  body: {
+  sheet: {
+    flexGrow: 1,
+    marginTop: -spacing.lg,
     backgroundColor: colors.cream,
-    borderTopLeftRadius: radius.lg + 12,
-    borderTopRightRadius: radius.lg + 12,
+    borderTopLeftRadius: radius.lg + 6,
+    borderTopRightRadius: radius.lg + 6,
     paddingHorizontal: spacing.lg - 4,
     paddingTop: spacing.lg,
-    paddingBottom: spacing.xxl,
-    gap: spacing.lg,
-    flexGrow: 1,
+    paddingBottom: spacing.xxl + 60,
+    gap: spacing.lg - 4,
   },
-  audioRow: { flexDirection: 'row', gap: spacing.sm + 4 },
+  titleRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm + 4 },
+  name: { flexShrink: 1 },
+  classTag: {
+    backgroundColor: colors.leafSoft,
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing.sm + 4,
+    paddingVertical: 4,
+  },
+  classText: { fontFamily: 'Nunito_800ExtraBold' },
+  audioRow: { flexDirection: 'row', justifyContent: 'space-evenly', paddingVertical: spacing.xs },
   actions: { gap: spacing.md },
+  peek: { position: 'absolute', right: spacing.sm, bottom: 0 },
 });

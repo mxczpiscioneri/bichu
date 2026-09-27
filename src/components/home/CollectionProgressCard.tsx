@@ -3,79 +3,71 @@ import { StyleSheet, View } from 'react-native';
 
 import { colors, radius, shadows, spacing } from '@/theme';
 
+import { Mascot } from '../brand/Mascot';
 import { AppText } from '../ui/AppText';
-import { Icon } from '../ui/Icon';
 import { PressableScale } from '../ui/PressableScale';
 import { ProgressBar } from '../ui/ProgressBar';
 
 interface CollectionProgressCardProps {
+  title: string;
   discovered: number;
   total: number;
-  stars: number;
-  highlight?: { label: string; discovered: number; total: number };
+  /** Home links to the Bichupédia; inside the Bichupédia the card is static. */
+  linkToCollection?: boolean;
 }
 
-export function CollectionProgressCard({ discovered, total, stars, highlight }: CollectionProgressCardProps) {
+export function CollectionProgressCard({
+  title,
+  discovered,
+  total,
+  linkToCollection = false,
+}: CollectionProgressCardProps) {
+  const percent = total > 0 ? Math.round((discovered / total) * 100) : 0;
+  const content = (
+    <>
+      <View style={styles.text}>
+        <AppText variant="subheading">{title}</AppText>
+        <AppText variant="caption">
+          {discovered} de {total} animais descobertos
+        </AppText>
+        <View style={styles.barRow}>
+          <View style={styles.bar}>
+            <ProgressBar value={discovered} max={total} />
+          </View>
+          <AppText variant="caption" color={colors.forest} style={styles.percent}>
+            {percent}%
+          </AppText>
+        </View>
+      </View>
+      <Mascot pose={discovered > 0 ? 'hug' : 'explore'} height={96} animated={false} />
+    </>
+  );
+  if (!linkToCollection) return <View style={styles.card}>{content}</View>;
   return (
     <PressableScale
       onPress={() => router.navigate('/collection')}
-      accessibilityLabel={`Bichupédia: ${discovered} de ${total} animais descobertos`}
+      accessibilityLabel={`${title}: ${discovered} de ${total} animais descobertos`}
       style={styles.card}
-      pressedScale={0.97}>
-      <View style={styles.header}>
-        <Icon name="books" size={52} />
-        <View style={styles.headerText}>
-          <AppText variant="subheading">
-            {discovered} de {total} animais
-          </AppText>
-          <AppText variant="caption">descobertos até agora</AppText>
-        </View>
-        <View style={styles.stars}>
-          <Icon name="star" size={24} />
-          <AppText variant="label">{stars}</AppText>
-        </View>
-      </View>
-      <ProgressBar value={discovered} max={total} />
-      {highlight ? (
-        <View style={styles.highlight}>
-          <AppText variant="label" style={styles.highlightLabel}>
-            {highlight.label}
-          </AppText>
-          <AppText variant="label" color={colors.forest}>
-            {highlight.discovered} / {highlight.total}
-          </AppText>
-        </View>
-      ) : null}
+      pressedScale={0.98}>
+      {content}
     </PressableScale>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
     backgroundColor: colors.surface,
     borderRadius: radius.lg,
-    padding: spacing.md + 4,
-    gap: spacing.md,
+    paddingLeft: spacing.md + 4,
+    paddingRight: spacing.sm,
+    paddingVertical: spacing.sm + 4,
     ...shadows.card,
   },
-  header: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
-  headerText: { flex: 1 },
-  stars: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    backgroundColor: colors.sunSoft,
-    borderRadius: radius.pill,
-    paddingVertical: 6,
-    paddingHorizontal: spacing.sm + 4,
-  },
-  highlight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.leafSoft,
-    borderRadius: radius.md,
-    paddingVertical: spacing.sm,
-    paddingHorizontal: spacing.md,
-  },
-  highlightLabel: { flex: 1 },
+  text: { flex: 1, gap: 4 },
+  barRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, marginTop: 6 },
+  bar: { flex: 1 },
+  percent: { fontFamily: 'Nunito_800ExtraBold' },
 });

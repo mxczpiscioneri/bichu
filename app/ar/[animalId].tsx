@@ -4,7 +4,6 @@ import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AudioButton } from '@/components/animal/AudioButton';
-import { MascotBubble } from '@/components/brand/MascotBubble';
 import { Mascot } from '@/components/brand/Mascot';
 import { TapOptions } from '@/components/challenge/TapOptions';
 import { NotFound } from '@/components/feedback/NotFound';
@@ -59,13 +58,25 @@ function ArScreenContent({ animal, viro }: { animal: Animal; viro: NonNullable<R
       <ArExperience viro={viro} animal={animal} />
       <SafeAreaView style={styles.overlay}>
         <View style={styles.top}>
-          <RoundButton glyph="×" accessibilityLabel="Sair da realidade aumentada" onPress={() => router.back()} />
+          <RoundButton
+            icon="back"
+            size={48}
+            accessibilityLabel="Sair da realidade aumentada"
+            onPress={() => router.back()}
+          />
+          <AppText variant="subheading" color={colors.white} style={styles.title}>
+            Ver no meu mundo
+          </AppText>
           <View style={styles.tag}>
-            <AppText variant="overline">Experimental</AppText>
+            <AppText variant="overline">Teste</AppText>
           </View>
         </View>
-        <MascotBubble text={STATUS_TEXT[status](animal)} />
         <View style={styles.spacer} />
+        <View style={styles.instruction}>
+          <AppText variant="bodyStrong" color={colors.white} align="center">
+            {STATUS_TEXT[status](animal)}
+          </AppText>
+        </View>
         {status === 'placed' ? (
           playing ? (
             <ArChallenge animal={animal} onDone={() => setPlaying(false)} />
@@ -76,14 +87,14 @@ function ArScreenContent({ animal, viro }: { animal: Animal; viro: NonNullable<R
               </AppText>
               <View style={styles.row}>
                 <AudioButton
-                  label="Nome"
+                  label="Ouvir nome"
                   clipKey={clipKeys.name(animal.id)}
                   onPress={() => void AudioService.playAnimalName(animal.id)}
                 />
                 <AudioButton
-                  label={soundNameOf(animal)}
+                  label={`Ouvir ${soundNameOf(animal)}`}
                   clipKey={clipKeys.sound(animal.id)}
-                  accent={colors.flame}
+                  color={colors.terra}
                   onPress={() => void AudioService.playAnimalSound(animal.id)}
                 />
               </View>
@@ -142,7 +153,16 @@ function ArUnavailable({ animal }: { animal: Animal }) {
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: colors.ink },
   overlay: { ...StyleSheet.absoluteFill, padding: spacing.md, gap: spacing.md, pointerEvents: 'box-none' },
-  top: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  top: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
+  title: {
+    flex: 1,
+    alignSelf: 'center',
+    backgroundColor: 'rgba(52, 54, 47, 0.55)',
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing.md,
+    paddingVertical: 4,
+  },
+  instruction: { backgroundColor: 'rgba(52, 54, 47, 0.6)', borderRadius: radius.lg, padding: spacing.md },
   tag: {
     backgroundColor: colors.sunSoft,
     borderRadius: radius.pill,
@@ -151,7 +171,7 @@ const styles = StyleSheet.create({
   },
   spacer: { flex: 1, pointerEvents: 'none' },
   panel: { backgroundColor: colors.cream, borderRadius: radius.lg, padding: spacing.md, gap: spacing.md },
-  row: { flexDirection: 'row', gap: spacing.sm },
+  row: { flexDirection: 'row', justifyContent: 'space-evenly' },
   unavailable: {
     flex: 1,
     alignItems: 'center',

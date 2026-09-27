@@ -17,6 +17,7 @@
         }
       },
       "prompt": "Quem faz este som?",
+      "hint": "Toque no animal que faz esse som.",
       "explanation": "Esse é o som {deAnimal}!"
     },
     {
@@ -35,13 +36,14 @@
         }
       },
       "prompt": "O que {animal} come?",
+      "hint": "Arraste a comida certa até {animal}.",
       "explanation": "{Animal} come {answer}.",
       "source": "foods"
     },
     {
       "id": "habitat",
       "type": "habitat",
-      "interaction": "drag",
+      "interaction": "place",
       "title": "Onde ele vive?",
       "subtitle": "Qual é o lar dele?",
       "icon": "tree",
@@ -54,6 +56,7 @@
         }
       },
       "prompt": "Onde {animal} pode viver?",
+      "hint": "Arraste {animal} para o seu habitat.",
       "explanation": "{Animal} pode viver {answer}.",
       "source": "habitats"
     },
@@ -73,6 +76,7 @@
         }
       },
       "prompt": "Como {animal} se movimenta?",
+      "hint": "Arraste o jeito certo até {animal}.",
       "explanation": "{Animal} se movimenta {answer}.",
       "source": "locomotion"
     },
@@ -92,6 +96,7 @@
         }
       },
       "prompt": "O que cobre o corpo {deAnimal}?",
+      "hint": "Toque na resposta certa.",
       "explanation": "O corpo {deAnimal} é coberto de {answer}.",
       "source": "bodyCovering"
     },
@@ -111,6 +116,7 @@
         }
       },
       "prompt": "Como nascem os filhotes {deAnimal}?",
+      "hint": "Toque na resposta certa.",
       "explanation": "Os filhotes {deAnimal} nascem {answer}.",
       "source": "reproduction"
     },
@@ -130,6 +136,7 @@
         }
       },
       "prompt": "Que tipo de animal é {animal}?",
+      "hint": "Toque na resposta certa.",
       "explanation": "{Animal} é {answer}.",
       "source": "taxonomy.class"
     }
@@ -146,5 +153,10 @@
     "{Animal}": "nome com artigo, maiúsculo (O leão)",
     "{deAnimal}": "contração com artigo (do leão / da abelha)",
     "{answer}": "frase da resposta correta (carne / na savana)"
+  },
+  "interactions": {
+    "tap": "toque em uma alternativa",
+    "drag": "arraste a alternativa até o animal",
+    "place": "arraste o animal até a alternativa (ex.: o habitat)"
   }
 }

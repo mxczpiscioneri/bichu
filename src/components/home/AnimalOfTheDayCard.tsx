@@ -1,72 +1,90 @@
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
-import { AudioService } from '@/audio/AudioService';
 import type { Animal } from '@/domain/animal';
-import { colors, radius, shadows, spacing, toneForAnimal, tones } from '@/theme';
+import { colors, fonts, radius, shadows, spacing } from '@/theme';
 
-import { AnimalImage } from '../animal/AnimalImage';
+import { AnimalMedallion } from '../animal/AnimalMedallion';
 import { AppText } from '../ui/AppText';
-import { BigButton } from '../ui/BigButton';
-import { Icon } from '../ui/Icon';
+import { HabitatScene, sceneForAnimal } from '../ui/HabitatScene';
+import { LineIcon } from '../ui/LineIcon';
 import { PressableScale } from '../ui/PressableScale';
 
 export function AnimalOfTheDayCard({ animal }: { animal: Animal }) {
-  const tone = tones[toneForAnimal(animal)];
+  const open = () => router.push({ pathname: '/animal/[id]', params: { id: animal.id } });
   return (
-    <View style={[styles.card, { backgroundColor: tone.background }]}>
-      <View style={styles.tag}>
-        <Icon name="glowing" size={20} />
-        <AppText variant="overline">Animal do dia</AppText>
+    <PressableScale
+      onPress={open}
+      accessibilityLabel={`Animal do dia: ${animal.name.ptBR}. Descobrir`}
+      style={styles.card}
+      pressedScale={0.98}>
+      <HabitatScene scene={sceneForAnimal(animal)} />
+      <View style={styles.text}>
+        <View style={styles.tag}>
+          <AppText variant="overline" color={colors.forest}>
+            Animal do dia
+          </AppText>
+        </View>
+        <AppText variant="title" numberOfLines={1} adjustsFontSizeToFit>
+          {animal.name.ptBR}
+        </AppText>
+        {animal.content.preschool[0] ? (
+          <AppText variant="caption" color={colors.ink} numberOfLines={2}>
+            {animal.content.preschool[0]}
+          </AppText>
+        ) : null}
+        <View style={styles.cta}>
+          <View style={styles.play}>
+            <LineIcon name="playFill" size={14} color={colors.terra} />
+          </View>
+          <AppText style={styles.ctaLabel}>Descobrir</AppText>
+        </View>
       </View>
-      <PressableScale
-        onPress={() => void AudioService.playAnimalName(animal.id)}
-        accessibilityLabel={`Ouvir o nome: ${animal.name.ptBR}`}
-        style={styles.imageButton}
-        pressedScale={0.97}>
-        <View style={styles.halo} />
-        <AnimalImage animalId={animal.id} size={188} />
-      </PressableScale>
-      <AppText variant="hero" align="center">
-        {animal.name.ptBR}
-      </AppText>
-      <BigButton
-        label="Descobrir"
-        icon="magnifier"
-        onPress={() => router.push({ pathname: '/animal/[id]', params: { id: animal.id } })}
-        style={styles.cta}
-      />
-    </View>
+      <View style={styles.image}>
+        <AnimalMedallion animalId={animal.id} size={138} />
+      </View>
+    </PressableScale>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: radius.lg + 8,
-    padding: spacing.lg,
-    paddingTop: spacing.md,
-    alignItems: 'center',
-    gap: spacing.sm,
-    ...shadows.card,
-  },
-  tag: {
-    alignSelf: 'flex-start',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
-    backgroundColor: 'rgba(255,255,255,0.8)',
+    minHeight: 208,
+    borderRadius: radius.lg,
+    overflow: 'hidden',
+    padding: spacing.md + 2,
+    gap: spacing.sm,
+    ...shadows.raised,
+  },
+  text: { flex: 1, gap: 6, alignItems: 'flex-start' },
+  tag: {
+    backgroundColor: 'rgba(255,255,255,0.85)',
     borderRadius: radius.pill,
-    paddingVertical: 6,
-    paddingHorizontal: spacing.sm + 4,
+    paddingHorizontal: spacing.sm + 2,
+    paddingVertical: 4,
   },
-  imageButton: { alignItems: 'center', justifyContent: 'center', padding: spacing.sm },
-  halo: {
-    position: 'absolute',
-    width: 216,
-    height: 216,
-    borderRadius: 108,
+  cta: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    marginTop: spacing.sm,
+    backgroundColor: colors.terra,
+    borderRadius: radius.pill,
+    paddingLeft: 6,
+    paddingRight: spacing.md + 2,
+    minHeight: 48,
+    boxShadow: '0px 4px 0px rgba(160, 70, 20, 0.35)',
+  },
+  play: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     backgroundColor: colors.white,
-    opacity: 0.55,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  cta: { alignSelf: 'stretch', marginTop: spacing.xs },
+  ctaLabel: { fontFamily: fonts.displayBold, fontSize: 18, color: colors.white },
+  image: { alignItems: 'center', justifyContent: 'center' },
 });

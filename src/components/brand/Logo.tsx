@@ -3,7 +3,7 @@ import { Image } from 'expo-image';
 import { BRAND_IMAGES } from '@/content/media';
 
 const LOGO_RATIO = 457 / 232;
-const WORDMARK_RATIO = 457 / 186;
+const WORDMARK_RATIO = 457 / 176;
 
 /** Provisional raster logo from the approved board (vector redesign pending, docs/BRAND.md). */
 export function Logo({ width = 180, withTagline = true }: { width?: number; withTagline?: boolean }) {

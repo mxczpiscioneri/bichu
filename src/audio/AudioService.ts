@@ -2,6 +2,7 @@ import { createAudioPlayer, setAudioModeAsync, type AudioPlayer, type AudioSourc
 import { create } from 'zustand';
 
 import { mediaFor, UI_SOUNDS } from '@/content/media';
+import { useSettingsStore } from '@/stores/settingsStore';
 
 /**
  * Single audio channel for the whole app: starting a clip always stops the
@@ -104,6 +105,12 @@ class AudioServiceImpl {
       this.current = null;
       useNowPlaying.setState({ key: null });
       this.finishSequence();
+      return;
+    }
+    if (!useSettingsStore.getState().soundEnabled) {
+      // Muted by an adult: skip the audio but keep the flow (and progress) going.
+      this.startListeners.forEach((listener) => listener(next));
+      this.advance();
       return;
     }
     try {

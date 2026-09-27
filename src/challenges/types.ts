@@ -12,7 +12,8 @@ export const CHALLENGE_TEMPLATE_IDS = [
 ] as const;
 export type ChallengeTemplateId = (typeof CHALLENGE_TEMPLATE_IDS)[number];
 
-export type Interaction = 'tap' | 'drag';
+/** tap: pick an option · drag: bring an option to the animal · place: bring the animal to an option. */
+export type Interaction = 'tap' | 'drag' | 'place';
 
 export interface LevelConfig {
   options?: number;
@@ -29,6 +30,8 @@ export interface ChallengeTemplate {
   icon: IconName;
   levels: Record<Level, LevelConfig>;
   prompt: string;
+  /** Short helper line said by the mascot ("Arraste a comida…"). */
+  hint: string;
   explanation: string;
   source?: string;
 }
@@ -50,6 +53,7 @@ export interface Challenge {
   level: Level;
   interaction: Interaction;
   prompt: string;
+  hint: string;
   explanation: string;
   options: ChallengeOption[];
   correctOptionIds: string[];

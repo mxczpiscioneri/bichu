@@ -9,72 +9,81 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { useNowPlaying } from '@/audio/AudioService';
-import type { IconName } from '@/content/icons';
-import { colors, fonts, radius, shadows, spacing, touch } from '@/theme';
+import { colors, fonts } from '@/theme';
 
 import { AppText } from '../ui/AppText';
-import { Icon } from '../ui/Icon';
+import { LineIcon } from '../ui/LineIcon';
 import { PressableScale } from '../ui/PressableScale';
 
 interface AudioButtonProps {
   label: string;
   clipKey: string;
   onPress: () => void;
-  icon?: IconName;
-  accent?: string;
+  color?: string;
+  size?: number;
+  /** Hide the caption (e.g. when the prompt already says what it plays). */
+  showLabel?: boolean;
 }
 
-/** Big "listen" action. Pulses while its clip is playing. */
-export function AudioButton({ label, clipKey, onPress, icon = 'speaker', accent = colors.forest }: AudioButtonProps) {
+/** Big round "listen" button. Pulses while its clip is playing. */
+export function AudioButton({
+  label,
+  clipKey,
+  onPress,
+  color = colors.leaf,
+  size = 76,
+  showLabel = true,
+}: AudioButtonProps) {
   const playing = useNowPlaying((state) => state.key === clipKey);
   const pulse = useSharedValue(1);
 
   useEffect(() => {
     if (playing) {
-      pulse.set(withRepeat(withTiming(1.12, { duration: 420 }), -1, true));
+      pulse.set(withRepeat(withTiming(1.08, { duration: 420 }), -1, true));
     } else {
       cancelAnimation(pulse);
       pulse.set(withTiming(1, { duration: 150 }));
     }
   }, [playing, pulse]);
 
-  const iconStyle = useAnimatedStyle(() => ({ transform: [{ scale: pulse.get() }] }));
+  const style = useAnimatedStyle(() => ({ transform: [{ scale: pulse.get() }] }));
 
   return (
     <PressableScale
       onPress={onPress}
       accessibilityLabel={label}
       accessibilityState={{ busy: playing }}
-      style={[styles.button, playing && { borderColor: accent }]}>
+      style={styles.wrap}>
       <Animated.View
-        style={[styles.iconWrap, { backgroundColor: playing ? colors.sunSoft : colors.leafSoft }, iconStyle]}>
-        <Icon name={icon} size={36} />
+        style={[
+          styles.circle,
+          {
+            width: size,
+            height: size,
+            borderRadius: size / 2,
+            backgroundColor: color,
+            boxShadow: `0px 5px 0px ${color}66`,
+          },
+          playing && styles.playing,
+          style,
+        ]}>
+        <LineIcon name="speaker" size={size * 0.46} color={colors.white} strokeWidth={2.6} />
       </Animated.View>
-      <View style={styles.textWrap}>
-        <AppText style={[styles.label, { color: accent }]} numberOfLines={2}>
-          {label}
-        </AppText>
-      </View>
+      {showLabel ? (
+        <View style={styles.labelWrap}>
+          <AppText style={[styles.label, { color }]} numberOfLines={1}>
+            {label}
+          </AppText>
+        </View>
+      ) : null}
     </PressableScale>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    flex: 1,
-    minHeight: touch.childPreferred + 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.sm + 2,
-    backgroundColor: colors.surface,
-    borderRadius: radius.lg,
-    paddingHorizontal: spacing.sm + 4,
-    paddingVertical: spacing.sm + 2,
-    borderWidth: 3,
-    borderColor: 'transparent',
-    ...shadows.card,
-  },
-  iconWrap: { width: 56, height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center' },
-  textWrap: { flex: 1 },
-  label: { fontFamily: fonts.displayBold, fontSize: 19, lineHeight: 23 },
+  wrap: { alignItems: 'center', gap: 8 },
+  circle: { alignItems: 'center', justifyContent: 'center' },
+  playing: { borderWidth: 4, borderColor: colors.sun },
+  labelWrap: { minHeight: 22 },
+  label: { fontFamily: fonts.bodyBold, fontSize: 16 },
 });

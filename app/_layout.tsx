@@ -40,6 +40,8 @@ export default function RootLayout() {
         <Stack.Screen name="challenge/[type]" options={{ animation: 'slide_from_bottom', gestureEnabled: false }} />
         <Stack.Screen name="ar/[animalId]" options={{ animation: 'fade' }} />
         <Stack.Screen name="parents" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="welcome" options={{ animation: 'fade' }} />
+        <Stack.Screen name="choose-level" options={{ animation: 'fade' }} />
       </Stack>
     </GestureHandlerRootView>
   );

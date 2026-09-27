@@ -18,7 +18,6 @@ export function AnimalImage({ animalId, size, dimmed = false, style }: AnimalIma
       style={[{ width: size, height: size, opacity: dimmed ? 0.35 : 1 }, style]}
       contentFit="contain"
       transition={120}
-      accessible={false}
     />
   );
 }

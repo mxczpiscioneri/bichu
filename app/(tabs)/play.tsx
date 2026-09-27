@@ -1,11 +1,11 @@
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
-import { MascotBubble } from '@/components/brand/MascotBubble';
 import { AppText } from '@/components/ui/AppText';
 import { Icon } from '@/components/ui/Icon';
 import { PressableScale } from '@/components/ui/PressableScale';
 import { Screen } from '@/components/ui/Screen';
+import { ScreenHeader } from '@/components/ui/ScreenHeader';
 import { templatesForLevel } from '@/challenges/templates';
 import type { ChallengeTemplateId } from '@/challenges/types';
 import { useTabBarInset } from '@/hooks/useTabBarInset';
@@ -29,8 +29,7 @@ export default function PlayScreen() {
 
   return (
     <Screen bottomInset={bottomInset}>
-      <AppText variant="title">Brincar</AppText>
-      <MascotBubble text="Escolha uma brincadeira!" />
+      <ScreenHeader title="Brincar" subtitle="Escolha uma brincadeira!" />
       <View style={styles.list}>
         {templates.map((template, index) => {
           const tone = tones[TONE_BY_TEMPLATE[template.id]];

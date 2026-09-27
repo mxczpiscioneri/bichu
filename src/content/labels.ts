@@ -6,6 +6,7 @@ import type {
   Habitat,
   Locomotion,
   Reproduction,
+  SizeClass,
 } from '@/domain/taxonomy';
 
 import type { IconName } from './icons';
@@ -106,3 +107,11 @@ export const DIET_LABELS: Record<Diet, string> = {
 export function soundNameOf(animal: { soundName?: { ptBR: string } }): string {
   return animal.soundName?.ptBR ?? 'som';
 }
+
+export const SIZE_LABELS: Record<SizeClass, string> = {
+  tiny: 'bem pequenininho',
+  small: 'pequeno',
+  medium: 'médio',
+  large: 'grande',
+  very_large: 'enorme',
+};
