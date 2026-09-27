@@ -70,13 +70,13 @@ export const ANIMAL_MEDIA: Record<string, AnimalMediaModules> = {
     model3d: null,
   },
   frog: {
-    image: require('../../assets/animals/images/frog.png'),
+    image: require('../../assets/animals/art/frog.png'),
     sound: require('../../assets/animals/sounds/frog.mp3'),
     nameAudio: require('../../assets/animals/names/frog_name.mp3'),
     model3d: null,
   },
   horse: {
-    image: require('../../assets/animals/images/horse.png'),
+    image: require('../../assets/animals/art/horse.png'),
     sound: require('../../assets/animals/sounds/horse.mp3'),
     nameAudio: require('../../assets/animals/names/horse_name.mp3'),
     model3d: null,

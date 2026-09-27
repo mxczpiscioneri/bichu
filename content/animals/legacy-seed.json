@@ -865,7 +865,8 @@
         "group": "Anura"
       },
       "media": {
-        "image": "assets/animals/images/frog.png",
+        "image": "assets/animals/art/frog.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/frog.mp3",
         "nameAudio": "assets/animals/names/frog_name.mp3",
         "model3d": null
@@ -943,7 +944,8 @@
         "group": "Equidae"
       },
       "media": {
-        "image": "assets/animals/images/horse.png",
+        "image": "assets/animals/art/horse.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/horse.mp3",
         "nameAudio": "assets/animals/names/horse_name.mp3",
         "model3d": null
