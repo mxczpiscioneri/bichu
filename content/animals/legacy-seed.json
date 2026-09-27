@@ -1175,7 +1175,8 @@
         "group": "Psittaciformes"
       },
       "media": {
-        "image": "assets/animals/images/parrot.png",
+        "image": "assets/animals/art/parrot.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/parrot.mp3",
         "nameAudio": "assets/animals/names/parrot_name.mp3",
         "model3d": null
@@ -1329,7 +1330,8 @@
         "group": "Pinnipedia"
       },
       "media": {
-        "image": "assets/animals/images/seal.png",
+        "image": "assets/animals/art/seal.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/seal.mp3",
         "nameAudio": "assets/animals/names/seal_name.mp3",
         "model3d": null
@@ -1401,7 +1403,8 @@
         "group": "Bovidae"
       },
       "media": {
-        "image": "assets/animals/images/sheep.png",
+        "image": "assets/animals/art/sheep.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/sheep.mp3",
         "nameAudio": "assets/animals/names/sheep_name.mp3",
         "model3d": null
@@ -1630,7 +1633,8 @@
         "group": "Canis lupus group"
       },
       "media": {
-        "image": "assets/animals/images/wolf.png",
+        "image": "assets/animals/art/wolf.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/wolf.mp3",
         "nameAudio": "assets/animals/names/wolf_name.mp3",
         "model3d": null

@@ -94,7 +94,7 @@ export const ANIMAL_MEDIA: Record<string, AnimalMediaModules> = {
     model3d: null,
   },
   parrot: {
-    image: require('../../assets/animals/images/parrot.png'),
+    image: require('../../assets/animals/art/parrot.png'),
     sound: require('../../assets/animals/sounds/parrot.mp3'),
     nameAudio: require('../../assets/animals/names/parrot_name.mp3'),
     model3d: null,
@@ -106,13 +106,13 @@ export const ANIMAL_MEDIA: Record<string, AnimalMediaModules> = {
     model3d: null,
   },
   seal: {
-    image: require('../../assets/animals/images/seal.png'),
+    image: require('../../assets/animals/art/seal.png'),
     sound: require('../../assets/animals/sounds/seal.mp3'),
     nameAudio: require('../../assets/animals/names/seal_name.mp3'),
     model3d: null,
   },
   sheep: {
-    image: require('../../assets/animals/images/sheep.png'),
+    image: require('../../assets/animals/art/sheep.png'),
     sound: require('../../assets/animals/sounds/sheep.mp3'),
     nameAudio: require('../../assets/animals/names/sheep_name.mp3'),
     model3d: null,
@@ -130,7 +130,7 @@ export const ANIMAL_MEDIA: Record<string, AnimalMediaModules> = {
     model3d: null,
   },
   wolf: {
-    image: require('../../assets/animals/images/wolf.png'),
+    image: require('../../assets/animals/art/wolf.png'),
     sound: require('../../assets/animals/sounds/wolf.mp3'),
     nameAudio: require('../../assets/animals/names/wolf_name.mp3'),
     model3d: null,
