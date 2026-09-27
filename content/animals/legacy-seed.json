@@ -634,7 +634,18 @@
         "image": "assets/animals/images/dolphin.png",
         "sound": "assets/animals/sounds/dolphin.mp3",
         "nameAudio": "assets/animals/names/dolphin_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/dolphin.glb",
+        "model3dMeta": {
+          "license": "CC0-1.0",
+          "author": "Quaternius",
+          "sourceUrl": "https://poly.pizza/m/3LzFgI3GLO",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 0.807,
+          "groundOffset": 0.25,
+          "animations": [
+            "Armature|Swim"
+          ]
+        }
       },
       "habitats": [
         "ocean",
@@ -784,7 +795,16 @@
         "image": "assets/animals/images/elephant.png",
         "sound": "assets/animals/sounds/elephant.mp3",
         "nameAudio": "assets/animals/names/elephant_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/elephant.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/cx0-TiCjDOx",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 3.2,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "soundName": {
         "ptBR": "barrido"
@@ -942,7 +962,30 @@
         "image": "assets/animals/images/horse.png",
         "sound": "assets/animals/sounds/horse.mp3",
         "nameAudio": "assets/animals/names/horse_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/horse.glb",
+        "model3dMeta": {
+          "license": "CC0-1.0",
+          "author": "Quaternius",
+          "sourceUrl": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 2.04,
+          "groundOffset": 0,
+          "animations": [
+            "Attack_Headbutt",
+            "Attack_Kick",
+            "Death",
+            "Eating",
+            "Gallop",
+            "Gallop_Jump",
+            "Idle",
+            "Idle_2",
+            "Idle_Headlow",
+            "Idle_HitReact1",
+            "Idle_HitReact2",
+            "Jump_toIdle",
+            "Walk"
+          ]
+        }
       },
       "soundName": {
         "ptBR": "relincho"
@@ -1017,7 +1060,16 @@
         "image": "assets/animals/images/lion.png",
         "sound": "assets/animals/sounds/lion.mp3",
         "nameAudio": "assets/animals/names/lion_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/lion.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/3XAJojWxSWz",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 1.356,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "soundName": {
         "ptBR": "rugido"
@@ -1174,7 +1226,16 @@
         "image": "assets/animals/images/parrot.png",
         "sound": "assets/animals/sounds/parrot.mp3",
         "nameAudio": "assets/animals/names/parrot_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/parrot.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/dfNjMLtO0pd",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 0.612,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "habitats": [
         "forest",

@@ -68,7 +68,7 @@ npm run start:ar          # Metro para o Dev Client com AR habilitado
 
 Fluxo do spike (`app/ar/[animalId].tsx`): abre a câmera → detecta um plano horizontal → “Encontrei um lugar!” → toque posiciona **um** animal → girar (dois dedos), escala limitada por pinça (0,5×–2× do `defaultScale`) e arrastar sobre o plano → nome, som e desafio acontecem na UI 2D ao redor, usando o mesmo Challenge Engine do app. Sem física, andar ou comer.
 
-**Nenhum modelo 3D acompanha o repositório** (não havia um leão com licença clara disponível). Enquanto nenhum animal tiver `media.model3d`, o botão “Ver no meu mundo” fica oculto e `/ar/*` mostra um aviso amigável. Para testar, adicione um GLB (próxima seção).
+**Modelos 3D:** os 22 animais têm GLB em [`assets/animals/models/`](assets/animals/models/) (Quaternius CC0 + Poly by Google CC BY 3.0; relatório em [`docs/3D_ASSET_REPORT.md`](docs/3D_ASSET_REPORT.md), créditos em [`docs/3D_ATTRIBUTIONS.md`](docs/3D_ATTRIBUTIONS.md)). Por ora só os 5 do spike técnico — leão, elefante, cavalo, golfinho e papagaio — estão ligados no seed (`media.model3d`); nos demais o botão “Ver no meu mundo” continua oculto até o spike ser confirmado em aparelho. ⚠️ Os modelos CC BY exigem uma tela de créditos no app antes de publicar.
 
 Privacidade na AR: só a permissão de câmera é declarada; o plugin `plugins/withChildPrivacy.js` remove as descrições de microfone, fotos e localização que o Viro adiciona por padrão. Nenhuma imagem é salva ou enviada.
 
@@ -105,7 +105,7 @@ Coleções (Explorar e Bichupédia) são filtros declarativos em [`src/content/c
 
 ## Como adicionar um modelo GLB
 
-1. Salve o arquivo em `assets/animals/models/<id>.glb` (mobile-ready: texturas comprimidas, sem 4K, pivô no chão).
+1. Gere o arquivo com o pipeline em [`tools/3d-pipeline/`](tools/3d-pipeline/README.md) (metros, frente em +Z, pivô no chão, texturas ≤ 1024 px, sem Draco/Meshopt/KTX2 — o ViroReact não lê) e salve em `assets/animals/models/<id>.glb`. Registre fonte e licença em `assets/animals/models/models.json` e `docs/3D_ATTRIBUTIONS.md`.
 2. No seed, preencha:
    ```json
    "media": {
@@ -114,14 +114,14 @@ Coleções (Explorar e Bichupédia) são filtros declarativos em [`src/content/c
        "license": "CC0-1.0",
        "author": "Nome do autor",
        "sourceUrl": "https://…",
-       "defaultScale": 0.3,
-       "realWorldHeightMeters": 1.2,
+       "defaultScale": 1,
+       "realWorldHeightMeters": 1.356,
        "groundOffset": 0,
        "animations": []
      }
    }
    ```
-   `license` e `author` são obrigatórios (a validação falha sem eles). Animações são opcionais e nunca exigidas.
+   `license` e `author` são obrigatórios (a validação falha sem eles). Como os GLBs já estão em metros, `defaultScale: 1` é o tamanho real. Animações são opcionais e nunca exigidas.
 3. `npm run assets:registry && npm run validate`, depois rode um build com `BICHU_AR=1`.
 
 ## Como criar um novo tipo de desafio
@@ -215,7 +215,7 @@ A documentação do handoff é a fonte primária. Pequenas inconsistências enco
 ## Limitações conhecidas
 
 - **AR não testada em aparelho** (este ambiente não tem dispositivo, Xcode nem Android SDK). Validado: `expo prebuild` com `BICHU_AR=1` aplica o plugin do Viro com as permissões esperadas; bundles JS de iOS/Android exportam sem erro. O RN Directory ainda marca o Viro como “untested on New Architecture”, embora o plugin do Viro 3.x declare suporte apenas à New Architecture — confirmar no primeiro build real.
-- **Sem modelo 3D** no repositório; a AR fica oculta até um GLB ser adicionado.
+- **AR ainda não verificada em aparelho:** os GLBs passam no glTF Validator e na conferência visual, mas o spike (5 animais) precisa ser confirmado no ViroReact antes de ligar os outros 17. Modelos CC BY exigem tela de créditos antes da publicação.
 - **Builds nativos não foram compilados aqui**; o app foi verificado via testes, `expo export` (iOS/Android), `expo-doctor` (21/21) e navegação completa no web com gestos de toque.
 - **Conteúdo em rascunho** (`status: draft-needs-content-review`): fatos zoológicos e pedagógicos precisam de revisão especializada antes da publicação.
 - **Direitos de mídia pendentes** (imagens, sons e locuções legadas — ver checklist). Ícones: Microsoft Fluent Emoji (MIT, `assets/ui/icons/LICENSE.md`).
