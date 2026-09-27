@@ -328,6 +328,11 @@
         "null"
       ],
       "description": "Animais com sons confundíveis compartilham o mesmo grupo e nunca aparecem juntos em \"Que animal é esse?\"."
+    },
+    "color": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$",
+      "description": "Cor do animal (hex). Pinta os cards, a tela do animal e os desafios. Opcional: sem ela, usa a cor do habitat."
     }
   }
 }

@@ -83,6 +83,8 @@ export interface Animal {
     group?: string | null;
   };
   media: AnimalMedia;
+  /** Signature colour (hex) used across the animal's screens. Falls back to the habitat tone. */
+  color?: string;
   /** Name of the animal's sound ("rugido"). Falls back to "som". */
   soundName?: { ptBR: string };
   /** Animals with confusable sounds share a group (e.g. lion/tiger/bear). */

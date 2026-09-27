@@ -22,7 +22,7 @@ import { useChallengeSession, type SessionSource } from '@/challenges/useChallen
 import { getAnimal } from '@/content/animals';
 import { phrase, PHRASES } from '@/content/phrases';
 import { useLevel } from '@/stores/settingsStore';
-import { colors, spacing } from '@/theme';
+import { colors, paletteForAnimal, spacing } from '@/theme';
 
 function resolveSource(type: string | undefined, animalId: string | undefined): SessionSource | null {
   if (type === 'animal') {
@@ -74,11 +74,14 @@ function ChallengeFlow({ source }: { source: SessionSource }) {
     return <NotFound message="Ainda não há desafios aqui. Que tal explorar outro animal?" />;
   }
 
+  // Each round takes the animal's colour; the sound quiz stays neutral so colour never hints the answer.
+  const roundAnimal = current && !current.promptIsAnimalSound && !finished ? getAnimal(current.animalId) : undefined;
+  const background = roundAnimal ? paletteForAnimal(roundAnimal).wash : colors.cream;
   const bubble =
     session.lastWrongAt && !solved ? phrase(PHRASES.tryAgain, session.tried.length) : (current?.hint ?? '');
 
   return (
-    <SafeAreaView style={styles.root} edges={['top', 'bottom']}>
+    <SafeAreaView style={[styles.root, { backgroundColor: background }]} edges={['top', 'bottom']}>
       <View style={styles.header}>
         <RoundProgress total={rounds.length} current={index} />
         <RoundButton icon="close" size={48} accessibilityLabel="Sair da brincadeira" onPress={close} />

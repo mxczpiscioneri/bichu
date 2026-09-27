@@ -113,6 +113,9 @@ function validateAnimal(raw: unknown, index: number, options: ValidationOptions)
     }
   }
 
+  if (raw.color !== undefined && (typeof raw.color !== 'string' || !/^#[0-9a-fA-F]{6}$/.test(raw.color))) {
+    error('color', 'Use uma cor hex, ex.: "#E0962A".');
+  }
   if (raw.soundGroup !== undefined && raw.soundGroup !== null && typeof raw.soundGroup !== 'string') {
     error('soundGroup', 'Deve ser texto ou null.');
   }

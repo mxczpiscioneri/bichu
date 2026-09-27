@@ -27,7 +27,7 @@ import { useDiscoveryWatcher } from '@/hooks/useDiscoveryWatcher';
 import { discoveryState } from '@/progress/progress';
 import { useAnimalProgress, useProgressStore } from '@/stores/progressStore';
 import { useLevel } from '@/stores/settingsStore';
-import { colors, radius, spacing } from '@/theme';
+import { colors, paletteForAnimal, radius, spacing } from '@/theme';
 
 const AUTOPLAY_DELAY_MS = 450;
 
@@ -44,6 +44,7 @@ function AnimalDetail({ animal }: { animal: Animal }) {
   const progress = useAnimalProgress(animal.id);
   const record = useProgressStore((state) => state.record);
   const [celebrating, closeCelebration] = useDiscoveryWatcher([animal.id]);
+  const palette = paletteForAnimal(animal);
 
   useEffect(() => {
     record(animal.id, { type: 'opened' });
@@ -65,7 +66,7 @@ function AnimalDetail({ animal }: { animal: Animal }) {
   );
 
   return (
-    <View style={styles.root}>
+    <View style={[styles.root, { backgroundColor: palette.wash }]}>
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} bounces={false}>
         <View style={[styles.hero, { paddingTop: insets.top + spacing.sm }]}>
           <HabitatScene scene={sceneForAnimal(animal)} />
@@ -81,24 +82,24 @@ function AnimalDetail({ animal }: { animal: Animal }) {
           </PressableScale>
         </View>
 
-        <View style={styles.sheet}>
+        <View style={[styles.sheet, { backgroundColor: palette.wash }]}>
           <View style={styles.titleRow}>
             <AppText
               variant="hero"
               accessibilityRole="header"
-              style={styles.name}
+              style={[styles.name, { color: palette.text }]}
               numberOfLines={1}
               adjustsFontSizeToFit>
               {animal.name.ptBR}
             </AppText>
-            <View style={styles.classTag}>
-              <AppText variant="caption" color={colors.forest} style={styles.classText}>
+            <View style={[styles.classTag, { backgroundColor: palette.soft }]}>
+              <AppText variant="caption" color={palette.text} style={styles.classText}>
                 {CLASS_LABELS[animal.taxonomy.class].label}
               </AppText>
             </View>
           </View>
           <SyllableRow syllables={animal.name.syllables} clipKey={clipKeys.name(animal.id)} />
-          <AnimalTraits animal={animal} />
+          <AnimalTraits animal={animal} background={palette.soft} />
 
           <View style={styles.audioRow}>
             <AudioButton
@@ -122,7 +123,7 @@ function AnimalDetail({ animal }: { animal: Animal }) {
             <BigButton
               label="Brincar"
               icon="puzzle"
-              variant="warm"
+              color={palette.strong}
               onPress={() =>
                 router.push({ pathname: '/challenge/[type]', params: { type: 'animal', animalId: animal.id } })
               }

@@ -26,6 +26,7 @@
         "nameAudio": "assets/animals/names/bear_name.mp3",
         "model3d": null
       },
+      "color": "#B8743A",
       "soundGroup": "roar",
       "habitats": [
         "forest",
@@ -107,6 +108,7 @@
         "nameAudio": "assets/animals/names/bee_name.mp3",
         "model3d": null
       },
+      "color": "#E9A91F",
       "soundName": {
         "ptBR": "zumbido"
       },
@@ -184,6 +186,7 @@
         "nameAudio": "assets/animals/names/cat_name.mp3",
         "model3d": null
       },
+      "color": "#EE8A2B",
       "soundName": {
         "ptBR": "miado"
       },
@@ -262,6 +265,7 @@
         "nameAudio": "assets/animals/names/chick_name.mp3",
         "model3d": null
       },
+      "color": "#F2B829",
       "soundName": {
         "ptBR": "piado"
       },
@@ -338,6 +342,7 @@
         "nameAudio": "assets/animals/names/chicken_name.mp3",
         "model3d": null
       },
+      "color": "#D8703A",
       "soundName": {
         "ptBR": "cacarejo"
       },
@@ -413,6 +418,7 @@
         "nameAudio": "assets/animals/names/cock_name.mp3",
         "model3d": null
       },
+      "color": "#DE4A2E",
       "soundName": {
         "ptBR": "canto"
       },
@@ -488,6 +494,7 @@
         "nameAudio": "assets/animals/names/cow_name.mp3",
         "model3d": null
       },
+      "color": "#8A6F66",
       "soundName": {
         "ptBR": "mugido"
       },
@@ -564,6 +571,7 @@
         "nameAudio": "assets/animals/names/dog_name.mp3",
         "model3d": null
       },
+      "color": "#C27A3E",
       "soundName": {
         "ptBR": "latido"
       },
@@ -645,6 +653,7 @@
         "nameAudio": "assets/animals/names/dolphin_name.mp3",
         "model3d": null
       },
+      "color": "#4C8ED6",
       "habitats": [
         "ocean",
         "coast"
@@ -716,6 +725,7 @@
         "nameAudio": "assets/animals/names/duck_name.mp3",
         "model3d": null
       },
+      "color": "#3E9A55",
       "soundName": {
         "ptBR": "grasnado"
       },
@@ -797,6 +807,7 @@
         "nameAudio": "assets/animals/names/elephant_name.mp3",
         "model3d": null
       },
+      "color": "#8B92AA",
       "soundName": {
         "ptBR": "barrido"
       },
@@ -878,6 +889,7 @@
         "nameAudio": "assets/animals/names/frog_name.mp3",
         "model3d": null
       },
+      "color": "#58B044",
       "soundName": {
         "ptBR": "coaxar"
       },
@@ -957,6 +969,7 @@
         "nameAudio": "assets/animals/names/horse_name.mp3",
         "model3d": null
       },
+      "color": "#B8652F",
       "soundName": {
         "ptBR": "relincho"
       },
@@ -1033,6 +1046,7 @@
         "nameAudio": "assets/animals/names/lion_name.mp3",
         "model3d": null
       },
+      "color": "#E0962A",
       "soundName": {
         "ptBR": "rugido"
       },
@@ -1111,6 +1125,7 @@
         "nameAudio": "assets/animals/names/monkey_name.mp3",
         "model3d": null
       },
+      "color": "#9A6038",
       "habitats": [
         "forest",
         "savanna",
@@ -1192,6 +1207,7 @@
         "nameAudio": "assets/animals/names/parrot_name.mp3",
         "model3d": null
       },
+      "color": "#E23B2E",
       "habitats": [
         "forest",
         "savanna",
@@ -1271,6 +1287,7 @@
         "nameAudio": "assets/animals/names/pig_name.mp3",
         "model3d": null
       },
+      "color": "#EC8C9F",
       "soundName": {
         "ptBR": "grunhido"
       },
@@ -1347,6 +1364,7 @@
         "nameAudio": "assets/animals/names/seal_name.mp3",
         "model3d": null
       },
+      "color": "#6B9FCA",
       "habitats": [
         "ocean",
         "coast"
@@ -1420,6 +1438,7 @@
         "nameAudio": "assets/animals/names/sheep_name.mp3",
         "model3d": null
       },
+      "color": "#9B89D8",
       "soundName": {
         "ptBR": "balido"
       },
@@ -1496,6 +1515,7 @@
         "nameAudio": "assets/animals/names/tiger_name.mp3",
         "model3d": null
       },
+      "color": "#EE7C1E",
       "soundName": {
         "ptBR": "rugido"
       },
@@ -1573,6 +1593,7 @@
         "nameAudio": "assets/animals/names/turkey_name.mp3",
         "model3d": null
       },
+      "color": "#A8582E",
       "soundName": {
         "ptBR": "glu-glu"
       },
@@ -1652,6 +1673,7 @@
         "nameAudio": "assets/animals/names/wolf_name.mp3",
         "model3d": null
       },
+      "color": "#7C879E",
       "soundName": {
         "ptBR": "uivo"
       },

@@ -20,13 +20,25 @@ interface BigButtonProps {
   onPress: () => void;
   icon?: IconName;
   variant?: Variant;
+  /** Overrides the variant background (e.g. the animal's colour); text stays white. */
+  color?: string;
   style?: StyleProp<ViewStyle>;
   accessibilityHint?: string;
 }
 
 /** Primary child-facing action: at least 64dp tall, icon + label. */
-export function BigButton({ label, onPress, icon, variant = 'primary', style, accessibilityHint }: BigButtonProps) {
-  const palette = VARIANTS[variant];
+export function BigButton({
+  label,
+  onPress,
+  icon,
+  variant = 'primary',
+  color,
+  style,
+  accessibilityHint,
+}: BigButtonProps) {
+  const palette = color
+    ? { background: color, text: colors.white, shadow: 'rgba(52, 54, 47, 0.28)' }
+    : VARIANTS[variant];
   return (
     <PressableScale
       onPress={onPress}

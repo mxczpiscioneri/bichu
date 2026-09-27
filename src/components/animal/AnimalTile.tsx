@@ -4,10 +4,9 @@ import { StyleSheet, View } from 'react-native';
 import type { Animal } from '@/domain/animal';
 import { discoveryState } from '@/progress/progress';
 import { useAnimalProgress } from '@/stores/progressStore';
-import { colors, radius, shadows, spacing } from '@/theme';
+import { colors, paletteForAnimal, radius, shadows, spacing } from '@/theme';
 
 import { AppText } from '../ui/AppText';
-import { HabitatScene, sceneForAnimal } from '../ui/HabitatScene';
 import { Icon } from '../ui/Icon';
 import { PressableScale } from '../ui/PressableScale';
 import { AnimalArt } from './AnimalArt';
@@ -19,12 +18,13 @@ interface AnimalTileProps {
   lockUndiscovered?: boolean;
 }
 
-/** Animal on its habitat scene. Star = discovered, padlock = still hidden. */
+/** Animal on its signature colour. Star = discovered, padlock = still hidden. */
 export function AnimalTile({ animal, width, lockUndiscovered = false }: AnimalTileProps) {
   const state = discoveryState(useAnimalProgress(animal.id));
   const discovered = state === 'discovered';
   const locked = lockUndiscovered && !discovered;
   const imageSize = Math.round(width * 0.66);
+  const palette = paletteForAnimal(animal);
 
   return (
     <PressableScale
@@ -32,8 +32,11 @@ export function AnimalTile({ animal, width, lockUndiscovered = false }: AnimalTi
       accessibilityLabel={`${animal.name.ptBR}${discovered ? ', descoberto' : locked ? ', ainda não descoberto' : ''}`}
       style={[styles.card, { width }]}
       pressedScale={0.96}>
-      <View style={[styles.scene, { height: Math.round(width * 0.88) }, locked && styles.sceneLocked]}>
-        {locked ? null : <HabitatScene scene={sceneForAnimal(animal)} />}
+      <View
+        style={[
+          styles.scene,
+          { height: Math.round(width * 0.88), backgroundColor: locked ? colors.cacaoSoft : palette.soft },
+        ]}>
         <AnimalArt animalId={animal.id} size={imageSize} dimmed={locked} />
         {discovered ? (
           <View style={[styles.badge, styles.star]}>
@@ -60,9 +63,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.leafSoft,
   },
-  sceneLocked: { backgroundColor: colors.cacaoSoft },
   badge: {
     position: 'absolute',
     top: 6,
