@@ -177,7 +177,8 @@
         "group": "Felidae"
       },
       "media": {
-        "image": "assets/animals/images/cat.png",
+        "image": "assets/animals/art/cat.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/cat.mp3",
         "nameAudio": "assets/animals/names/cat_name.mp3",
         "model3d": null
@@ -404,7 +405,8 @@
         "group": "Phasianidae"
       },
       "media": {
-        "image": "assets/animals/images/cock.png",
+        "image": "assets/animals/art/cock.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/cock.mp3",
         "nameAudio": "assets/animals/names/cock_name.mp3",
         "model3d": null
@@ -634,7 +636,8 @@
         "group": "Delphinidae"
       },
       "media": {
-        "image": "assets/animals/images/dolphin.png",
+        "image": "assets/animals/art/dolphin.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/dolphin.mp3",
         "nameAudio": "assets/animals/names/dolphin_name.mp3",
         "model3d": null
@@ -704,7 +707,8 @@
         "group": "Anatidae"
       },
       "media": {
-        "image": "assets/animals/images/duck.png",
+        "image": "assets/animals/art/duck.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/duck.mp3",
         "nameAudio": "assets/animals/names/duck_name.mp3",
         "model3d": null
@@ -1559,7 +1563,8 @@
         "group": "Phasianidae"
       },
       "media": {
-        "image": "assets/animals/images/turkey.png",
+        "image": "assets/animals/art/turkey.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/turkey.mp3",
         "nameAudio": "assets/animals/names/turkey_name.mp3",
         "model3d": null
