@@ -255,7 +255,8 @@
         "group": "Chicken life stage"
       },
       "media": {
-        "image": "assets/animals/images/chick.png",
+        "image": "assets/animals/art/chick.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/chick.mp3",
         "nameAudio": "assets/animals/names/chick_name.mp3",
         "model3d": null
