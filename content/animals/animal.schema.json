@@ -1,0 +1,326 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bichu Animal",
+  "type": "object",
+  "required": [
+    "id",
+    "scope",
+    "name",
+    "taxonomy",
+    "media",
+    "habitats",
+    "regions",
+    "diet",
+    "foods",
+    "locomotion",
+    "bodyCovering",
+    "reproduction",
+    "activity",
+    "domestication",
+    "sizeClass",
+    "content",
+    "challengeFlags"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "scope": {
+      "enum": [
+        "species",
+        "domestic_species",
+        "generic",
+        "life_stage"
+      ]
+    },
+    "parentAnimalId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "name": {
+      "type": "object",
+      "required": [
+        "ptBR",
+        "article",
+        "syllables"
+      ],
+      "properties": {
+        "ptBR": {
+          "type": "string"
+        },
+        "article": {
+          "enum": [
+            "o",
+            "a"
+          ],
+          "description": "Artigo definido pt-BR usado nos enunciados (o leão / a abelha)."
+        },
+        "syllables": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "taxonomy": {
+      "type": "object",
+      "required": [
+        "class"
+      ],
+      "properties": {
+        "scientificName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "class": {
+          "enum": [
+            "mammal",
+            "bird",
+            "reptile",
+            "amphibian",
+            "fish",
+            "insect",
+            "arachnid",
+            "other"
+          ]
+        },
+        "group": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "media": {
+      "type": "object",
+      "required": [
+        "image",
+        "sound",
+        "nameAudio"
+      ],
+      "properties": {
+        "image": {
+          "type": "string"
+        },
+        "sound": {
+          "type": "string"
+        },
+        "nameAudio": {
+          "type": "string"
+        },
+        "model3d": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model3dMeta": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Metadados opcionais do modelo 3D (AR).",
+          "required": [
+            "license",
+            "author"
+          ],
+          "properties": {
+            "defaultScale": {
+              "type": "number"
+            },
+            "realWorldHeightMeters": {
+              "type": "number"
+            },
+            "groundOffset": {
+              "type": "number"
+            },
+            "animations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "license": {
+              "type": "string"
+            },
+            "author": {
+              "type": "string"
+            },
+            "sourceUrl": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "habitats": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "farm",
+          "home",
+          "forest",
+          "savanna",
+          "grassland",
+          "wetland",
+          "freshwater",
+          "ocean",
+          "coast",
+          "desert",
+          "mountains",
+          "urban",
+          "mixed"
+        ]
+      }
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "diet": {
+      "enum": [
+        "herbivore",
+        "carnivore",
+        "omnivore",
+        "insectivore",
+        "nectar_pollen",
+        "varies"
+      ]
+    },
+    "foods": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Deve existir na taxonomia de alimentos (src/domain/taxonomy.ts)."
+      }
+    },
+    "locomotion": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "walk",
+          "run",
+          "jump",
+          "climb",
+          "swim",
+          "fly",
+          "slither"
+        ]
+      }
+    },
+    "bodyCovering": {
+      "enum": [
+        "fur",
+        "feathers",
+        "scales",
+        "skin",
+        "exoskeleton",
+        "wool"
+      ]
+    },
+    "reproduction": {
+      "enum": [
+        "eggs",
+        "live_birth"
+      ]
+    },
+    "activity": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "diurnal",
+          "nocturnal",
+          "crepuscular",
+          "varies"
+        ]
+      }
+    },
+    "domestication": {
+      "enum": [
+        "domestic",
+        "wild",
+        "mixed"
+      ]
+    },
+    "sizeClass": {
+      "enum": [
+        "tiny",
+        "small",
+        "medium",
+        "large",
+        "very_large"
+      ]
+    },
+    "content": {
+      "type": "object",
+      "required": [
+        "preschool",
+        "kids",
+        "curiosities"
+      ],
+      "properties": {
+        "preschool": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "kids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "curiosities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "challengeFlags": {
+      "type": "object",
+      "required": [
+        "food",
+        "habitat",
+        "locomotion",
+        "bodyCovering",
+        "reproduction",
+        "class"
+      ],
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "soundName": {
+      "type": "object",
+      "description": "Nome do som do animal (rugido, latido). Opcional; a UI usa \"som\" quando ausente.",
+      "required": [
+        "ptBR"
+      ],
+      "properties": {
+        "ptBR": {
+          "type": "string"
+        }
+      }
+    },
+    "soundGroup": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Animais com sons confundíveis compartilham o mesmo grupo e nunca aparecem juntos em \"Que animal é esse?\"."
+    }
+  }
+}

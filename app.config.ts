@@ -1,0 +1,97 @@
+import type { ConfigContext, ExpoConfig } from 'expo/config';
+
+import theme from './design/theme.json';
+
+/**
+ * AR is an isolated, opt-in experiment. Native builds only include ViroReact
+ * (and its camera permission) when BICHU_AR=1 is set at build time.
+ * See README → "Realidade aumentada (experimental)".
+ */
+const AR_ENABLED = process.env.BICHU_AR === '1';
+
+const viroPlugins: ExpoConfig['plugins'] = AR_ENABLED
+  ? [
+      [
+        '@reactvision/react-viro',
+        {
+          ios: {
+            cameraUsagePermission:
+              'O Bichu usa a câmera apenas para mostrar animais no seu ambiente. Nenhuma imagem é salva ou enviada.',
+          },
+          android: { xRMode: ['AR'] },
+        },
+      ],
+      './plugins/withChildPrivacy',
+    ]
+  : [];
+
+export default ({ config }: ConfigContext): ExpoConfig => ({
+  ...config,
+  name: 'Bichu',
+  slug: 'bichu',
+  version: '0.1.0',
+  orientation: 'portrait',
+  icon: './assets/brand/icon.png',
+  scheme: 'bichu',
+  userInterfaceStyle: 'light',
+  backgroundColor: theme.colors.cream,
+  ios: {
+    bundleIdentifier: 'com.bichu.app',
+    supportsTablet: true,
+    infoPlist: { ITSAppUsesNonExemptEncryption: false },
+  },
+  android: {
+    package: 'com.bichu.app',
+    adaptiveIcon: {
+      backgroundColor: theme.colors.leaf,
+      foregroundImage: './assets/brand/android-icon-foreground.png',
+      backgroundImage: './assets/brand/android-icon-background.png',
+      monochromeImage: './assets/brand/android-icon-monochrome.png',
+    },
+    // Child-privacy: never ship permissions the MVP does not need.
+    blockedPermissions: [
+      'android.permission.RECORD_AUDIO',
+      'android.permission.ACCESS_FINE_LOCATION',
+      'android.permission.ACCESS_COARSE_LOCATION',
+      'android.permission.READ_EXTERNAL_STORAGE',
+      'android.permission.WRITE_EXTERNAL_STORAGE',
+      'android.permission.READ_MEDIA_IMAGES',
+      'android.permission.READ_MEDIA_VIDEO',
+      'android.permission.READ_CONTACTS',
+      'com.google.android.gms.permission.AD_ID',
+    ],
+    predictiveBackGestureEnabled: false,
+  },
+  web: {
+    output: 'single',
+    favicon: './assets/brand/favicon.png',
+  },
+  plugins: [
+    'expo-router',
+    [
+      'expo-splash-screen',
+      {
+        backgroundColor: theme.colors.cream,
+        image: './assets/brand/splash-icon.png',
+        imageWidth: 200,
+      },
+    ],
+    [
+      'expo-audio',
+      {
+        microphonePermission: false,
+        recordAudioAndroid: false,
+        enableBackgroundPlayback: false,
+      },
+    ],
+    'expo-font',
+    ...viroPlugins,
+  ],
+  experiments: {
+    typedRoutes: true,
+    reactCompiler: true,
+  },
+  extra: {
+    arEnabled: AR_ENABLED,
+  },
+});

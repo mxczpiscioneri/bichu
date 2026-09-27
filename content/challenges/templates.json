@@ -1,0 +1,150 @@
+{
+  "version": 2,
+  "templates": [
+    {
+      "id": "sound_to_animal",
+      "type": "sound",
+      "interaction": "tap",
+      "title": "Que animal é esse?",
+      "subtitle": "Ouça e descubra quem faz o som",
+      "icon": "speaker",
+      "levels": {
+        "explorer": {
+          "options": 2
+        },
+        "adventurer": {
+          "options": 3
+        }
+      },
+      "prompt": "Quem faz este som?",
+      "explanation": "Esse é o som {deAnimal}!"
+    },
+    {
+      "id": "food",
+      "type": "food",
+      "interaction": "drag",
+      "title": "O que ele come?",
+      "subtitle": "Leve a comida até o animal",
+      "icon": "banana",
+      "levels": {
+        "explorer": {
+          "options": 2
+        },
+        "adventurer": {
+          "options": 3
+        }
+      },
+      "prompt": "O que {animal} come?",
+      "explanation": "{Animal} come {answer}.",
+      "source": "foods"
+    },
+    {
+      "id": "habitat",
+      "type": "habitat",
+      "interaction": "drag",
+      "title": "Onde ele vive?",
+      "subtitle": "Qual é o lar dele?",
+      "icon": "tree",
+      "levels": {
+        "explorer": {
+          "options": 2
+        },
+        "adventurer": {
+          "options": 3
+        }
+      },
+      "prompt": "Onde {animal} pode viver?",
+      "explanation": "{Animal} pode viver {answer}.",
+      "source": "habitats"
+    },
+    {
+      "id": "locomotion",
+      "type": "locomotion",
+      "interaction": "drag",
+      "title": "Como ele se move?",
+      "subtitle": "Andando, nadando ou voando?",
+      "icon": "paws",
+      "levels": {
+        "explorer": {
+          "options": 2
+        },
+        "adventurer": {
+          "options": 3
+        }
+      },
+      "prompt": "Como {animal} se movimenta?",
+      "explanation": "{Animal} se movimenta {answer}.",
+      "source": "locomotion"
+    },
+    {
+      "id": "body_covering",
+      "type": "bodyCovering",
+      "interaction": "tap",
+      "title": "O que cobre o corpo?",
+      "subtitle": "Pelos, penas ou escamas?",
+      "icon": "feather",
+      "levels": {
+        "explorer": {
+          "options": 2
+        },
+        "adventurer": {
+          "options": 3
+        }
+      },
+      "prompt": "O que cobre o corpo {deAnimal}?",
+      "explanation": "O corpo {deAnimal} é coberto de {answer}.",
+      "source": "bodyCovering"
+    },
+    {
+      "id": "reproduction",
+      "type": "reproduction",
+      "interaction": "tap",
+      "title": "Como nascem os filhotes?",
+      "subtitle": "Do ovo ou da barriga da mãe?",
+      "icon": "egg",
+      "levels": {
+        "explorer": {
+          "options": 2
+        },
+        "adventurer": {
+          "options": 2
+        }
+      },
+      "prompt": "Como nascem os filhotes {deAnimal}?",
+      "explanation": "Os filhotes {deAnimal} nascem {answer}.",
+      "source": "reproduction"
+    },
+    {
+      "id": "class",
+      "type": "class",
+      "interaction": "tap",
+      "title": "Que tipo de animal?",
+      "subtitle": "Mamífero, ave, inseto…",
+      "icon": "books",
+      "levels": {
+        "explorer": {
+          "enabled": false
+        },
+        "adventurer": {
+          "options": 3
+        }
+      },
+      "prompt": "Que tipo de animal é {animal}?",
+      "explanation": "{Animal} é {answer}.",
+      "source": "taxonomy.class"
+    }
+  ],
+  "rules": [
+    "Do not generate a challenge when challengeFlags[type] is false.",
+    "Distractors must come from the same taxonomy.",
+    "Allow multiple correct answers when the source field contains multiple valid values.",
+    "Prefer visual/iconic options for Explorer mode.",
+    "Never mark a biologically plausible answer as wrong merely to force one answer."
+  ],
+  "tokens": {
+    "{animal}": "nome com artigo (o leão)",
+    "{Animal}": "nome com artigo, maiúsculo (O leão)",
+    "{deAnimal}": "contração com artigo (do leão / da abelha)",
+    "{answer}": "frase da resposta correta (carne / na savana)"
+  }
+}

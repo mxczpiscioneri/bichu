@@ -1,0 +1,42 @@
+{
+  "brand": {
+    "name": "bichu",
+    "tagline": "Descubra o mundo animal.",
+    "mascot": "Bichu — Guardião da Floresta"
+  },
+  "colors": {
+    "forest": "#2F5D2C",
+    "leaf": "#6F9F52",
+    "flame": "#D94A2B",
+    "terra": "#ED762E",
+    "sun": "#F5C45D",
+    "cream": "#FBF5E8",
+    "cacao": "#74421F",
+    "ink": "#34362F",
+    "white": "#FFFFFF",
+    "ocean": "#4DB6C6",
+    "sky": "#8DCFE8"
+  },
+  "radius": {
+    "sm": 12,
+    "md": 20,
+    "lg": 28,
+    "pill": 999
+  },
+  "spacing": {
+    "xs": 4,
+    "sm": 8,
+    "md": 16,
+    "lg": 24,
+    "xl": 32
+  },
+  "touchTargets": {
+    "minimum": 48,
+    "childPreferred": 64
+  },
+  "motion": {
+    "fastMs": 180,
+    "normalMs": 280,
+    "celebrationMs": 650
+  }
+}

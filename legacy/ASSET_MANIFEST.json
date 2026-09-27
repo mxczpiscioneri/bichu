@@ -1,0 +1,262 @@
+{
+  "sourceRepository": "https://github.com/mxczpiscioneri/AnimalSounds",
+  "sourceBranch": "master",
+  "animalCount": 22,
+  "notes": [
+    "The old Kotlin code is not intended to be migrated.",
+    "Confirm rights for narrator recordings and third-party animal sounds/images before commercial reuse.",
+    "uiSounds: feedback sounds reused from the legacy app (discover_win.mp3). Same rights review applies.",
+    "Only files listed here are downloaded. keystore.jks, google-services.json and build files are never copied."
+  ],
+  "animals": [
+    {
+      "id": "bear",
+      "image": "app/src/main/res/drawable/bear.png",
+      "animalSound": "app/src/main/res/raw/bear.mp3",
+      "nameAudio": "app/src/main/res/raw/bear_name.mp3",
+      "target": {
+        "image": "assets/animals/images/bear.png",
+        "animalSound": "assets/animals/sounds/bear.mp3",
+        "nameAudio": "assets/animals/names/bear_name.mp3"
+      }
+    },
+    {
+      "id": "bee",
+      "image": "app/src/main/res/drawable/bee.png",
+      "animalSound": "app/src/main/res/raw/bee.mp3",
+      "nameAudio": "app/src/main/res/raw/bee_name.mp3",
+      "target": {
+        "image": "assets/animals/images/bee.png",
+        "animalSound": "assets/animals/sounds/bee.mp3",
+        "nameAudio": "assets/animals/names/bee_name.mp3"
+      }
+    },
+    {
+      "id": "cat",
+      "image": "app/src/main/res/drawable/cat.png",
+      "animalSound": "app/src/main/res/raw/cat.mp3",
+      "nameAudio": "app/src/main/res/raw/cat_name.mp3",
+      "target": {
+        "image": "assets/animals/images/cat.png",
+        "animalSound": "assets/animals/sounds/cat.mp3",
+        "nameAudio": "assets/animals/names/cat_name.mp3"
+      }
+    },
+    {
+      "id": "chick",
+      "image": "app/src/main/res/drawable/chick.png",
+      "animalSound": "app/src/main/res/raw/chick.mp3",
+      "nameAudio": "app/src/main/res/raw/chick_name.mp3",
+      "target": {
+        "image": "assets/animals/images/chick.png",
+        "animalSound": "assets/animals/sounds/chick.mp3",
+        "nameAudio": "assets/animals/names/chick_name.mp3"
+      }
+    },
+    {
+      "id": "chicken",
+      "image": "app/src/main/res/drawable/chicken.png",
+      "animalSound": "app/src/main/res/raw/chicken.mp3",
+      "nameAudio": "app/src/main/res/raw/chicken_name.mp3",
+      "target": {
+        "image": "assets/animals/images/chicken.png",
+        "animalSound": "assets/animals/sounds/chicken.mp3",
+        "nameAudio": "assets/animals/names/chicken_name.mp3"
+      }
+    },
+    {
+      "id": "cock",
+      "image": "app/src/main/res/drawable/cock.png",
+      "animalSound": "app/src/main/res/raw/cock.mp3",
+      "nameAudio": "app/src/main/res/raw/cock_name.mp3",
+      "target": {
+        "image": "assets/animals/images/cock.png",
+        "animalSound": "assets/animals/sounds/cock.mp3",
+        "nameAudio": "assets/animals/names/cock_name.mp3"
+      }
+    },
+    {
+      "id": "cow",
+      "image": "app/src/main/res/drawable/cow.png",
+      "animalSound": "app/src/main/res/raw/cow.mp3",
+      "nameAudio": "app/src/main/res/raw/cow_name.mp3",
+      "target": {
+        "image": "assets/animals/images/cow.png",
+        "animalSound": "assets/animals/sounds/cow.mp3",
+        "nameAudio": "assets/animals/names/cow_name.mp3"
+      }
+    },
+    {
+      "id": "dog",
+      "image": "app/src/main/res/drawable/dog.png",
+      "animalSound": "app/src/main/res/raw/dog.mp3",
+      "nameAudio": "app/src/main/res/raw/dog_name.mp3",
+      "target": {
+        "image": "assets/animals/images/dog.png",
+        "animalSound": "assets/animals/sounds/dog.mp3",
+        "nameAudio": "assets/animals/names/dog_name.mp3"
+      }
+    },
+    {
+      "id": "dolphin",
+      "image": "app/src/main/res/drawable/dolphin.png",
+      "animalSound": "app/src/main/res/raw/dolphin.mp3",
+      "nameAudio": "app/src/main/res/raw/dolphin_name.mp3",
+      "target": {
+        "image": "assets/animals/images/dolphin.png",
+        "animalSound": "assets/animals/sounds/dolphin.mp3",
+        "nameAudio": "assets/animals/names/dolphin_name.mp3"
+      }
+    },
+    {
+      "id": "duck",
+      "image": "app/src/main/res/drawable/duck.png",
+      "animalSound": "app/src/main/res/raw/duck.mp3",
+      "nameAudio": "app/src/main/res/raw/duck_name.mp3",
+      "target": {
+        "image": "assets/animals/images/duck.png",
+        "animalSound": "assets/animals/sounds/duck.mp3",
+        "nameAudio": "assets/animals/names/duck_name.mp3"
+      }
+    },
+    {
+      "id": "elephant",
+      "image": "app/src/main/res/drawable/elephant.png",
+      "animalSound": "app/src/main/res/raw/elephant.mp3",
+      "nameAudio": "app/src/main/res/raw/elephant_name.mp3",
+      "target": {
+        "image": "assets/animals/images/elephant.png",
+        "animalSound": "assets/animals/sounds/elephant.mp3",
+        "nameAudio": "assets/animals/names/elephant_name.mp3"
+      }
+    },
+    {
+      "id": "frog",
+      "image": "app/src/main/res/drawable/frog.png",
+      "animalSound": "app/src/main/res/raw/frog.mp3",
+      "nameAudio": "app/src/main/res/raw/frog_name.mp3",
+      "target": {
+        "image": "assets/animals/images/frog.png",
+        "animalSound": "assets/animals/sounds/frog.mp3",
+        "nameAudio": "assets/animals/names/frog_name.mp3"
+      }
+    },
+    {
+      "id": "horse",
+      "image": "app/src/main/res/drawable/horse.png",
+      "animalSound": "app/src/main/res/raw/horse.mp3",
+      "nameAudio": "app/src/main/res/raw/horse_name.mp3",
+      "target": {
+        "image": "assets/animals/images/horse.png",
+        "animalSound": "assets/animals/sounds/horse.mp3",
+        "nameAudio": "assets/animals/names/horse_name.mp3"
+      }
+    },
+    {
+      "id": "lion",
+      "image": "app/src/main/res/drawable/lion.png",
+      "animalSound": "app/src/main/res/raw/lion.mp3",
+      "nameAudio": "app/src/main/res/raw/lion_name.mp3",
+      "target": {
+        "image": "assets/animals/images/lion.png",
+        "animalSound": "assets/animals/sounds/lion.mp3",
+        "nameAudio": "assets/animals/names/lion_name.mp3"
+      }
+    },
+    {
+      "id": "monkey",
+      "image": "app/src/main/res/drawable/monkey.png",
+      "animalSound": "app/src/main/res/raw/monkey.mp3",
+      "nameAudio": "app/src/main/res/raw/monkey_name.mp3",
+      "target": {
+        "image": "assets/animals/images/monkey.png",
+        "animalSound": "assets/animals/sounds/monkey.mp3",
+        "nameAudio": "assets/animals/names/monkey_name.mp3"
+      }
+    },
+    {
+      "id": "parrot",
+      "image": "app/src/main/res/drawable/parrot.png",
+      "animalSound": "app/src/main/res/raw/parrot.mp3",
+      "nameAudio": "app/src/main/res/raw/parrot_name.mp3",
+      "target": {
+        "image": "assets/animals/images/parrot.png",
+        "animalSound": "assets/animals/sounds/parrot.mp3",
+        "nameAudio": "assets/animals/names/parrot_name.mp3"
+      }
+    },
+    {
+      "id": "pig",
+      "image": "app/src/main/res/drawable/pig.png",
+      "animalSound": "app/src/main/res/raw/pig.mp3",
+      "nameAudio": "app/src/main/res/raw/pig_name.mp3",
+      "target": {
+        "image": "assets/animals/images/pig.png",
+        "animalSound": "assets/animals/sounds/pig.mp3",
+        "nameAudio": "assets/animals/names/pig_name.mp3"
+      }
+    },
+    {
+      "id": "seal",
+      "image": "app/src/main/res/drawable/seal.png",
+      "animalSound": "app/src/main/res/raw/seal.mp3",
+      "nameAudio": "app/src/main/res/raw/seal_name.mp3",
+      "target": {
+        "image": "assets/animals/images/seal.png",
+        "animalSound": "assets/animals/sounds/seal.mp3",
+        "nameAudio": "assets/animals/names/seal_name.mp3"
+      }
+    },
+    {
+      "id": "sheep",
+      "image": "app/src/main/res/drawable/sheep.png",
+      "animalSound": "app/src/main/res/raw/sheep.mp3",
+      "nameAudio": "app/src/main/res/raw/sheep_name.mp3",
+      "target": {
+        "image": "assets/animals/images/sheep.png",
+        "animalSound": "assets/animals/sounds/sheep.mp3",
+        "nameAudio": "assets/animals/names/sheep_name.mp3"
+      }
+    },
+    {
+      "id": "tiger",
+      "image": "app/src/main/res/drawable/tiger.png",
+      "animalSound": "app/src/main/res/raw/tiger.mp3",
+      "nameAudio": "app/src/main/res/raw/tiger_name.mp3",
+      "target": {
+        "image": "assets/animals/images/tiger.png",
+        "animalSound": "assets/animals/sounds/tiger.mp3",
+        "nameAudio": "assets/animals/names/tiger_name.mp3"
+      }
+    },
+    {
+      "id": "turkey",
+      "image": "app/src/main/res/drawable/turkey.png",
+      "animalSound": "app/src/main/res/raw/turkey.mp3",
+      "nameAudio": "app/src/main/res/raw/turkey_name.mp3",
+      "target": {
+        "image": "assets/animals/images/turkey.png",
+        "animalSound": "assets/animals/sounds/turkey.mp3",
+        "nameAudio": "assets/animals/names/turkey_name.mp3"
+      }
+    },
+    {
+      "id": "wolf",
+      "image": "app/src/main/res/drawable/wolf.png",
+      "animalSound": "app/src/main/res/raw/wolf.mp3",
+      "nameAudio": "app/src/main/res/raw/wolf_name.mp3",
+      "target": {
+        "image": "assets/animals/images/wolf.png",
+        "animalSound": "assets/animals/sounds/wolf.mp3",
+        "nameAudio": "assets/animals/names/wolf_name.mp3"
+      }
+    }
+  ],
+  "uiSounds": [
+    {
+      "id": "correct",
+      "source": "app/src/main/res/raw/discover_win.mp3",
+      "target": "assets/ui/sounds/correct.mp3"
+    }
+  ]
+}

@@ -1,0 +1,1690 @@
+{
+  "locale": "pt-BR",
+  "status": "draft-needs-content-review",
+  "animals": [
+    {
+      "id": "bear",
+      "scope": "generic",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Urso",
+        "article": "o",
+        "syllables": [
+          "Ur",
+          "so"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": null,
+        "class": "mammal",
+        "group": "Ursidae"
+      },
+      "media": {
+        "image": "assets/animals/images/bear.png",
+        "sound": "assets/animals/sounds/bear.mp3",
+        "nameAudio": "assets/animals/names/bear_name.mp3",
+        "model3d": null
+      },
+      "soundGroup": "roar",
+      "habitats": [
+        "forest",
+        "mountains",
+        "mixed"
+      ],
+      "regions": [
+        "Américas",
+        "Europa",
+        "Ásia"
+      ],
+      "diet": "omnivore",
+      "foods": [
+        "fruits",
+        "plants",
+        "fish",
+        "meat"
+      ],
+      "locomotion": [
+        "walk",
+        "run",
+        "climb",
+        "swim"
+      ],
+      "bodyCovering": "fur",
+      "reproduction": "live_birth",
+      "activity": [
+        "varies"
+      ],
+      "domestication": "wild",
+      "sizeClass": "large",
+      "content": {
+        "preschool": [
+          "O urso tem pelo grosso.",
+          "Muitos ursos são muito fortes.",
+          "Eles podem viver em florestas e montanhas."
+        ],
+        "kids": [
+          "Existem várias espécies de urso, com dietas e habitats diferentes.",
+          "Muitos ursos são onívoros, mas a alimentação varia por espécie.",
+          "Alguns ursos nadam e escalam muito bem."
+        ],
+        "curiosities": [
+          "Nem todos os ursos hibernam do mesmo jeito.",
+          "O tamanho de um urso muda bastante conforme a espécie."
+        ]
+      },
+      "challengeFlags": {
+        "food": false,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "bee",
+      "scope": "generic",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Abelha",
+        "article": "a",
+        "syllables": [
+          "A",
+          "be",
+          "lha"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": null,
+        "class": "insect",
+        "group": "Anthophila"
+      },
+      "media": {
+        "image": "assets/animals/images/bee.png",
+        "sound": "assets/animals/sounds/bee.mp3",
+        "nameAudio": "assets/animals/names/bee_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "zumbido"
+      },
+      "habitats": [
+        "forest",
+        "grassland",
+        "farm",
+        "urban"
+      ],
+      "regions": [
+        "Quase todo o mundo"
+      ],
+      "diet": "nectar_pollen",
+      "foods": [
+        "nectar",
+        "pollen"
+      ],
+      "locomotion": [
+        "walk",
+        "fly"
+      ],
+      "bodyCovering": "exoskeleton",
+      "reproduction": "eggs",
+      "activity": [
+        "diurnal"
+      ],
+      "domestication": "wild",
+      "sizeClass": "tiny",
+      "content": {
+        "preschool": [
+          "A abelha voa de flor em flor.",
+          "Ela visita flores para buscar alimento.",
+          "Abelhas ajudam muitas plantas."
+        ],
+        "kids": [
+          "Muitas abelhas coletam néctar e pólen.",
+          "Ao visitar flores, podem transportar pólen e ajudar na reprodução das plantas.",
+          "Existem muitas espécies de abelhas, nem todas vivem em colmeias grandes."
+        ],
+        "curiosities": [
+          "Algumas abelhas vivem sozinhas.",
+          "A diversidade de abelhas é enorme."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "cat",
+      "scope": "domestic_species",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Gato",
+        "article": "o",
+        "syllables": [
+          "Ga",
+          "to"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": "Felis catus",
+        "class": "mammal",
+        "group": "Felidae"
+      },
+      "media": {
+        "image": "assets/animals/images/cat.png",
+        "sound": "assets/animals/sounds/cat.mp3",
+        "nameAudio": "assets/animals/names/cat_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "miado"
+      },
+      "habitats": [
+        "home",
+        "urban"
+      ],
+      "regions": [
+        "Mundo todo"
+      ],
+      "diet": "carnivore",
+      "foods": [
+        "meat"
+      ],
+      "locomotion": [
+        "walk",
+        "run",
+        "jump",
+        "climb"
+      ],
+      "bodyCovering": "fur",
+      "reproduction": "live_birth",
+      "activity": [
+        "crepuscular",
+        "varies"
+      ],
+      "domestication": "domestic",
+      "sizeClass": "small",
+      "content": {
+        "preschool": [
+          "O gato tem pelo e bigodes.",
+          "Ele consegue pular muito bem.",
+          "O gato é um mamífero."
+        ],
+        "kids": [
+          "Gatos domésticos são carnívoros.",
+          "Bigodes ajudam o gato a perceber espaços e movimentos próximos.",
+          "Eles conseguem subir e saltar com muita agilidade."
+        ],
+        "curiosities": [
+          "O ronronar pode acontecer em diferentes situações.",
+          "Os olhos dos gatos se adaptam bem à pouca luz."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "chick",
+      "scope": "life_stage",
+      "parentAnimalId": "chicken",
+      "name": {
+        "ptBR": "Pintinho",
+        "article": "o",
+        "syllables": [
+          "Pin",
+          "ti",
+          "nho"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": "Gallus gallus domesticus",
+        "class": "bird",
+        "group": "Chicken life stage"
+      },
+      "media": {
+        "image": "assets/animals/images/chick.png",
+        "sound": "assets/animals/sounds/chick.mp3",
+        "nameAudio": "assets/animals/names/chick_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "piado"
+      },
+      "soundGroup": "chicken",
+      "habitats": [
+        "farm"
+      ],
+      "regions": [
+        "Mundo todo"
+      ],
+      "diet": "omnivore",
+      "foods": [
+        "seeds",
+        "insects",
+        "plants"
+      ],
+      "locomotion": [
+        "walk",
+        "run"
+      ],
+      "bodyCovering": "feathers",
+      "reproduction": "eggs",
+      "activity": [
+        "diurnal"
+      ],
+      "domestication": "domestic",
+      "sizeClass": "tiny",
+      "content": {
+        "preschool": [
+          "O pintinho é o filhote da galinha.",
+          "Ele nasce de um ovo.",
+          "Seu corpo é coberto por penugem."
+        ],
+        "kids": [
+          "Pintinho é uma fase jovem da galinha doméstica.",
+          "Depois de nascer, ele cresce e troca a penugem por penas mais desenvolvidas.",
+          "Pintinhos se movimentam pelo chão e procuram pequenos alimentos."
+        ],
+        "curiosities": [
+          "O pintinho já consegue se movimentar pouco tempo depois de nascer."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "chicken",
+      "scope": "domestic_species",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Galinha",
+        "article": "a",
+        "syllables": [
+          "Ga",
+          "li",
+          "nha"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": "Gallus gallus domesticus",
+        "class": "bird",
+        "group": "Phasianidae"
+      },
+      "media": {
+        "image": "assets/animals/images/chicken.png",
+        "sound": "assets/animals/sounds/chicken.mp3",
+        "nameAudio": "assets/animals/names/chicken_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "cacarejo"
+      },
+      "soundGroup": "chicken",
+      "habitats": [
+        "farm"
+      ],
+      "regions": [
+        "Mundo todo"
+      ],
+      "diet": "omnivore",
+      "foods": [
+        "seeds",
+        "insects",
+        "plants"
+      ],
+      "locomotion": [
+        "walk",
+        "run"
+      ],
+      "bodyCovering": "feathers",
+      "reproduction": "eggs",
+      "activity": [
+        "diurnal"
+      ],
+      "domestication": "domestic",
+      "sizeClass": "small",
+      "content": {
+        "preschool": [
+          "A galinha tem penas.",
+          "Ela bota ovos.",
+          "Ela anda e cisca pelo chão."
+        ],
+        "kids": [
+          "Galinhas são aves domésticas.",
+          "Elas são onívoras e podem comer sementes, plantas e pequenos animais.",
+          "A galinha usa o bico e os pés para explorar o chão."
+        ],
+        "curiosities": [
+          "Galinhas se comunicam com vários tipos de vocalização."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "cock",
+      "scope": "domestic_species",
+      "parentAnimalId": "chicken",
+      "name": {
+        "ptBR": "Galo",
+        "article": "o",
+        "syllables": [
+          "Ga",
+          "lo"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": "Gallus gallus domesticus",
+        "class": "bird",
+        "group": "Phasianidae"
+      },
+      "media": {
+        "image": "assets/animals/images/cock.png",
+        "sound": "assets/animals/sounds/cock.mp3",
+        "nameAudio": "assets/animals/names/cock_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "canto"
+      },
+      "soundGroup": "chicken",
+      "habitats": [
+        "farm"
+      ],
+      "regions": [
+        "Mundo todo"
+      ],
+      "diet": "omnivore",
+      "foods": [
+        "seeds",
+        "insects",
+        "plants"
+      ],
+      "locomotion": [
+        "walk",
+        "run"
+      ],
+      "bodyCovering": "feathers",
+      "reproduction": "eggs",
+      "activity": [
+        "diurnal"
+      ],
+      "domestication": "domestic",
+      "sizeClass": "small",
+      "content": {
+        "preschool": [
+          "O galo é uma ave.",
+          "Ele tem penas.",
+          "Seu canto é bem conhecido."
+        ],
+        "kids": [
+          "Galo é o macho adulto da galinha doméstica.",
+          "Assim como a galinha, é onívoro.",
+          "O canto pode funcionar como comunicação e marcação de território."
+        ],
+        "curiosities": [
+          "Um galo pode cantar em vários momentos do dia."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "cow",
+      "scope": "domestic_species",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Vaca",
+        "article": "a",
+        "syllables": [
+          "Va",
+          "ca"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": "Bos taurus",
+        "class": "mammal",
+        "group": "Bovidae"
+      },
+      "media": {
+        "image": "assets/animals/images/cow.png",
+        "sound": "assets/animals/sounds/cow.mp3",
+        "nameAudio": "assets/animals/names/cow_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "mugido"
+      },
+      "habitats": [
+        "farm",
+        "grassland"
+      ],
+      "regions": [
+        "Mundo todo"
+      ],
+      "diet": "herbivore",
+      "foods": [
+        "grass",
+        "plants"
+      ],
+      "locomotion": [
+        "walk",
+        "run"
+      ],
+      "bodyCovering": "fur",
+      "reproduction": "live_birth",
+      "activity": [
+        "diurnal",
+        "varies"
+      ],
+      "domestication": "domestic",
+      "sizeClass": "large",
+      "content": {
+        "preschool": [
+          "A vaca come plantas e capim.",
+          "Ela é um mamífero.",
+          "Vacas vivem em fazendas e pastos."
+        ],
+        "kids": [
+          "Vacas são herbívoras ruminantes.",
+          "Elas passam bastante tempo pastando e ruminando.",
+          "São mamíferos e alimentam seus filhotes com leite."
+        ],
+        "curiosities": [
+          "A ruminação ajuda a aproveitar alimentos vegetais fibrosos."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "dog",
+      "scope": "domestic_species",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Cachorro",
+        "article": "o",
+        "syllables": [
+          "Ca",
+          "chor",
+          "ro"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": "Canis lupus familiaris",
+        "class": "mammal",
+        "group": "Canidae"
+      },
+      "media": {
+        "image": "assets/animals/images/dog.png",
+        "sound": "assets/animals/sounds/dog.mp3",
+        "nameAudio": "assets/animals/names/dog_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "latido"
+      },
+      "soundGroup": "canine",
+      "habitats": [
+        "home",
+        "urban",
+        "farm"
+      ],
+      "regions": [
+        "Mundo todo"
+      ],
+      "diet": "omnivore",
+      "foods": [
+        "meat",
+        "prepared_food",
+        "plants"
+      ],
+      "locomotion": [
+        "walk",
+        "run",
+        "jump",
+        "swim"
+      ],
+      "bodyCovering": "fur",
+      "reproduction": "live_birth",
+      "activity": [
+        "diurnal",
+        "varies"
+      ],
+      "domestication": "domestic",
+      "sizeClass": "medium",
+      "content": {
+        "preschool": [
+          "O cachorro tem um olfato muito bom.",
+          "Ele é um mamífero.",
+          "Cachorros podem correr e brincar."
+        ],
+        "kids": [
+          "Cães convivem com seres humanos há milhares de anos.",
+          "O olfato canino é muito desenvolvido.",
+          "A alimentação do cão doméstico pode incluir diferentes nutrientes de origem animal e vegetal."
+        ],
+        "curiosities": [
+          "Existem raças de tamanhos e formatos muito diferentes."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "dolphin",
+      "scope": "generic",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Golfinho",
+        "article": "o",
+        "syllables": [
+          "Gol",
+          "fi",
+          "nho"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": null,
+        "class": "mammal",
+        "group": "Delphinidae"
+      },
+      "media": {
+        "image": "assets/animals/images/dolphin.png",
+        "sound": "assets/animals/sounds/dolphin.mp3",
+        "nameAudio": "assets/animals/names/dolphin_name.mp3",
+        "model3d": null
+      },
+      "habitats": [
+        "ocean",
+        "coast"
+      ],
+      "regions": [
+        "Oceanos do mundo"
+      ],
+      "diet": "carnivore",
+      "foods": [
+        "fish",
+        "squid"
+      ],
+      "locomotion": [
+        "swim"
+      ],
+      "bodyCovering": "skin",
+      "reproduction": "live_birth",
+      "activity": [
+        "varies"
+      ],
+      "domestication": "wild",
+      "sizeClass": "large",
+      "content": {
+        "preschool": [
+          "O golfinho vive na água.",
+          "Ele é um mamífero.",
+          "Golfinhos nadam muito bem."
+        ],
+        "kids": [
+          "Golfinhos respiram ar e precisam subir à superfície.",
+          "São mamíferos, não peixes.",
+          "Muitas espécies comem peixes e lulas."
+        ],
+        "curiosities": [
+          "Golfinhos usam sons para comunicação e orientação.",
+          "Existem várias espécies de golfinhos."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "duck",
+      "scope": "generic",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Pato",
+        "article": "o",
+        "syllables": [
+          "Pa",
+          "to"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": null,
+        "class": "bird",
+        "group": "Anatidae"
+      },
+      "media": {
+        "image": "assets/animals/images/duck.png",
+        "sound": "assets/animals/sounds/duck.mp3",
+        "nameAudio": "assets/animals/names/duck_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "grasnado"
+      },
+      "habitats": [
+        "wetland",
+        "freshwater",
+        "farm"
+      ],
+      "regions": [
+        "Muitas regiões do mundo"
+      ],
+      "diet": "omnivore",
+      "foods": [
+        "plants",
+        "seeds",
+        "insects",
+        "small_aquatic_animals"
+      ],
+      "locomotion": [
+        "walk",
+        "swim",
+        "fly"
+      ],
+      "bodyCovering": "feathers",
+      "reproduction": "eggs",
+      "activity": [
+        "diurnal",
+        "varies"
+      ],
+      "domestication": "mixed",
+      "sizeClass": "small",
+      "content": {
+        "preschool": [
+          "O pato tem penas.",
+          "Ele pode nadar.",
+          "Patos nascem de ovos."
+        ],
+        "kids": [
+          "Patos são aves adaptadas a ambientes aquáticos.",
+          "A maioria consegue nadar e muitas espécies também voam.",
+          "A dieta varia e pode incluir plantas, sementes e pequenos animais."
+        ],
+        "curiosities": [
+          "Os pés de muitos patos ajudam na natação."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "elephant",
+      "scope": "generic",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Elefante",
+        "article": "o",
+        "syllables": [
+          "E",
+          "le",
+          "fan",
+          "te"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": null,
+        "class": "mammal",
+        "group": "Elephantidae"
+      },
+      "media": {
+        "image": "assets/animals/images/elephant.png",
+        "sound": "assets/animals/sounds/elephant.mp3",
+        "nameAudio": "assets/animals/names/elephant_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "barrido"
+      },
+      "habitats": [
+        "savanna",
+        "forest",
+        "grassland"
+      ],
+      "regions": [
+        "África",
+        "Ásia"
+      ],
+      "diet": "herbivore",
+      "foods": [
+        "grass",
+        "leaves",
+        "fruits",
+        "bark"
+      ],
+      "locomotion": [
+        "walk",
+        "run",
+        "swim"
+      ],
+      "bodyCovering": "skin",
+      "reproduction": "live_birth",
+      "activity": [
+        "diurnal",
+        "varies"
+      ],
+      "domestication": "wild",
+      "sizeClass": "very_large",
+      "content": {
+        "preschool": [
+          "O elefante é muito grande.",
+          "Ele usa a tromba para muitas tarefas.",
+          "Ele come plantas."
+        ],
+        "kids": [
+          "Existem elefantes africanos e asiáticos.",
+          "A tromba serve para respirar, cheirar, pegar objetos e beber água.",
+          "Elefantes são herbívoros."
+        ],
+        "curiosities": [
+          "Elefantes conseguem se comunicar com sons muito graves.",
+          "A tromba combina força e movimentos delicados."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "frog",
+      "scope": "generic",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Sapo",
+        "article": "o",
+        "syllables": [
+          "Sa",
+          "po"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": null,
+        "class": "amphibian",
+        "group": "Anura"
+      },
+      "media": {
+        "image": "assets/animals/images/frog.png",
+        "sound": "assets/animals/sounds/frog.mp3",
+        "nameAudio": "assets/animals/names/frog_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "coaxar"
+      },
+      "habitats": [
+        "freshwater",
+        "wetland",
+        "forest",
+        "grassland"
+      ],
+      "regions": [
+        "Quase todo o mundo"
+      ],
+      "diet": "insectivore",
+      "foods": [
+        "insects",
+        "small_invertebrates"
+      ],
+      "locomotion": [
+        "jump",
+        "swim",
+        "walk"
+      ],
+      "bodyCovering": "skin",
+      "reproduction": "eggs",
+      "activity": [
+        "nocturnal",
+        "varies"
+      ],
+      "domestication": "wild",
+      "sizeClass": "small",
+      "content": {
+        "preschool": [
+          "O sapo é um anfíbio.",
+          "Muitos sapos pulam.",
+          "Eles gostam de ambientes úmidos."
+        ],
+        "kids": [
+          "Sapos e rãs pertencem ao grupo dos anuros.",
+          "Muitas espécies põem ovos na água ou em locais muito úmidos.",
+          "A dieta de muitas espécies inclui insetos e outros pequenos animais."
+        ],
+        "curiosities": [
+          "A pele dos anfíbios tem papel importante na troca de água e gases."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "horse",
+      "scope": "domestic_species",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Cavalo",
+        "article": "o",
+        "syllables": [
+          "Ca",
+          "va",
+          "lo"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": "Equus caballus",
+        "class": "mammal",
+        "group": "Equidae"
+      },
+      "media": {
+        "image": "assets/animals/images/horse.png",
+        "sound": "assets/animals/sounds/horse.mp3",
+        "nameAudio": "assets/animals/names/horse_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "relincho"
+      },
+      "habitats": [
+        "farm",
+        "grassland"
+      ],
+      "regions": [
+        "Mundo todo"
+      ],
+      "diet": "herbivore",
+      "foods": [
+        "grass",
+        "hay",
+        "plants"
+      ],
+      "locomotion": [
+        "walk",
+        "run"
+      ],
+      "bodyCovering": "fur",
+      "reproduction": "live_birth",
+      "activity": [
+        "diurnal",
+        "varies"
+      ],
+      "domestication": "domestic",
+      "sizeClass": "large",
+      "content": {
+        "preschool": [
+          "O cavalo come capim e outras plantas.",
+          "Ele consegue correr rápido.",
+          "O cavalo é um mamífero."
+        ],
+        "kids": [
+          "Cavalos são herbívoros.",
+          "Eles se locomovem principalmente andando, trotando e galopando.",
+          "São animais sociais."
+        ],
+        "curiosities": [
+          "Cavalos conseguem dormir em pé em alguns períodos."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "lion",
+      "scope": "species",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Leão",
+        "article": "o",
+        "syllables": [
+          "Le",
+          "ão"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": "Panthera leo",
+        "class": "mammal",
+        "group": "Felidae"
+      },
+      "media": {
+        "image": "assets/animals/images/lion.png",
+        "sound": "assets/animals/sounds/lion.mp3",
+        "nameAudio": "assets/animals/names/lion_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "rugido"
+      },
+      "soundGroup": "roar",
+      "habitats": [
+        "savanna",
+        "grassland"
+      ],
+      "regions": [
+        "África",
+        "pequena população na Ásia"
+      ],
+      "diet": "carnivore",
+      "foods": [
+        "meat"
+      ],
+      "locomotion": [
+        "walk",
+        "run"
+      ],
+      "bodyCovering": "fur",
+      "reproduction": "live_birth",
+      "activity": [
+        "nocturnal",
+        "crepuscular"
+      ],
+      "domestication": "wild",
+      "sizeClass": "large",
+      "content": {
+        "preschool": [
+          "O leão é um grande felino.",
+          "Ele come carne.",
+          "Muitos leões vivem em grupos."
+        ],
+        "kids": [
+          "Leões são carnívoros.",
+          "Vivem principalmente em savanas e campos abertos.",
+          "Diferentemente de muitos outros felinos, costumam formar grupos sociais."
+        ],
+        "curiosities": [
+          "O rugido de um leão pode ser ouvido a grande distância.",
+          "Machos adultos frequentemente possuem juba."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "monkey",
+      "scope": "generic",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Macaco",
+        "article": "o",
+        "syllables": [
+          "Ma",
+          "ca",
+          "co"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": null,
+        "class": "mammal",
+        "group": "Primates"
+      },
+      "media": {
+        "image": "assets/animals/images/monkey.png",
+        "sound": "assets/animals/sounds/monkey.mp3",
+        "nameAudio": "assets/animals/names/monkey_name.mp3",
+        "model3d": null
+      },
+      "habitats": [
+        "forest",
+        "savanna",
+        "mixed"
+      ],
+      "regions": [
+        "Américas",
+        "África",
+        "Ásia"
+      ],
+      "diet": "omnivore",
+      "foods": [
+        "fruits",
+        "leaves",
+        "seeds",
+        "insects"
+      ],
+      "locomotion": [
+        "walk",
+        "run",
+        "climb",
+        "jump"
+      ],
+      "bodyCovering": "fur",
+      "reproduction": "live_birth",
+      "activity": [
+        "diurnal",
+        "varies"
+      ],
+      "domestication": "wild",
+      "sizeClass": "medium",
+      "content": {
+        "preschool": [
+          "Macacos são ótimos escaladores.",
+          "Muitos vivem em árvores.",
+          "Eles são mamíferos."
+        ],
+        "kids": [
+          "Existem muitas espécies de macacos, com dietas e habitats diferentes.",
+          "Muitos usam mãos e pés para explorar o ambiente.",
+          "Frutas, folhas, sementes e pequenos animais podem fazer parte da dieta, dependendo da espécie."
+        ],
+        "curiosities": [
+          "A vida social varia bastante entre as espécies."
+        ]
+      },
+      "challengeFlags": {
+        "food": false,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "parrot",
+      "scope": "generic",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Papagaio",
+        "article": "o",
+        "syllables": [
+          "Pa",
+          "pa",
+          "gai",
+          "o"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": null,
+        "class": "bird",
+        "group": "Psittaciformes"
+      },
+      "media": {
+        "image": "assets/animals/images/parrot.png",
+        "sound": "assets/animals/sounds/parrot.mp3",
+        "nameAudio": "assets/animals/names/parrot_name.mp3",
+        "model3d": null
+      },
+      "habitats": [
+        "forest",
+        "savanna",
+        "urban"
+      ],
+      "regions": [
+        "Américas",
+        "África",
+        "Ásia",
+        "Oceania"
+      ],
+      "diet": "herbivore",
+      "foods": [
+        "fruits",
+        "seeds",
+        "nuts",
+        "flowers"
+      ],
+      "locomotion": [
+        "walk",
+        "climb",
+        "fly"
+      ],
+      "bodyCovering": "feathers",
+      "reproduction": "eggs",
+      "activity": [
+        "diurnal"
+      ],
+      "domestication": "wild",
+      "sizeClass": "small",
+      "content": {
+        "preschool": [
+          "O papagaio tem penas.",
+          "Ele consegue voar.",
+          "Seu bico é forte."
+        ],
+        "kids": [
+          "Papagaios pertencem ao grupo dos psitacídeos.",
+          "Muitas espécies comem frutas, sementes, castanhas e partes de plantas.",
+          "O bico e os pés ajudam a manipular alimentos."
+        ],
+        "curiosities": [
+          "Algumas espécies aprendem a imitar sons.",
+          "Papagaios podem ser muito sociais."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "pig",
+      "scope": "domestic_species",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Porco",
+        "article": "o",
+        "syllables": [
+          "Por",
+          "co"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": "Sus scrofa domesticus",
+        "class": "mammal",
+        "group": "Suidae"
+      },
+      "media": {
+        "image": "assets/animals/images/pig.png",
+        "sound": "assets/animals/sounds/pig.mp3",
+        "nameAudio": "assets/animals/names/pig_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "grunhido"
+      },
+      "habitats": [
+        "farm"
+      ],
+      "regions": [
+        "Mundo todo"
+      ],
+      "diet": "omnivore",
+      "foods": [
+        "plants",
+        "fruits",
+        "roots",
+        "prepared_food"
+      ],
+      "locomotion": [
+        "walk",
+        "run"
+      ],
+      "bodyCovering": "fur",
+      "reproduction": "live_birth",
+      "activity": [
+        "diurnal",
+        "varies"
+      ],
+      "domestication": "domestic",
+      "sizeClass": "medium",
+      "content": {
+        "preschool": [
+          "O porco é um mamífero.",
+          "Ele usa o focinho para explorar.",
+          "Porcos vivem em fazendas."
+        ],
+        "kids": [
+          "Porcos são onívoros.",
+          "O focinho é muito importante para procurar e investigar objetos e alimentos.",
+          "São animais sociais e inteligentes."
+        ],
+        "curiosities": [
+          "Porcos têm um olfato bastante desenvolvido."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "seal",
+      "scope": "generic",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Foca",
+        "article": "a",
+        "syllables": [
+          "Fo",
+          "ca"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": null,
+        "class": "mammal",
+        "group": "Pinnipedia"
+      },
+      "media": {
+        "image": "assets/animals/images/seal.png",
+        "sound": "assets/animals/sounds/seal.mp3",
+        "nameAudio": "assets/animals/names/seal_name.mp3",
+        "model3d": null
+      },
+      "habitats": [
+        "ocean",
+        "coast"
+      ],
+      "regions": [
+        "Oceanos e costas de várias regiões"
+      ],
+      "diet": "carnivore",
+      "foods": [
+        "fish",
+        "squid",
+        "crustaceans"
+      ],
+      "locomotion": [
+        "swim",
+        "walk"
+      ],
+      "bodyCovering": "fur",
+      "reproduction": "live_birth",
+      "activity": [
+        "varies"
+      ],
+      "domestication": "wild",
+      "sizeClass": "large",
+      "content": {
+        "preschool": [
+          "A foca nada muito bem.",
+          "Ela é um mamífero.",
+          "Focas vivem perto do mar."
+        ],
+        "kids": [
+          "Focas são mamíferos marinhos.",
+          "Elas respiram ar e descansam em praias, rochas ou gelo, dependendo da espécie.",
+          "Muitas comem peixes e outros animais marinhos."
+        ],
+        "curiosities": [
+          "O corpo das focas é adaptado à natação."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "sheep",
+      "scope": "domestic_species",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Ovelha",
+        "article": "a",
+        "syllables": [
+          "O",
+          "ve",
+          "lha"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": "Ovis aries",
+        "class": "mammal",
+        "group": "Bovidae"
+      },
+      "media": {
+        "image": "assets/animals/images/sheep.png",
+        "sound": "assets/animals/sounds/sheep.mp3",
+        "nameAudio": "assets/animals/names/sheep_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "balido"
+      },
+      "habitats": [
+        "farm",
+        "grassland"
+      ],
+      "regions": [
+        "Mundo todo"
+      ],
+      "diet": "herbivore",
+      "foods": [
+        "grass",
+        "hay",
+        "plants"
+      ],
+      "locomotion": [
+        "walk",
+        "run"
+      ],
+      "bodyCovering": "wool",
+      "reproduction": "live_birth",
+      "activity": [
+        "diurnal",
+        "varies"
+      ],
+      "domestication": "domestic",
+      "sizeClass": "medium",
+      "content": {
+        "preschool": [
+          "A ovelha come capim.",
+          "Ela é um mamífero.",
+          "Muitas ovelhas têm lã."
+        ],
+        "kids": [
+          "Ovelhas são herbívoras ruminantes.",
+          "Vivem em grupos e são criadas em várias regiões do mundo.",
+          "A lã é formada por pelos especializados."
+        ],
+        "curiosities": [
+          "Diferentes raças possuem tipos de lã e tamanhos distintos."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "tiger",
+      "scope": "species",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Tigre",
+        "article": "o",
+        "syllables": [
+          "Ti",
+          "gre"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": "Panthera tigris",
+        "class": "mammal",
+        "group": "Felidae"
+      },
+      "media": {
+        "image": "assets/animals/images/tiger.png",
+        "sound": "assets/animals/sounds/tiger.mp3",
+        "nameAudio": "assets/animals/names/tiger_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "rugido"
+      },
+      "soundGroup": "roar",
+      "habitats": [
+        "forest",
+        "grassland",
+        "wetland"
+      ],
+      "regions": [
+        "Ásia"
+      ],
+      "diet": "carnivore",
+      "foods": [
+        "meat"
+      ],
+      "locomotion": [
+        "walk",
+        "run",
+        "swim"
+      ],
+      "bodyCovering": "fur",
+      "reproduction": "live_birth",
+      "activity": [
+        "nocturnal",
+        "crepuscular"
+      ],
+      "domestication": "wild",
+      "sizeClass": "large",
+      "content": {
+        "preschool": [
+          "O tigre é um grande felino.",
+          "Ele tem listras.",
+          "O tigre come carne."
+        ],
+        "kids": [
+          "Tigres são carnívoros e vivem na Ásia.",
+          "As listras ajudam a quebrar o contorno do corpo na vegetação.",
+          "Tigres são bons nadadores."
+        ],
+        "curiosities": [
+          "O padrão de listras é diferente em cada indivíduo."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "turkey",
+      "scope": "species",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Peru",
+        "article": "o",
+        "syllables": [
+          "Pe",
+          "ru"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": "Meleagris gallopavo",
+        "class": "bird",
+        "group": "Phasianidae"
+      },
+      "media": {
+        "image": "assets/animals/images/turkey.png",
+        "sound": "assets/animals/sounds/turkey.mp3",
+        "nameAudio": "assets/animals/names/turkey_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "glu-glu"
+      },
+      "habitats": [
+        "forest",
+        "grassland",
+        "farm"
+      ],
+      "regions": [
+        "América do Norte",
+        "Mundo todo em criação doméstica"
+      ],
+      "diet": "omnivore",
+      "foods": [
+        "seeds",
+        "fruits",
+        "insects",
+        "plants"
+      ],
+      "locomotion": [
+        "walk",
+        "run",
+        "fly"
+      ],
+      "bodyCovering": "feathers",
+      "reproduction": "eggs",
+      "activity": [
+        "diurnal"
+      ],
+      "domestication": "mixed",
+      "sizeClass": "medium",
+      "content": {
+        "preschool": [
+          "O peru é uma ave.",
+          "Ele tem penas.",
+          "Perus nascem de ovos."
+        ],
+        "kids": [
+          "Perus são aves onívoras.",
+          "Podem comer sementes, frutos, plantas e pequenos animais.",
+          "Perus selvagens conseguem voar distâncias curtas."
+        ],
+        "curiosities": [
+          "O peru doméstico e o selvagem podem ter comportamentos bem diferentes."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    },
+    {
+      "id": "wolf",
+      "scope": "generic",
+      "parentAnimalId": null,
+      "name": {
+        "ptBR": "Lobo",
+        "article": "o",
+        "syllables": [
+          "Lo",
+          "bo"
+        ]
+      },
+      "taxonomy": {
+        "scientificName": null,
+        "class": "mammal",
+        "group": "Canis lupus group"
+      },
+      "media": {
+        "image": "assets/animals/images/wolf.png",
+        "sound": "assets/animals/sounds/wolf.mp3",
+        "nameAudio": "assets/animals/names/wolf_name.mp3",
+        "model3d": null
+      },
+      "soundName": {
+        "ptBR": "uivo"
+      },
+      "soundGroup": "canine",
+      "habitats": [
+        "forest",
+        "grassland",
+        "mountains",
+        "mixed"
+      ],
+      "regions": [
+        "América do Norte",
+        "Europa",
+        "Ásia"
+      ],
+      "diet": "carnivore",
+      "foods": [
+        "meat"
+      ],
+      "locomotion": [
+        "walk",
+        "run"
+      ],
+      "bodyCovering": "fur",
+      "reproduction": "live_birth",
+      "activity": [
+        "nocturnal",
+        "crepuscular",
+        "varies"
+      ],
+      "domestication": "wild",
+      "sizeClass": "large",
+      "content": {
+        "preschool": [
+          "O lobo tem pelo.",
+          "Ele é um mamífero.",
+          "Lobos conseguem correr longas distâncias."
+        ],
+        "kids": [
+          "Lobos são canídeos sociais.",
+          "Muitos vivem em grupos familiares.",
+          "Sua dieta é principalmente de origem animal."
+        ],
+        "curiosities": [
+          "Uivos podem ajudar na comunicação a longa distância."
+        ]
+      },
+      "challengeFlags": {
+        "food": true,
+        "habitat": true,
+        "locomotion": true,
+        "bodyCovering": true,
+        "reproduction": true,
+        "class": true
+      }
+    }
+  ]
+}
