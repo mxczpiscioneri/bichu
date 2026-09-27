@@ -8,7 +8,7 @@ import { colors, radius, shadows, spacing } from '@/theme';
 
 import { AppText } from '../ui/AppText';
 import { HabitatScene, sceneForAnimal } from '../ui/HabitatScene';
-import { LineIcon } from '../ui/LineIcon';
+import { Icon } from '../ui/Icon';
 import { PressableScale } from '../ui/PressableScale';
 import { AnimalArt } from './AnimalArt';
 
@@ -37,12 +37,12 @@ export function AnimalTile({ animal, width, lockUndiscovered = false }: AnimalTi
         <AnimalArt animalId={animal.id} size={imageSize} dimmed={locked} />
         {discovered ? (
           <View style={[styles.badge, styles.star]}>
-            <LineIcon name="starFill" size={16} color={colors.white} />
+            <Icon name="star-fill" size={20} />
           </View>
         ) : null}
         {locked ? (
           <View style={[styles.badge, styles.lock]}>
-            <LineIcon name="lock" size={15} color={colors.white} strokeWidth={2.4} />
+            <Icon name="lock" size={18} />
           </View>
         ) : null}
       </View>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.white,
   },
-  star: { backgroundColor: colors.sun },
-  lock: { backgroundColor: colors.inkSoft },
+  star: { backgroundColor: colors.sunSoft },
+  lock: { backgroundColor: colors.white },
   name: { paddingBottom: spacing.xs },
 });

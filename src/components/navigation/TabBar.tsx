@@ -5,14 +5,16 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, fonts, spacing } from '@/theme';
 
 import { AppText } from '../ui/AppText';
-import { LineIcon, type LineIconName } from '../ui/LineIcon';
+import type { IconName } from '@/content/icons';
+
+import { Icon } from '../ui/Icon';
 import { PressableScale } from '../ui/PressableScale';
 
-const TABS: Record<string, { label: string; icon: LineIconName }> = {
-  index: { label: 'Início', icon: 'home' },
-  explore: { label: 'Explorar', icon: 'explore' },
-  play: { label: 'Brincar', icon: 'play' },
-  collection: { label: 'Bichupédia', icon: 'book' },
+const TABS: Record<string, { label: string; icon: IconName }> = {
+  index: { label: 'Início', icon: 'nav-home' },
+  explore: { label: 'Explorar', icon: 'nav-explore' },
+  play: { label: 'Brincar', icon: 'nav-play' },
+  collection: { label: 'Bichupédia', icon: 'nav-book' },
 };
 
 export const TAB_BAR_HEIGHT = 72;
@@ -39,7 +41,7 @@ export function TabBar({ state, navigation }: BottomTabBarProps) {
             }}
             style={styles.item}>
             <View style={[styles.iconWrap, focused && styles.iconActive]}>
-              <LineIcon name={tab.icon} size={26} color={color} strokeWidth={focused ? 2.4 : 2} />
+              <Icon name={tab.icon} size={focused ? 32 : 28} style={!focused && styles.iconIdle} />
             </View>
             <AppText style={[styles.label, { color }]} numberOfLines={1}>
               {tab.label}
@@ -68,5 +70,6 @@ const styles = StyleSheet.create({
   item: { flex: 1, minHeight: TAB_BAR_HEIGHT - 12, alignItems: 'center', justifyContent: 'center', gap: 2 },
   iconWrap: { width: 52, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center' },
   iconActive: { backgroundColor: colors.leafSoft },
+  iconIdle: { opacity: 0.6 },
   label: { fontFamily: fonts.bodyBold, fontSize: 13, lineHeight: 16 },
 });

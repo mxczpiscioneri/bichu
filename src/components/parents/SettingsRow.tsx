@@ -4,11 +4,14 @@ import { StyleSheet, Switch, View } from 'react-native';
 import { colors, spacing } from '@/theme';
 
 import { AppText } from '../ui/AppText';
-import { LineIcon, type LineIconName } from '../ui/LineIcon';
+import type { IconName } from '@/content/icons';
+
+import { Icon } from '../ui/Icon';
+import { LineIcon } from '../ui/LineIcon';
 import { PressableScale } from '../ui/PressableScale';
 
 interface RowProps {
-  icon: LineIconName;
+  icon: IconName;
   label: string;
   value?: string;
   onPress?: () => void;
@@ -23,7 +26,7 @@ export function SettingsRow({ icon, label, value, onPress, toggle, details }: Ro
   const pressable = !!onPress || !!details;
   const body = (
     <View style={styles.row}>
-      <LineIcon name={icon} size={22} color={colors.ink} />
+      <Icon name={icon} size={28} />
       <AppText variant="bodyStrong" style={styles.label}>
         {label}
       </AppText>

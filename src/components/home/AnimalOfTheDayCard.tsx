@@ -7,7 +7,7 @@ import { colors, fonts, radius, shadows, spacing } from '@/theme';
 import { AnimalArt } from '../animal/AnimalArt';
 import { AppText } from '../ui/AppText';
 import { HabitatScene, sceneForAnimal } from '../ui/HabitatScene';
-import { LineIcon } from '../ui/LineIcon';
+import { Icon } from '../ui/Icon';
 import { PressableScale } from '../ui/PressableScale';
 
 export function AnimalOfTheDayCard({ animal }: { animal: Animal }) {
@@ -35,7 +35,7 @@ export function AnimalOfTheDayCard({ animal }: { animal: Animal }) {
         ) : null}
         <View style={styles.cta}>
           <View style={styles.play}>
-            <LineIcon name="playFill" size={14} color={colors.terra} />
+            <Icon name="play-fill" size={20} />
           </View>
           <AppText style={styles.ctaLabel}>Descobrir</AppText>
         </View>

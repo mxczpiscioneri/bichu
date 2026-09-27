@@ -1,28 +1,10 @@
 # Ícones de UI
 
-**Alimentos** (meat, fish, squid, crab, shrimp, bug, worm, seedling, wood, carrot, cherry, banana, corn, peanuts, herb, hay, leaves, sunflower, blossom, bowl): arte própria do Bichu, separada da prancha de alimentos enviada pelo time.
+Todos os ícones desta pasta são arte própria do Bichu, separados das pranchas enviadas pelo time (alimentos e demais ícones).
 
-**Demais ícones:**
+Nomes que existiam em duas seções da prancha com desenhos diferentes ganharam nomes próprios:
 
-Os ícones desta pasta são do **Microsoft Fluent Emoji** (estilo 3D), obtidos em
-https://github.com/microsoft/fluentui-emoji e distribuídos sob a licença MIT.
-
-MIT License — Copyright (c) Microsoft Corporation.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+- `grassland` — fardo de feno do habitat Campo (o `hay` é o feno dos alimentos);
+- `class-reptile`, `class-amphibian`, `class-fish`, `class-insect`, `class-arachnid` — ícones do desafio de classe;
+- `nav-home`, `nav-explore`, `nav-play`, `nav-book` — barra inferior;
+- `play-fill`, `star-fill` — controles.

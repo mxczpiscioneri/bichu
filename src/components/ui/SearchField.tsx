@@ -2,7 +2,7 @@ import { StyleSheet, TextInput, View } from 'react-native';
 
 import { colors, fonts, radius, shadows, spacing } from '@/theme';
 
-import { LineIcon } from './LineIcon';
+import { Icon } from './Icon';
 
 export function SearchField({
   value,
@@ -15,7 +15,7 @@ export function SearchField({
 }) {
   return (
     <View style={styles.field}>
-      <LineIcon name="search" size={20} color={colors.inkSoft} />
+      <Icon name="search" size={24} />
       <TextInput
         value={value}
         onChangeText={onChange}

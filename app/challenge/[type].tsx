@@ -81,13 +81,7 @@ function ChallengeFlow({ source }: { source: SessionSource }) {
     <SafeAreaView style={styles.root} edges={['top', 'bottom']}>
       <View style={styles.header}>
         <RoundProgress total={rounds.length} current={index} />
-        <RoundButton
-          icon="close"
-          size={48}
-          accessibilityLabel="Sair da brincadeira"
-          onPress={close}
-          iconColor={colors.ink}
-        />
+        <RoundButton icon="close" size={48} accessibilityLabel="Sair da brincadeira" onPress={close} />
       </View>
 
       {finished ? (
@@ -111,7 +105,6 @@ function ChallengeFlow({ source }: { source: SessionSource }) {
                   icon="speaker"
                   size={48}
                   background={colors.sunSoft}
-                  iconColor={colors.terra}
                   accessibilityLabel="Ouvir o nome do animal"
                   onPress={session.playPrompt}
                 />

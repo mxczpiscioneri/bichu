@@ -28,13 +28,7 @@ export default function ParentsScreen() {
     <Screen edges={['top', 'bottom']}>
       <View style={styles.header}>
         <AppText variant="title">Área dos pais</AppText>
-        <RoundButton
-          icon="close"
-          size={48}
-          iconColor={colors.ink}
-          accessibilityLabel="Fechar"
-          onPress={() => router.back()}
-        />
+        <RoundButton icon="close" size={48} accessibilityLabel="Fechar" onPress={() => router.back()} />
       </View>
 
       {!unlocked ? (

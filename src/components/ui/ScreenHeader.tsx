@@ -1,10 +1,10 @@
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
-import { colors, spacing } from '@/theme';
+import { spacing } from '@/theme';
 
 import { AppText } from './AppText';
-import { LineIcon } from './LineIcon';
+import { Icon } from './Icon';
 import { PressableScale } from './PressableScale';
 
 /** Tab-screen title with the discreet adult-area gear on the right. */
@@ -29,7 +29,7 @@ export function SettingsButton() {
       accessibilityLabel="Área dos pais"
       hitSlop={10}
       style={styles.gear}>
-      <LineIcon name="gear" size={24} color={colors.inkSoft} />
+      <Icon name="gear" size={28} />
     </PressableScale>
   );
 }

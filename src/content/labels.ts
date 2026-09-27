@@ -49,7 +49,7 @@ export const HABITAT_LABELS: Record<Habitat, TaxonomyLabel> = {
   home: { label: 'Casa', phrase: 'em casa', icon: 'house' },
   forest: { label: 'Floresta', phrase: 'na floresta', icon: 'tree' },
   savanna: { label: 'Savana', phrase: 'na savana', icon: 'sunrise' },
-  grassland: { label: 'Campo', phrase: 'no campo', icon: 'hay' },
+  grassland: { label: 'Campo', phrase: 'no campo', icon: 'grassland' },
   wetland: { label: 'Brejo', phrase: 'em áreas alagadas', icon: 'lotus' },
   freshwater: { label: 'Rios e lagos', phrase: 'em rios e lagos', icon: 'park' },
   ocean: { label: 'Oceano', phrase: 'no oceano', icon: 'wave' },
@@ -87,11 +87,11 @@ export const REPRODUCTION_LABELS: Record<Reproduction, TaxonomyLabel> = {
 export const CLASS_LABELS: Record<AnimalClass, TaxonomyLabel> = {
   mammal: { label: 'Mamífero', phrase: 'um mamífero', icon: 'baby' },
   bird: { label: 'Ave', phrase: 'uma ave', icon: 'dove' },
-  reptile: { label: 'Réptil', phrase: 'um réptil', icon: 'lizard' },
-  amphibian: { label: 'Anfíbio', phrase: 'um anfíbio', icon: 'lotus' },
-  fish: { label: 'Peixe', phrase: 'um peixe', icon: 'fish' },
-  insect: { label: 'Inseto', phrase: 'um inseto', icon: 'beetle' },
-  arachnid: { label: 'Aracnídeo', phrase: 'um aracnídeo', icon: 'bug' },
+  reptile: { label: 'Réptil', phrase: 'um réptil', icon: 'class-reptile' },
+  amphibian: { label: 'Anfíbio', phrase: 'um anfíbio', icon: 'class-amphibian' },
+  fish: { label: 'Peixe', phrase: 'um peixe', icon: 'class-fish' },
+  insect: { label: 'Inseto', phrase: 'um inseto', icon: 'class-insect' },
+  arachnid: { label: 'Aracnídeo', phrase: 'um aracnídeo', icon: 'class-arachnid' },
   other: { label: 'Outro', phrase: 'um animal', icon: 'paws' },
 };
 
