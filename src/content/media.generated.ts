@@ -118,7 +118,7 @@ export const ANIMAL_MEDIA: Record<string, AnimalMediaModules> = {
     model3d: null,
   },
   tiger: {
-    image: require('../../assets/animals/images/tiger.png'),
+    image: require('../../assets/animals/art/tiger.png'),
     sound: require('../../assets/animals/sounds/tiger.mp3'),
     nameAudio: require('../../assets/animals/names/tiger_name.mp3'),
     model3d: null,
