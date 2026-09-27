@@ -482,7 +482,8 @@
         "group": "Bovidae"
       },
       "media": {
-        "image": "assets/animals/images/cow.png",
+        "image": "assets/animals/art/cow.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/cow.mp3",
         "nameAudio": "assets/animals/names/cow_name.mp3",
         "model3d": null

@@ -40,7 +40,7 @@ export const ANIMAL_MEDIA: Record<string, AnimalMediaModules> = {
     model3d: null,
   },
   cow: {
-    image: require('../../assets/animals/images/cow.png'),
+    image: require('../../assets/animals/art/cow.png'),
     sound: require('../../assets/animals/sounds/cow.mp3'),
     nameAudio: require('../../assets/animals/names/cow_name.mp3'),
     model3d: null,
