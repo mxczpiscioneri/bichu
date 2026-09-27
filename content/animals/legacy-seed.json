@@ -1018,7 +1018,8 @@
         "group": "Felidae"
       },
       "media": {
-        "image": "assets/animals/images/lion.png",
+        "image": "assets/animals/art/lion.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/lion.mp3",
         "nameAudio": "assets/animals/names/lion_name.mp3",
         "model3d": null
@@ -1095,7 +1096,8 @@
         "group": "Primates"
       },
       "media": {
-        "image": "assets/animals/images/monkey.png",
+        "image": "assets/animals/art/monkey.png",
+        "imageStyle": "cutout",
         "sound": "assets/animals/sounds/monkey.mp3",
         "nameAudio": "assets/animals/names/monkey_name.mp3",
         "model3d": null

@@ -82,13 +82,13 @@ export const ANIMAL_MEDIA: Record<string, AnimalMediaModules> = {
     model3d: null,
   },
   lion: {
-    image: require('../../assets/animals/images/lion.png'),
+    image: require('../../assets/animals/art/lion.png'),
     sound: require('../../assets/animals/sounds/lion.mp3'),
     nameAudio: require('../../assets/animals/names/lion_name.mp3'),
     model3d: null,
   },
   monkey: {
-    image: require('../../assets/animals/images/monkey.png'),
+    image: require('../../assets/animals/art/monkey.png'),
     sound: require('../../assets/animals/sounds/monkey.mp3'),
     nameAudio: require('../../assets/animals/names/monkey_name.mp3'),
     model3d: null,
