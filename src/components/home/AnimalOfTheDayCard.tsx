@@ -25,7 +25,7 @@ export function AnimalOfTheDayCard({ animal }: { animal: Animal }) {
             Animal do dia
           </AppText>
         </View>
-        <AppText variant="title" numberOfLines={1} adjustsFontSizeToFit>
+        <AppText variant="title" numberOfLines={1} adjustsFontSizeToFit style={styles.name}>
           {animal.name.ptBR}
         </AppText>
         {animal.content.preschool[0] ? (
@@ -41,7 +41,7 @@ export function AnimalOfTheDayCard({ animal }: { animal: Animal }) {
         </View>
       </View>
       <View style={styles.image}>
-        <AnimalArt animalId={animal.id} size={138} />
+        <AnimalArt animalId={animal.id} size={118} />
       </View>
     </PressableScale>
   );
@@ -58,7 +58,15 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
     ...shadows.raised,
   },
-  text: { flex: 1, gap: 6, alignItems: 'flex-start' },
+  // Soft panel keeps the text readable over the painted scene.
+  text: {
+    flex: 1.3,
+    gap: 6,
+    alignItems: 'flex-start',
+    backgroundColor: 'rgba(251, 245, 232, 0.88)',
+    borderRadius: radius.md,
+    padding: spacing.sm + 4,
+  },
   tag: {
     backgroundColor: 'rgba(255,255,255,0.85)',
     borderRadius: radius.pill,
@@ -86,5 +94,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   ctaLabel: { fontFamily: fonts.displayBold, fontSize: 18, color: colors.white },
-  image: { alignItems: 'center', justifyContent: 'center' },
+  image: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  name: { fontSize: 28, lineHeight: 34 },
 });
