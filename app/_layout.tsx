@@ -4,9 +4,10 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useCallback, useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+import { AnimatedSplash } from '@/components/brand/AnimatedSplash';
 import { useListeningTracker } from '@/progress/useListeningTracker';
 import { useStoresHydrated } from '@/stores/hydration';
 import { colors } from '@/theme';
@@ -24,10 +25,9 @@ export default function RootLayout() {
   // A font failure must not block the app: system fonts are an acceptable fallback.
   const ready = (fontsLoaded || !!fontError) && hydrated;
   useListeningTracker();
-
-  useEffect(() => {
-    if (ready) void SplashScreen.hideAsync();
-  }, [ready]);
+  const [introDone, setIntroDone] = useState(false);
+  // The animated intro draws the same frame as the native splash, so hide the native one once it is on screen.
+  const hideNativeSplash = useCallback(() => void SplashScreen.hideAsync(), []);
 
   if (!ready) return null;
 
@@ -43,6 +43,7 @@ export default function RootLayout() {
         <Stack.Screen name="welcome" options={{ animation: 'fade' }} />
         <Stack.Screen name="choose-level" options={{ animation: 'fade' }} />
       </Stack>
+      {introDone ? null : <AnimatedSplash onReady={hideNativeSplash} onDone={() => setIntroDone(true)} />}
     </GestureHandlerRootView>
   );
 }
