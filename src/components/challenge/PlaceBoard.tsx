@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import Animated, { useAnimatedRef } from 'react-native-reanimated';
 
 import { isCorrect, type Challenge, type ChallengeOption } from '@/challenges/types';
@@ -20,6 +20,9 @@ interface BoardProps {
 }
 
 const MAX_OPTIONS = 4;
+/** Tablets: a fixed scene width (Yoga derives aspect-ratio height from the unclamped width). */
+const TABLET_BREAKPOINT = 700;
+const TABLET_PLACE_WIDTH = 520;
 
 /**
  *   🦁  →  [ Savana ]
@@ -35,6 +38,8 @@ export function PlaceBoard({ challenge, statusOf, onChoose, disabled }: BoardPro
   const options = challenge.options.slice(0, MAX_OPTIONS);
   const refs = [ref0, ref1, ref2, ref3].slice(0, options.length);
   const correctIndex = options.findIndex((o) => isCorrect(challenge, o.id));
+  const { width } = useWindowDimensions();
+  const placeWidth = width >= TABLET_BREAKPOINT ? TABLET_PLACE_WIDTH : '100%';
 
   return (
     <View style={styles.board}>
@@ -57,7 +62,7 @@ export function PlaceBoard({ challenge, statusOf, onChoose, disabled }: BoardPro
             <Animated.View
               key={option.id}
               ref={refs[index]}
-              style={[styles.placeWrap, { aspectRatio: options.length > 2 ? 1.7 : 1.3 }]}>
+              style={[styles.placeWrap, { width: placeWidth, aspectRatio: options.length > 2 ? 1.7 : 1.3 }]}>
               <PressableScale
                 onPress={() => onChoose(option)}
                 disabled={disabled || status !== 'idle'}
@@ -83,7 +88,7 @@ const styles = StyleSheet.create({
   animalColumn: { width: 108, alignItems: 'center', justifyContent: 'center' },
   animalToken: { backgroundColor: colors.surface, borderRadius: radius.lg, padding: spacing.sm, ...shadows.card },
   places: { flex: 1, gap: spacing.md, justifyContent: 'center' },
-  placeWrap: { width: '100%' },
+  placeWrap: { alignSelf: 'center' },
   place: {
     flex: 1,
     borderRadius: radius.lg,
