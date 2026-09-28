@@ -9,6 +9,9 @@ import theme from './design/theme.json';
  */
 const AR_ENABLED = process.env.BICHU_AR === '1';
 
+/** EAS project `@mxczpiscioneri/bichu` (builds, submit and OTA updates). */
+const EAS_PROJECT_ID = 'da0bf240-a0b5-4511-9e44-b5ce1f66671a';
+
 const viroPlugins: ExpoConfig['plugins'] = AR_ENABLED
   ? [
       [
@@ -29,19 +32,24 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: 'Bichu',
   slug: 'bichu',
+  owner: 'mxczpiscioneri',
   version: '0.1.0',
+  description: 'Descubra os animais brincando: sons, nomes, curiosidades e desafios para crianças.',
+  primaryColor: theme.colors.leaf,
+  platforms: ['ios', 'android'],
   orientation: 'portrait',
   icon: './assets/brand/icon.png',
   scheme: 'bichu',
   userInterfaceStyle: 'light',
   backgroundColor: theme.colors.cream,
   ios: {
-    bundleIdentifier: 'com.bichu.app',
+    bundleIdentifier: 'br.com.techhands.bichu',
+    appleTeamId: 'GD2JNB5JH9',
     supportsTablet: true,
-    infoPlist: { ITSAppUsesNonExemptEncryption: false },
+    config: { usesNonExemptEncryption: false },
   },
   android: {
-    package: 'com.bichu.app',
+    package: 'br.com.techhands.bichu',
     adaptiveIcon: {
       backgroundColor: theme.colors.leaf,
       foregroundImage: './assets/brand/android-icon-foreground.png',
@@ -93,5 +101,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   extra: {
     arEnabled: AR_ENABLED,
+    router: {},
+    eas: { projectId: EAS_PROJECT_ID },
   },
+  runtimeVersion: { policy: 'appVersion' },
+  updates: { url: `https://u.expo.dev/${EAS_PROJECT_ID}` },
 });
