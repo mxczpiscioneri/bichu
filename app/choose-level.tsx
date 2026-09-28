@@ -28,7 +28,7 @@ const MODES: { level: Level; title: string; description: string; pose: MascotPos
   },
 ];
 
-/** Same app, two difficulty levels. Also reachable from the parents area. */
+/** Same app, two difficulty levels. Opened from the parents area (Modo padrão). */
 export default function ChooseLevelScreen() {
   const { level: current, setLevel, onboarded, completeOnboarding } = useSettingsStore();
 

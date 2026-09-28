@@ -8,11 +8,18 @@ import { Logo } from '@/components/brand/Logo';
 import { AppText } from '@/components/ui/AppText';
 import { BigButton } from '@/components/ui/BigButton';
 import { HabitatScene } from '@/components/ui/HabitatScene';
+import { useSettingsStore } from '@/stores/settingsStore';
 import { colors, radius, shadows, spacing } from '@/theme';
 
 /** First launch: the animal gang in the forest, then the mode choice. */
 export default function WelcomeScreen() {
   const { width } = useWindowDimensions();
+  const completeOnboarding = useSettingsStore((state) => state.completeOnboarding);
+  // Children start in Explorer mode; the level is a parents' setting (Área dos pais → Modo padrão).
+  const start = () => {
+    completeOnboarding();
+    router.replace('/');
+  };
   const groupWidth = Math.min(width, 520) - spacing.md * 2;
 
   return (
@@ -30,12 +37,7 @@ export default function WelcomeScreen() {
           <AppText variant="body" align="center" color={colors.cacao}>
             Ouça, brinque e descubra cada bichinho.
           </AppText>
-          <BigButton
-            label="Vamos descobrir!"
-            icon="footprints"
-            onPress={() => router.replace('/choose-level')}
-            style={styles.button}
-          />
+          <BigButton label="Vamos descobrir!" icon="footprints" onPress={start} style={styles.button} />
         </Animated.View>
       </SafeAreaView>
     </View>
