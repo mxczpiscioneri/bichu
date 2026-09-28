@@ -28,6 +28,7 @@
   "submit": {
     "production": {
       "ios": {
+        "ascAppId": "6817090414",
         "appleTeamId": "GD2JNB5JH9",
         "ascApiKeyPath": "./credentials/AuthKey_778365UPWA.p8",
         "ascApiKeyId": "778365UPWA",
