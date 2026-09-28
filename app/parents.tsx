@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Linking, StyleSheet, View } from 'react-native';
 
 import { ParentGate } from '@/components/parents/ParentGate';
 import { SettingsRow } from '@/components/parents/SettingsRow';
@@ -15,6 +15,8 @@ import { countDiscovered } from '@/progress/selectors';
 import { useProgressStore } from '@/stores/progressStore';
 import { useSettingsStore } from '@/stores/settingsStore';
 import { colors, radius, spacing } from '@/theme';
+
+const PRIVACY_URL = 'https://bichu-app.vercel.app/privacidade.html';
 
 const LEVEL_NAMES = { explorer: 'Explorador', adventurer: 'Aventureiro' } as const;
 
@@ -72,11 +74,21 @@ export default function ParentsScreen() {
               icon="shield"
               label="Privacidade"
               details={
-                <AppText variant="caption">
-                  Sem conta, sem anúncios e sem rastreamento. O progresso fica salvo só neste aparelho e nenhum dado é
-                  enviado para servidores. A câmera só é usada na realidade aumentada, para mostrar o animal no
-                  ambiente; nenhuma imagem é salva ou enviada. O app não usa microfone, localização, contatos nem fotos.
-                </AppText>
+                <>
+                  <AppText variant="caption">
+                    Sem conta, sem anúncios e sem rastreamento. O progresso fica salvo só neste aparelho e nenhum dado é
+                    enviado para servidores. A câmera só é usada na realidade aumentada, para mostrar o animal no
+                    ambiente; nenhuma imagem é salva ou enviada. O app não usa microfone, localização, contatos nem
+                    fotos.
+                  </AppText>
+                  <AppText
+                    variant="caption"
+                    color={colors.forest}
+                    accessibilityRole="link"
+                    onPress={() => void Linking.openURL(PRIVACY_URL)}>
+                    Ler a política de privacidade completa
+                  </AppText>
+                </>
               }
             />
             <SettingsRow icon="heart" label="Créditos" onPress={() => router.push('/credits')} />
