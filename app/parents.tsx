@@ -48,7 +48,7 @@ export default function ParentsScreen() {
             <SettingsRow icon="speaker" label="Som" toggle={{ value: soundEnabled, onChange: setSoundEnabled }} />
             <SettingsRow
               icon="cube"
-              label="AR (experimental)"
+              label="AR experimental"
               value={isArBuild() ? 'Neste build' : 'Indisponível'}
               details={
                 <AppText variant="caption">

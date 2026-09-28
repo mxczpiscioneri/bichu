@@ -21,7 +21,7 @@ export function AnimalOfTheDayCard({ animal }: { animal: Animal }) {
       <HabitatScene scene={sceneForAnimal(animal)} />
       <View style={styles.text}>
         <View style={styles.tag}>
-          <AppText variant="overline" color={colors.forest}>
+          <AppText variant="overline" color={colors.forest} numberOfLines={1}>
             Animal do dia
           </AppText>
         </View>
@@ -37,11 +37,13 @@ export function AnimalOfTheDayCard({ animal }: { animal: Animal }) {
           <View style={styles.play}>
             <Icon name="play-fill" size={20} />
           </View>
-          <AppText style={styles.ctaLabel}>Descobrir</AppText>
+          <AppText style={styles.ctaLabel} numberOfLines={1}>
+            Descobrir
+          </AppText>
         </View>
       </View>
       <View style={styles.image}>
-        <AnimalArt animalId={animal.id} size={118} />
+        <AnimalArt animalId={animal.id} size={112} />
       </View>
     </PressableScale>
   );
@@ -59,8 +61,9 @@ const styles = StyleSheet.create({
     ...shadows.raised,
   },
   // Soft panel keeps the text readable over the painted scene.
+  // Fixed share of the card: the art is fixed-size, so a flex panel got squeezed.
   text: {
-    flex: 1.3,
+    width: '60%',
     gap: 6,
     alignItems: 'flex-start',
     backgroundColor: 'rgba(251, 245, 232, 0.88)',
@@ -94,6 +97,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   ctaLabel: { fontFamily: fonts.displayBold, fontSize: 18, color: colors.white },
-  image: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  image: { flex: 1, minWidth: 0, alignItems: 'center', justifyContent: 'center' },
   name: { fontSize: 28, lineHeight: 34 },
 });

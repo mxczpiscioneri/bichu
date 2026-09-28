@@ -1,5 +1,5 @@
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -30,6 +30,8 @@ import { useLevel } from '@/stores/settingsStore';
 import { colors, paletteForAnimal, radius, spacing } from '@/theme';
 
 const AUTOPLAY_DELAY_MS = 450;
+/** Scroll offset past which the hero art is mostly under the status bar. */
+const HERO_SCROLL_THRESHOLD = 140;
 
 export default function AnimalScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -45,6 +47,7 @@ function AnimalDetail({ animal }: { animal: Animal }) {
   const record = useProgressStore((state) => state.record);
   const [celebrating, closeCelebration] = useDiscoveryWatcher([animal.id]);
   const palette = paletteForAnimal(animal);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     record(animal.id, { type: 'opened' });
@@ -67,13 +70,14 @@ function AnimalDetail({ animal }: { animal: Animal }) {
 
   return (
     <View style={[styles.root, { backgroundColor: palette.wash }]}>
-      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} bounces={false}>
+      <ScrollView
+        contentContainerStyle={styles.scroll}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        scrollEventThrottle={32}
+        onScroll={(event) => setScrolled(event.nativeEvent.contentOffset.y > HERO_SCROLL_THRESHOLD)}>
         <View style={[styles.hero, { paddingTop: insets.top + spacing.sm }]}>
           <HabitatScene scene={sceneForAnimal(animal)} />
-          <View style={[styles.topBar, { top: insets.top + spacing.sm }]}>
-            <RoundButton icon="back" accessibilityLabel="Voltar" onPress={() => router.back()} size={48} />
-            <DiscoveryBadge state={discoveryState(progress)} />
-          </View>
           <PressableScale
             onPress={() => void AudioService.playAnimalName(animal.id)}
             accessibilityLabel={`Ouvir o nome: ${animal.name.ptBR}`}
@@ -142,6 +146,13 @@ function AnimalDetail({ animal }: { animal: Animal }) {
           </View>
         </View>
       </ScrollView>
+      {/* Back stays reachable while scrolling; once the hero is gone, a solid
+          strip keeps the text from running under the status bar. */}
+      {scrolled ? <View style={[styles.statusScrim, { height: insets.top, backgroundColor: palette.wash }]} /> : null}
+      <View style={[styles.topBar, { top: insets.top + spacing.sm }]} pointerEvents="box-none">
+        <RoundButton icon="back" accessibilityLabel="Voltar" onPress={() => router.back()} size={48} />
+        {scrolled ? null : <DiscoveryBadge state={discoveryState(progress)} />}
+      </View>
       <DiscoveryCelebration animal={celebrating} onClose={closeCelebration} />
     </View>
   );
@@ -157,6 +168,7 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xl + 8,
     overflow: 'hidden',
   },
+  statusScrim: { position: 'absolute', top: 0, left: 0, right: 0 },
   topBar: {
     position: 'absolute',
     left: spacing.md,

@@ -1,3 +1,4 @@
+import { useIsFocused } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 
 import { getAnimal } from '@/content/animals';
@@ -8,11 +9,14 @@ import { useProgressStore } from '@/stores/progressStore';
 /**
  * Watches animals and returns the one that just became "discovered" while the
  * screen was open (so the celebration can be shown exactly once).
+ * Discoveries made while another screen is on top (e.g. a challenge, which
+ * celebrates on its own) are recorded silently.
  */
 export function useDiscoveryWatcher(animalIds: readonly string[]): [Animal | null, () => void] {
   const byAnimal = useProgressStore((state) => state.byAnimal);
   const known = useRef<Set<string> | null>(null);
   const [celebrating, setCelebrating] = useState<Animal | null>(null);
+  const focused = useIsFocused();
 
   useEffect(() => {
     const discoveredNow = animalIds.filter((id) => discoveryState(byAnimal[id]) === 'discovered');
@@ -22,8 +26,8 @@ export function useDiscoveryWatcher(animalIds: readonly string[]): [Animal | nul
     }
     const fresh = discoveredNow.find((id) => !known.current?.has(id));
     discoveredNow.forEach((id) => known.current?.add(id));
-    if (fresh) setCelebrating(getAnimal(fresh) ?? null);
-  }, [animalIds, byAnimal]);
+    if (fresh && focused) setCelebrating(getAnimal(fresh) ?? null);
+  }, [animalIds, byAnimal, focused]);
 
   return [celebrating, () => setCelebrating(null)];
 }
