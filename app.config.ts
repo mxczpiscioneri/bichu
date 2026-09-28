@@ -33,7 +33,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   name: 'Bichu',
   slug: 'bichu',
   owner: 'mxczpiscioneri',
-  version: '0.1.0',
+  version: '1.0.0',
   description: 'Descubra os animais brincando: sons, nomes, curiosidades e desafios para crianças.',
   primaryColor: theme.colors.leaf,
   platforms: ['ios', 'android'],
