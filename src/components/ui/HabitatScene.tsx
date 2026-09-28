@@ -51,17 +51,50 @@ export function sceneForAnimal(animal: Animal): SceneName {
 interface HabitatSceneProps {
   scene: SceneName;
   style?: StyleProp<ViewStyle>;
+  /**
+   * Backdrop mode: blurs and washes the painting so a character on top reads
+   * clearly instead of blending into the leaves.
+   */
+  backdrop?: boolean;
 }
 
 /** Fills its container (absolute) with a landscape; place content on top. */
-export function HabitatScene({ scene, style }: HabitatSceneProps) {
+export function HabitatScene({ scene, style, backdrop = false }: HabitatSceneProps) {
   return (
     <View style={[StyleSheet.absoluteFill, styles.passThrough, style]} importantForAccessibility="no-hide-descendants">
-      <Image source={SCENES[scene]} style={StyleSheet.absoluteFill} contentFit="cover" transition={150} />
+      <Image
+        source={SCENES[scene]}
+        style={StyleSheet.absoluteFill}
+        contentFit="cover"
+        transition={150}
+        blurRadius={backdrop ? 6 : 0}
+      />
+      {backdrop ? <View style={[StyleSheet.absoluteFill, styles.wash]} /> : null}
     </View>
+  );
+}
+
+/** Soft light disc placed behind a character so it pops off a busy scene. */
+export function Spotlight({ size, style }: { size: number; style?: StyleProp<ViewStyle> }) {
+  return (
+    <View
+      pointerEvents="none"
+      style={[
+        styles.spotlight,
+        {
+          width: size,
+          height: size,
+          borderRadius: size / 2,
+          boxShadow: `0px 0px ${Math.round(size * 0.25)}px ${Math.round(size * 0.12)}px rgba(255, 250, 235, 0.75)`,
+        },
+        style,
+      ]}
+    />
   );
 }
 
 const styles = StyleSheet.create({
   passThrough: { pointerEvents: 'none' },
+  wash: { backgroundColor: 'rgba(251, 245, 232, 0.28)' },
+  spotlight: { position: 'absolute', backgroundColor: 'rgba(255, 250, 235, 0.7)' },
 });

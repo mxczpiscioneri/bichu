@@ -9,6 +9,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import type { Challenge, ChallengeOption } from '@/challenges/types';
+import { useLayout } from '@/hooks/useLayout';
 import { colors, radius, shadows, spacing } from '@/theme';
 
 import { Icon } from '../ui/Icon';
@@ -30,12 +31,14 @@ function OptionCard({
   onChoose,
   disabled,
   imageSize,
+  tall,
 }: {
   option: ChallengeOption;
   status: OptionStatus;
   onChoose: () => void;
   disabled: boolean;
   imageSize: number;
+  tall: boolean;
 }) {
   const shake = useSharedValue(0);
   const pop = useSharedValue(1);
@@ -63,7 +66,12 @@ function OptionCard({
         disabled={disabled || status !== 'idle'}
         accessibilityLabel={option.label}
         accessibilityState={{ disabled: status === 'tried', selected: status === 'correct' }}
-        style={[styles.card, status === 'correct' && styles.cardCorrect, status === 'tried' && styles.cardTried]}>
+        style={[
+          styles.card,
+          tall && styles.cardTall,
+          status === 'correct' && styles.cardCorrect,
+          status === 'tried' && styles.cardTried,
+        ]}>
         <OptionContent option={option} size={imageSize} />
         {status === 'correct' ? (
           <View style={styles.badge}>
@@ -78,9 +86,10 @@ function OptionCard({
 /** Tall picture cards side by side (2 for Explorers, 3 for Adventurers). */
 export function TapOptions({ challenge, statusOf, onChoose, disabled }: TapOptionsProps) {
   const count = challenge.options.length;
-  const imageSize = count <= 2 ? 128 : 88;
+  const { isTablet } = useLayout();
+  const imageSize = (count <= 2 ? 128 : 88) * (isTablet ? 2.2 : 1);
   return (
-    <View style={styles.row}>
+    <View style={[styles.row, isTablet && styles.rowTablet]}>
       {challenge.options.map((option) => (
         <OptionCard
           key={option.id}
@@ -89,6 +98,7 @@ export function TapOptions({ challenge, statusOf, onChoose, disabled }: TapOptio
           onChoose={() => onChoose(option)}
           disabled={disabled}
           imageSize={imageSize}
+          tall={isTablet}
         />
       ))}
     </View>
@@ -110,6 +120,8 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
     ...shadows.card,
   },
+  rowTablet: { gap: spacing.lg },
+  cardTall: { minHeight: 470 },
   cardCorrect: { borderColor: colors.leaf, backgroundColor: colors.leafSoft },
   cardTried: { opacity: 0.4 },
   badge: { position: 'absolute', top: -12, right: -8 },

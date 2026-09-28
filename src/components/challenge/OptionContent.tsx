@@ -12,7 +12,8 @@ export function OptionContent({ option, size }: { option: ChallengeOption; size:
     <View style={styles.content}>
       {option.animalId ? <AnimalImage animalId={option.animalId} size={size} /> : null}
       {option.icon ? <Icon name={option.icon} size={size} /> : null}
-      <AppText variant="label" align="center" numberOfLines={2}>
+      {/* Big pictures (tablets) get a matching big label. */}
+      <AppText variant={size >= 150 ? 'heading' : 'label'} align="center" numberOfLines={2}>
         {option.label}
       </AppText>
     </View>

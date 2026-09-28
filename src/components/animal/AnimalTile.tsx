@@ -14,12 +14,14 @@ import { AnimalArt } from './AnimalArt';
 interface AnimalTileProps {
   animal: Animal;
   width: number;
+  /** Swap the current screen instead of stacking (animal → related animal). */
+  replace?: boolean;
   /** Bichupédia: undiscovered animals are shown locked (dimmed, padlock). */
   lockUndiscovered?: boolean;
 }
 
 /** Animal on its signature colour. Star = discovered, padlock = still hidden. */
-export function AnimalTile({ animal, width, lockUndiscovered = false }: AnimalTileProps) {
+export function AnimalTile({ animal, width, lockUndiscovered = false, replace = false }: AnimalTileProps) {
   const state = discoveryState(useAnimalProgress(animal.id));
   const discovered = state === 'discovered';
   const locked = lockUndiscovered && !discovered;
@@ -28,7 +30,7 @@ export function AnimalTile({ animal, width, lockUndiscovered = false }: AnimalTi
 
   return (
     <PressableScale
-      onPress={() => router.push({ pathname: '/animal/[id]', params: { id: animal.id } })}
+      onPress={() => (replace ? router.replace : router.push)({ pathname: '/animal/[id]', params: { id: animal.id } })}
       accessibilityLabel={`${animal.name.ptBR}${discovered ? ', descoberto' : locked ? ', ainda não descoberto' : ''}`}
       style={[styles.card, { width }]}
       pressedScale={0.96}>

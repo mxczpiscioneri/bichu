@@ -22,6 +22,7 @@ import { useChallengeSession, type SessionSource } from '@/challenges/useChallen
 import { getAnimal } from '@/content/animals';
 import { phrase, PHRASES } from '@/content/phrases';
 import { useLevel } from '@/stores/settingsStore';
+import { useLayout } from '@/hooks/useLayout';
 import { colors, paletteForAnimal, spacing } from '@/theme';
 
 function resolveSource(type: string | undefined, animalId: string | undefined): SessionSource | null {
@@ -41,6 +42,7 @@ export default function ChallengeScreen() {
 
 function Stage({ challenge, session }: { challenge: Challenge; session: ReturnType<typeof useChallengeSession> }) {
   const common = { challenge, statusOf: session.statusOf, onChoose: session.choose, disabled: session.solved };
+  const { isTablet } = useLayout();
   if (challenge.interaction === 'drag') return <DragBoard key={challenge.id} {...common} />;
   if (challenge.interaction === 'place') return <PlaceBoard key={challenge.id} {...common} />;
   return (
@@ -51,7 +53,7 @@ function Stage({ challenge, session }: { challenge: Challenge; session: ReturnTy
           clipKey={clipKeys.sound(challenge.animalId)}
           onPress={session.playPrompt}
           color={colors.leaf}
-          size={104}
+          size={isTablet ? 150 : 104}
           showLabel={false}
         />
       ) : null}
@@ -69,6 +71,7 @@ function ChallengeFlow({ source }: { source: SessionSource }) {
   const celebrating = latestDiscovery ? (getAnimal(latestDiscovery) ?? null) : null;
 
   const close = () => (router.canGoBack() ? router.back() : router.replace('/'));
+  const { isTablet, padding } = useLayout();
 
   if (rounds.length === 0) {
     return <NotFound message="Ainda não há desafios aqui. Que tal explorar outro animal?" />;
@@ -96,8 +99,8 @@ function ChallengeFlow({ source }: { source: SessionSource }) {
           onDone={close}
         />
       ) : current ? (
-        <View style={styles.body}>
-          <AppText variant="title" align="center" style={styles.prompt}>
+        <View style={[styles.body, isTablet && { paddingHorizontal: padding, gap: spacing.lg }]}>
+          <AppText variant={isTablet ? 'hero' : 'title'} align="center" style={styles.prompt}>
             {current.prompt}
           </AppText>
           <MascotBubble

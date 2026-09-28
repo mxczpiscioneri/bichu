@@ -4,11 +4,12 @@ import Animated, { useAnimatedRef } from 'react-native-reanimated';
 
 import { isCorrect, type Challenge, type ChallengeOption } from '@/challenges/types';
 import { getAnimal } from '@/content/animals';
+import { useLayout } from '@/hooks/useLayout';
 import { colors, radius, shadows, spacing } from '@/theme';
 
 import { AnimalArt } from '../animal/AnimalArt';
 import { AppText } from '../ui/AppText';
-import { HabitatScene, sceneForAnimal } from '../ui/HabitatScene';
+import { HabitatScene, sceneForAnimal, Spotlight } from '../ui/HabitatScene';
 import { Draggable } from './Draggable';
 import { OptionContent } from './OptionContent';
 import type { OptionStatus } from './TapOptions';
@@ -28,13 +29,15 @@ export function DragBoard({ challenge, statusOf, onChoose, disabled }: BoardProp
   const slotRef = useAnimatedRef<View>();
   const [solved, setSolved] = useState(false);
   const animal = getAnimal(challenge.animalId);
+  const { isTablet } = useLayout();
 
   return (
     <View style={styles.board}>
       <View style={styles.stage}>
-        {animal ? <HabitatScene scene={sceneForAnimal(animal)} /> : null}
+        {animal ? <HabitatScene scene={sceneForAnimal(animal)} backdrop /> : null}
+        <Spotlight size={isTablet ? 400 : 230} />
         <Animated.View ref={slotRef} style={[styles.slot, solved && styles.slotSolved]}>
-          <AnimalArt animalId={challenge.animalId} size={176} />
+          <AnimalArt animalId={challenge.animalId} size={isTablet ? 300 : 176} />
         </Animated.View>
         {!solved ? (
           <View style={styles.hint}>
@@ -44,7 +47,7 @@ export function DragBoard({ challenge, statusOf, onChoose, disabled }: BoardProp
           </View>
         ) : null}
       </View>
-      <View style={styles.tokens}>
+      <View style={[styles.tokens, isTablet && styles.tokensTablet]}>
         {challenge.options.map((option) => {
           const status = statusOf(option.id);
           return (
@@ -62,10 +65,11 @@ export function DragBoard({ challenge, statusOf, onChoose, disabled }: BoardProp
               accessibilityHint="Arraste até o animal ou toque para escolher"
               style={[
                 styles.token,
+                isTablet && styles.tokenTablet,
                 (status === 'tried' || (disabled && status === 'idle')) && styles.tokenDim,
                 status === 'correct' && styles.tokenCorrect,
               ]}>
-              <OptionContent option={option} size={68} />
+              <OptionContent option={option} size={isTablet ? 120 : 68} />
             </Draggable>
           );
         })}
@@ -107,6 +111,8 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
     justifyContent: 'center',
   },
+  tokensTablet: { gap: spacing.lg, paddingBottom: spacing.md },
+  tokenTablet: { maxWidth: 220, minHeight: 210 },
   tokenDim: { opacity: 0.45 },
   tokenCorrect: { borderColor: colors.sun },
 });

@@ -2,6 +2,7 @@ import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
 import type { Animal } from '@/domain/animal';
+import { useLayout } from '@/hooks/useLayout';
 import { colors, fonts, radius, shadows, spacing } from '@/theme';
 
 import { AnimalArt } from '../animal/AnimalArt';
@@ -12,24 +13,29 @@ import { PressableScale } from '../ui/PressableScale';
 
 export function AnimalOfTheDayCard({ animal }: { animal: Animal }) {
   const open = () => router.push({ pathname: '/animal/[id]', params: { id: animal.id } });
+  const { isTablet } = useLayout();
   return (
     <PressableScale
       onPress={open}
       accessibilityLabel={`Animal do dia: ${animal.name.ptBR}. Descobrir`}
-      style={styles.card}
+      style={[styles.card, isTablet && styles.cardTablet]}
       pressedScale={0.98}>
       <HabitatScene scene={sceneForAnimal(animal)} />
-      <View style={styles.text}>
+      <View style={[styles.text, isTablet && styles.textTablet]}>
         <View style={styles.tag}>
           <AppText variant="overline" color={colors.forest} numberOfLines={1}>
             Animal do dia
           </AppText>
         </View>
-        <AppText variant="title" numberOfLines={1} adjustsFontSizeToFit style={styles.name}>
+        <AppText
+          variant="title"
+          numberOfLines={1}
+          adjustsFontSizeToFit
+          style={[styles.name, isTablet && styles.nameTablet]}>
           {animal.name.ptBR}
         </AppText>
         {animal.content.preschool[0] ? (
-          <AppText variant="caption" color={colors.ink} numberOfLines={2}>
+          <AppText variant={isTablet ? 'body' : 'caption'} color={colors.ink} numberOfLines={2}>
             {animal.content.preschool[0]}
           </AppText>
         ) : null}
@@ -43,7 +49,7 @@ export function AnimalOfTheDayCard({ animal }: { animal: Animal }) {
         </View>
       </View>
       <View style={styles.image}>
-        <AnimalArt animalId={animal.id} size={112} />
+        <AnimalArt animalId={animal.id} size={isTablet ? 260 : 112} />
       </View>
     </PressableScale>
   );
@@ -60,6 +66,9 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
     ...shadows.raised,
   },
+  cardTablet: { minHeight: 360, padding: spacing.lg },
+  textTablet: { width: '45%', padding: spacing.lg, gap: spacing.sm },
+  nameTablet: { fontSize: 44, lineHeight: 50 },
   // Soft panel keeps the text readable over the painted scene.
   // Fixed share of the card: the art is fixed-size, so a flex panel got squeezed.
   text: {

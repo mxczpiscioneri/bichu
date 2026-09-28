@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { getAnimal } from '@/content/animals';
 import { phrase, PHRASES } from '@/content/phrases';
+import { useLayout } from '@/hooks/useLayout';
 import { colors, radius, spacing } from '@/theme';
 
 import { AnimalImage } from '../animal/AnimalImage';
@@ -19,9 +20,10 @@ interface SessionSummaryProps {
 }
 
 export function SessionSummary({ rounds, starsEarned, discovered, onAgain, onDone }: SessionSummaryProps) {
+  const { isTablet } = useLayout();
   return (
     <View style={styles.root}>
-      <Mascot pose="cheer" height={200} />
+      <Mascot pose="cheer" height={isTablet ? 320 : 200} />
       <AppText variant="title" align="center">
         {phrase(PHRASES.finished, rounds + starsEarned)}
       </AppText>
@@ -39,14 +41,14 @@ export function SessionSummary({ rounds, starsEarned, discovered, onAgain, onDon
           <View style={styles.discoveredRow}>
             {discovered.map((id) => (
               <View key={id} style={styles.discoveredItem}>
-                <AnimalImage animalId={id} size={72} />
+                <AnimalImage animalId={id} size={isTablet ? 120 : 72} />
                 <AppText variant="label">{getAnimal(id)?.name.ptBR}</AppText>
               </View>
             ))}
           </View>
         </View>
       ) : null}
-      <View style={styles.actions}>
+      <View style={[styles.actions, isTablet && styles.actionsTablet]}>
         <BigButton label="Brincar de novo" icon="puzzle" variant="warm" onPress={onAgain} />
         <BigButton label="Voltar" icon="house" variant="light" onPress={onDone} />
       </View>
@@ -69,4 +71,5 @@ const styles = StyleSheet.create({
   discoveredRow: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: spacing.md },
   discoveredItem: { alignItems: 'center', gap: 4 },
   actions: { alignSelf: 'stretch', gap: spacing.md, marginTop: spacing.md },
+  actionsTablet: { alignSelf: 'center', width: 520 },
 });

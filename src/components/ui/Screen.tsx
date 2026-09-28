@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { ScrollView, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import { SafeAreaView, type Edge } from 'react-native-safe-area-context';
 
+import { useLayout } from '@/hooks/useLayout';
 import { colors, spacing } from '@/theme';
 
 interface ScreenProps {
@@ -22,16 +23,19 @@ export function Screen({
   contentStyle,
   bottomInset = spacing.xl,
 }: ScreenProps) {
+  const { padding, maxContent } = useLayout();
+  // Tablets: a centred column instead of full-width rows that are hard to scan.
+  const column = { paddingHorizontal: padding, maxWidth: maxContent + padding * 2 };
   return (
     <SafeAreaView edges={edges} style={[styles.root, { backgroundColor: background }]}>
       {scroll ? (
         <ScrollView
-          contentContainerStyle={[styles.content, { paddingBottom: bottomInset }, contentStyle]}
+          contentContainerStyle={[styles.content, column, { paddingBottom: bottomInset }, contentStyle]}
           showsVerticalScrollIndicator={false}>
           {children}
         </ScrollView>
       ) : (
-        <View style={[styles.content, styles.fill, contentStyle]}>{children}</View>
+        <View style={[styles.content, column, styles.fill, contentStyle]}>{children}</View>
       )}
     </SafeAreaView>
   );
@@ -40,5 +44,5 @@ export function Screen({
 const styles = StyleSheet.create({
   root: { flex: 1 },
   fill: { flex: 1 },
-  content: { paddingHorizontal: spacing.lg - 4, paddingTop: spacing.md, gap: spacing.lg },
+  content: { width: '100%', alignSelf: 'center', paddingTop: spacing.md, gap: spacing.lg },
 });

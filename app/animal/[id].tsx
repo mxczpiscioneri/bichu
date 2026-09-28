@@ -1,6 +1,6 @@
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AnimalFacts } from '@/components/animal/AnimalFacts';
@@ -10,7 +10,9 @@ import { AudioButton } from '@/components/animal/AudioButton';
 import { DiscoveryBadge } from '@/components/animal/DiscoveryBadge';
 import { DiscoverySteps } from '@/components/animal/DiscoverySteps';
 import { SyllableRow } from '@/components/animal/SyllableRow';
+import { AnimalTile } from '@/components/animal/AnimalTile';
 import { Mascot } from '@/components/brand/Mascot';
+import { HomeRow } from '@/components/home/HomeRow';
 import { DiscoveryCelebration } from '@/components/feedback/DiscoveryCelebration';
 import { NotFound } from '@/components/feedback/NotFound';
 import { AppText } from '@/components/ui/AppText';
@@ -20,10 +22,12 @@ import { PressableScale } from '@/components/ui/PressableScale';
 import { RoundButton } from '@/components/ui/RoundButton';
 import { isArAvailableFor } from '@/ar/availability';
 import { AudioService, clipKeys } from '@/audio/AudioService';
-import { getAnimal } from '@/content/animals';
+import { animals, getAnimal } from '@/content/animals';
 import { CLASS_LABELS, soundNameOf } from '@/content/labels';
 import type { Animal } from '@/domain/animal';
 import { useDiscoveryWatcher } from '@/hooks/useDiscoveryWatcher';
+import { useLayout } from '@/hooks/useLayout';
+import { relatedAnimals } from '@/progress/selectors';
 import { discoveryState } from '@/progress/progress';
 import { useAnimalProgress, useProgressStore } from '@/stores/progressStore';
 import { useLevel } from '@/stores/settingsStore';
@@ -48,6 +52,11 @@ function AnimalDetail({ animal }: { animal: Animal }) {
   const [celebrating, closeCelebration] = useDiscoveryWatcher([animal.id]);
   const palette = paletteForAnimal(animal);
   const [scrolled, setScrolled] = useState(false);
+  const { isTablet, padding } = useLayout();
+  const { height: windowHeight } = useWindowDimensions();
+  const { contentWidth } = useLayout();
+  const related = relatedAnimals(animals, animal, isTablet ? 6 : 8);
+  const relatedWidth = isTablet ? Math.floor((contentWidth - 14 * 5) / 6) : 112;
 
   useEffect(() => {
     record(animal.id, { type: 'opened' });
@@ -76,71 +85,94 @@ function AnimalDetail({ animal }: { animal: Animal }) {
         bounces={false}
         scrollEventThrottle={32}
         onScroll={(event) => setScrolled(event.nativeEvent.contentOffset.y > HERO_SCROLL_THRESHOLD)}>
-        <View style={[styles.hero, { paddingTop: insets.top + spacing.sm }]}>
+        <View
+          style={[
+            styles.hero,
+            { paddingTop: insets.top + spacing.sm },
+            isTablet && { minHeight: Math.round(windowHeight * 0.5) },
+          ]}>
           <HabitatScene scene={sceneForAnimal(animal)} />
           <PressableScale
             onPress={() => void AudioService.playAnimalName(animal.id)}
             accessibilityLabel={`Ouvir o nome: ${animal.name.ptBR}`}
             pressedScale={0.97}>
-            <AnimalArt animalId={animal.id} size={210} />
+            <AnimalArt animalId={animal.id} size={isTablet ? 380 : 210} />
           </PressableScale>
         </View>
 
-        <View style={[styles.sheet, { backgroundColor: palette.wash }]}>
-          <View style={styles.titleRow}>
-            <AppText
-              variant="hero"
-              accessibilityRole="header"
-              style={[styles.name, { color: palette.text }]}
-              numberOfLines={1}
-              adjustsFontSizeToFit>
-              {animal.name.ptBR}
-            </AppText>
-            <View style={[styles.classTag, { backgroundColor: palette.soft }]}>
-              <AppText variant="caption" color={palette.text} style={styles.classText}>
-                {CLASS_LABELS[animal.taxonomy.class].label}
-              </AppText>
+        <View
+          style={[
+            styles.sheet,
+            isTablet && [styles.sheetTablet, { paddingHorizontal: padding }],
+            { backgroundColor: palette.wash },
+          ]}>
+          {/* Tablets: name and sounds on the left, what to learn and play on the right. */}
+          <View style={isTablet ? styles.columns : styles.stack}>
+            <View style={[styles.stack, isTablet && styles.column]}>
+              <View style={styles.titleRow}>
+                <AppText
+                  variant="hero"
+                  accessibilityRole="header"
+                  style={[styles.name, { color: palette.text }]}
+                  numberOfLines={1}
+                  adjustsFontSizeToFit>
+                  {animal.name.ptBR}
+                </AppText>
+                <View style={[styles.classTag, { backgroundColor: palette.soft }]}>
+                  <AppText variant="caption" color={palette.text} style={styles.classText}>
+                    {CLASS_LABELS[animal.taxonomy.class].label}
+                  </AppText>
+                </View>
+              </View>
+              <SyllableRow syllables={animal.name.syllables} clipKey={clipKeys.name(animal.id)} />
+              <AnimalTraits animal={animal} background={palette.soft} />
+
+              <View style={styles.audioRow}>
+                <AudioButton
+                  label="Ouvir nome"
+                  clipKey={clipKeys.name(animal.id)}
+                  color={colors.leaf}
+                  onPress={() => void AudioService.playAnimalName(animal.id)}
+                />
+                <AudioButton
+                  label={`Ouvir ${soundNameOf(animal)}`}
+                  clipKey={clipKeys.sound(animal.id)}
+                  color={colors.terra}
+                  onPress={() => void AudioService.playAnimalSound(animal.id)}
+                />
+              </View>
+            </View>
+            <View style={[styles.stack, isTablet && styles.column]}>
+              <DiscoverySteps progress={progress} />
+              <AnimalFacts animal={animal} level={level} />
+
+              <View style={styles.actions}>
+                <BigButton
+                  label="Brincar"
+                  icon="puzzle"
+                  color={palette.strong}
+                  onPress={() =>
+                    router.push({ pathname: '/challenge/[type]', params: { type: 'animal', animalId: animal.id } })
+                  }
+                />
+                {isArAvailableFor(animal) ? (
+                  <BigButton
+                    label="Ver no meu mundo"
+                    icon="camera"
+                    variant="light"
+                    onPress={() => router.push({ pathname: '/ar/[animalId]', params: { animalId: animal.id } })}
+                  />
+                ) : null}
+              </View>
             </View>
           </View>
-          <SyllableRow syllables={animal.name.syllables} clipKey={clipKeys.name(animal.id)} />
-          <AnimalTraits animal={animal} background={palette.soft} />
-
-          <View style={styles.audioRow}>
-            <AudioButton
-              label="Ouvir nome"
-              clipKey={clipKeys.name(animal.id)}
-              color={colors.leaf}
-              onPress={() => void AudioService.playAnimalName(animal.id)}
-            />
-            <AudioButton
-              label={`Ouvir ${soundNameOf(animal)}`}
-              clipKey={clipKeys.sound(animal.id)}
-              color={colors.terra}
-              onPress={() => void AudioService.playAnimalSound(animal.id)}
-            />
-          </View>
-
-          <DiscoverySteps progress={progress} />
-          <AnimalFacts animal={animal} level={level} />
-
-          <View style={styles.actions}>
-            <BigButton
-              label="Brincar"
-              icon="puzzle"
-              color={palette.strong}
-              onPress={() =>
-                router.push({ pathname: '/challenge/[type]', params: { type: 'animal', animalId: animal.id } })
-              }
-            />
-            {isArAvailableFor(animal) ? (
-              <BigButton
-                label="Ver no meu mundo"
-                icon="camera"
-                variant="light"
-                onPress={() => router.push({ pathname: '/ar/[animalId]', params: { animalId: animal.id } })}
-              />
-            ) : null}
-          </View>
+          {related.length > 0 ? (
+            <HomeRow title="Conheça também" gap={14}>
+              {related.map((other) => (
+                <AnimalTile key={other.id} animal={other} width={relatedWidth} replace />
+              ))}
+            </HomeRow>
+          ) : null}
           <View style={styles.peek}>
             <Mascot pose="explore" height={92} animated={false} />
           </View>
@@ -188,6 +220,10 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xxl + 60,
     gap: spacing.lg - 4,
   },
+  sheetTablet: { paddingTop: spacing.xl },
+  stack: { gap: spacing.lg - 4 },
+  columns: { flexDirection: 'row', gap: spacing.xxl },
+  column: { flex: 1 },
   titleRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm + 4 },
   name: { flexShrink: 1 },
   classTag: {

@@ -38,3 +38,12 @@ export function suggestedAnimals(
     .filter((a) => !exclude.includes(a.id) && discoveryState(progress[a.id]) !== 'discovered')
     .slice(0, limit);
 }
+
+/** Animals that share a habitat with `animal`, most habitats in common first. */
+export function relatedAnimals(animals: readonly Animal[], animal: Animal, limit = 6): Animal[] {
+  const shared = (other: Animal) => other.habitats.filter((h) => h !== 'mixed' && animal.habitats.includes(h)).length;
+  return animals
+    .filter((other) => other.id !== animal.id && shared(other) > 0)
+    .sort((a, b) => shared(b) - shared(a))
+    .slice(0, limit);
+}
