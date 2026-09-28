@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <body style="margin: 0; background: #fff">
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/node_modules/three/build/three.module.js",
+          "three/addons/": "/node_modules/three/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module">
+      import * as THREE from 'three';
+      import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+      const W = 360,
+        H = 300;
+      const r = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+      r.setSize(W, H);
+      r.outputColorSpace = THREE.SRGBColorSpace;
+      document.body.appendChild(r.domElement);
+      window.render = async (url, views, raw) => {
+        const g = await new GLTFLoader().loadAsync(url);
+        const s = new THREE.Scene();
+        s.background = new THREE.Color('#eef');
+        s.add(new THREE.HemisphereLight(0xffffff, 0x888888, 2.2));
+        const dl = new THREE.DirectionalLight(0xffffff, 1.6);
+        dl.position.set(3, 5, 4);
+        s.add(dl);
+        window.lastClip = null;
+        const o = g.scene;
+        s.add(o);
+        if (g.animations.length && !raw) {
+          const mx = new THREE.AnimationMixer(o);
+          const cl =
+            g.animations.find((a) => /idle/i.test(a.name)) ||
+            g.animations.find((a) => /swim/i.test(a.name)) ||
+            g.animations[0];
+          mx.clipAction(cl).play();
+          mx.update(0.6);
+          o.updateMatrixWorld(true);
+          window.lastClip = cl.name;
+        }
+        const b = new THREE.Box3().setFromObject(o, true);
+        const size = b.getSize(new THREE.Vector3()),
+          c = b.getCenter(new THREE.Vector3());
+        const R = Math.max(size.x, size.y, size.z);
+        const grid = new THREE.GridHelper(R * 2, 10, 0x4444ff, 0xaaaaaa);
+        grid.position.y = 0;
+        if (!window.noGrid) {
+          s.add(grid);
+          s.add(new THREE.AxesHelper(R * 0.8));
+        }
+        const out = [];
+        for (const v of views) {
+          const cam = new THREE.PerspectiveCamera(35, W / H, R / 100, R * 100);
+          const d = R * 2.2;
+          const dir = {
+            front: [0, 0.25, 1],
+            side: [1, 0.25, 0],
+            back: [0, 0.25, -1],
+            top: [0, 1, 0.001],
+            iso: [1, 0.6, 1],
+          }[v];
+          cam.position.set(c.x + dir[0] * d, c.y + dir[1] * d, c.z + dir[2] * d);
+          cam.lookAt(c);
+          r.render(s, cam);
+          out.push(r.domElement.toDataURL('image/png'));
+        }
+        return {
+          clip: window.lastClip,
+          out,
+          size: size.toArray(),
+          min: b.min.toArray(),
+          anims: g.animations.map((a) => a.name),
+        };
+      };
+      window.ready = true;
+    </script>
+  </body>
+</html>

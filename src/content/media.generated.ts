@@ -55,7 +55,7 @@ export const ANIMAL_MEDIA: Record<string, AnimalMediaModules> = {
     image: require('../../assets/animals/art/dolphin.png'),
     sound: require('../../assets/animals/sounds/dolphin.mp3'),
     nameAudio: require('../../assets/animals/names/dolphin_name.mp3'),
-    model3d: null,
+    model3d: require('../../assets/animals/models/dolphin.glb'),
   },
   duck: {
     image: require('../../assets/animals/art/duck.png'),
@@ -67,7 +67,7 @@ export const ANIMAL_MEDIA: Record<string, AnimalMediaModules> = {
     image: require('../../assets/animals/art/elephant.png'),
     sound: require('../../assets/animals/sounds/elephant.mp3'),
     nameAudio: require('../../assets/animals/names/elephant_name.mp3'),
-    model3d: null,
+    model3d: require('../../assets/animals/models/elephant.glb'),
   },
   frog: {
     image: require('../../assets/animals/art/frog.png'),
@@ -79,13 +79,13 @@ export const ANIMAL_MEDIA: Record<string, AnimalMediaModules> = {
     image: require('../../assets/animals/art/horse.png'),
     sound: require('../../assets/animals/sounds/horse.mp3'),
     nameAudio: require('../../assets/animals/names/horse_name.mp3'),
-    model3d: null,
+    model3d: require('../../assets/animals/models/horse.glb'),
   },
   lion: {
     image: require('../../assets/animals/art/lion.png'),
     sound: require('../../assets/animals/sounds/lion.mp3'),
     nameAudio: require('../../assets/animals/names/lion_name.mp3'),
-    model3d: null,
+    model3d: require('../../assets/animals/models/lion.glb'),
   },
   monkey: {
     image: require('../../assets/animals/art/monkey.png'),
@@ -97,7 +97,7 @@ export const ANIMAL_MEDIA: Record<string, AnimalMediaModules> = {
     image: require('../../assets/animals/art/parrot.png'),
     sound: require('../../assets/animals/sounds/parrot.mp3'),
     nameAudio: require('../../assets/animals/names/parrot_name.mp3'),
-    model3d: null,
+    model3d: require('../../assets/animals/models/parrot.glb'),
   },
   pig: {
     image: require('../../assets/animals/art/pig.png'),

@@ -58,12 +58,15 @@ describe('content validation', () => {
 
   it('reports missing asset files (never silently)', () => {
     const errors = errorsOf(clone(), (path) => !path.includes('lion'));
-    expect(errors.filter((i) => i.animalId === 'lion' && /ausente/.test(i.message))).toHaveLength(3);
+    // image, sound, name audio and the 3D model
+    expect(errors.filter((i) => i.animalId === 'lion' && /ausente/.test(i.message))).toHaveLength(4);
   });
 
   it('requires license metadata for 3D models', () => {
     const list = clone();
-    (lion(list).media as Record<string, unknown>).model3d = 'assets/animals/models/lion.glb';
+    const media = lion(list).media as Record<string, unknown>;
+    media.model3d = 'assets/animals/models/lion.glb';
+    delete media.model3dMeta;
     expect(errorsOf(list).some((i) => i.field === 'media.model3dMeta')).toBe(true);
   });
 

@@ -1,0 +1,21 @@
+{
+  "name": "bichu-3d-pipeline",
+  "private": true,
+  "type": "module",
+  "description": "Offline pipeline that turns licensed source models into the GLBs in assets/animals/models. Not part of the app bundle.",
+  "scripts": {
+    "fetch": "node fetch-sources.mjs",
+    "build": "node normalize.mjs",
+    "validate": "node validate.mjs",
+    "render": "node render.mjs out/lineup.png iso out/*.glb"
+  },
+  "dependencies": {
+    "@gltf-transform/core": "^4.5.0",
+    "@gltf-transform/extensions": "^4.5.0",
+    "@gltf-transform/functions": "^4.5.0",
+    "gltf-validator": "^2.0.0-dev.3.10",
+    "playwright-core": "^1.63.0",
+    "sharp": "^0.35.4",
+    "three": "0.170.0"
+  }
+}
