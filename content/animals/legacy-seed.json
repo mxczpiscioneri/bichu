@@ -24,7 +24,16 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/bear.mp3",
         "nameAudio": "assets/animals/names/bear_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/bear.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/0PXWfxfb0Hu",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 1.296,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "color": "#B8743A",
       "soundGroup": "roar",
@@ -106,7 +115,16 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/bee.mp3",
         "nameAudio": "assets/animals/names/bee_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/bee.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/2177F_NMT--",
+          "defaultScale": 10,
+          "realWorldHeightMeters": 0.01,
+          "groundOffset": 0.3,
+          "animations": []
+        }
       },
       "color": "#E9A91F",
       "soundName": {
@@ -184,7 +202,16 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/cat.mp3",
         "nameAudio": "assets/animals/names/cat_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/cat.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/6dM1J6f6pm9",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 0.465,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "color": "#EE8A2B",
       "soundName": {
@@ -263,7 +290,16 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/chick.mp3",
         "nameAudio": "assets/animals/names/chick_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/chick.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/fozJTmMX5yv",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 0.08,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "color": "#F2B829",
       "soundName": {
@@ -340,7 +376,16 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/chicken.mp3",
         "nameAudio": "assets/animals/names/chicken_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/chicken.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/8Unya0rw9tR",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 0.4,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "color": "#D8703A",
       "soundName": {
@@ -416,7 +461,16 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/cock.mp3",
         "nameAudio": "assets/animals/names/cock_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/cock.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/6NTegstc5Jy",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 0.6,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "color": "#DE4A2E",
       "soundName": {
@@ -492,7 +546,30 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/cow.mp3",
         "nameAudio": "assets/animals/names/cow_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/cow.glb",
+        "model3dMeta": {
+          "license": "CC0-1.0",
+          "author": "Quaternius",
+          "sourceUrl": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 1.365,
+          "groundOffset": 0,
+          "animations": [
+            "Attack_Headbutt",
+            "Attack_Kick",
+            "Death",
+            "Eating",
+            "Gallop",
+            "Gallop_Jump",
+            "Idle",
+            "Idle_2",
+            "Idle_Headlow",
+            "Idle_HitReact1",
+            "Idle_HitReact2",
+            "Jump_toIdle",
+            "Walk"
+          ]
+        }
       },
       "color": "#8A6F66",
       "soundName": {
@@ -569,7 +646,29 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/dog.mp3",
         "nameAudio": "assets/animals/names/dog_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/dog.glb",
+        "model3dMeta": {
+          "license": "CC0-1.0",
+          "author": "Quaternius",
+          "sourceUrl": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 0.549,
+          "groundOffset": 0,
+          "animations": [
+            "Attack",
+            "Death",
+            "Eating",
+            "Gallop",
+            "Gallop_Jump",
+            "Idle",
+            "Idle_2",
+            "Idle_2_HeadLow",
+            "Idle_HitReact1",
+            "Idle_HitReact2",
+            "Jump_ToIdle",
+            "Walk"
+          ]
+        }
       },
       "color": "#C27A3E",
       "soundName": {
@@ -734,7 +833,16 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/duck.mp3",
         "nameAudio": "assets/animals/names/duck_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/duck.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/frSLi6b6Vid",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 0.404,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "color": "#3E9A55",
       "soundName": {
@@ -907,7 +1015,16 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/frog.mp3",
         "nameAudio": "assets/animals/names/frog_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/frog.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/0QZHgL_V-Pj",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 0.025,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "color": "#58B044",
       "soundName": {
@@ -1175,7 +1292,16 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/monkey.mp3",
         "nameAudio": "assets/animals/names/monkey_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/monkey.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/29hG1_J1Uiq",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 0.416,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "color": "#9A6038",
       "habitats": [
@@ -1346,7 +1472,16 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/pig.mp3",
         "nameAudio": "assets/animals/names/pig_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/pig.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/6XC3XssJIU_",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 0.9,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "color": "#EC8C9F",
       "soundName": {
@@ -1423,7 +1558,16 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/seal.mp3",
         "nameAudio": "assets/animals/names/seal_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/seal.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/fudlK4rnsI-",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 0.538,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "color": "#6B9FCA",
       "habitats": [
@@ -1497,7 +1641,16 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/sheep.mp3",
         "nameAudio": "assets/animals/names/sheep_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/sheep.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/dXBMV4AY2DL",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 0.998,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "color": "#9B89D8",
       "soundName": {
@@ -1574,7 +1727,16 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/tiger.mp3",
         "nameAudio": "assets/animals/names/tiger_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/tiger.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/5A3w06FXUup",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 1.1,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "color": "#EE7C1E",
       "soundName": {
@@ -1652,7 +1814,16 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/turkey.mp3",
         "nameAudio": "assets/animals/names/turkey_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/turkey.glb",
+        "model3dMeta": {
+          "license": "CC-BY-3.0",
+          "author": "Poly by Google",
+          "sourceUrl": "https://poly.pizza/m/4f31_AG9Iap",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 1,
+          "groundOffset": 0,
+          "animations": []
+        }
       },
       "color": "#A8582E",
       "soundName": {
@@ -1732,7 +1903,29 @@
         "imageStyle": "cutout",
         "sound": "assets/animals/sounds/wolf.mp3",
         "nameAudio": "assets/animals/names/wolf_name.mp3",
-        "model3d": null
+        "model3d": "assets/animals/models/wolf.glb",
+        "model3dMeta": {
+          "license": "CC0-1.0",
+          "author": "Quaternius",
+          "sourceUrl": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+          "defaultScale": 1,
+          "realWorldHeightMeters": 0.821,
+          "groundOffset": 0,
+          "animations": [
+            "Attack",
+            "Death",
+            "Eating",
+            "Gallop",
+            "Gallop_Jump",
+            "Idle",
+            "Idle_2",
+            "Idle_2_HeadLow",
+            "Idle_HitReact1",
+            "Idle_HitReact2",
+            "Jump_ToIdle",
+            "Walk"
+          ]
+        }
       },
       "color": "#7C879E",
       "soundName": {

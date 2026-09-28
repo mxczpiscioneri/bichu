@@ -8,21 +8,32 @@
       "developmentClient": true,
       "distribution": "internal",
       "channel": "development",
-      "env": { "BICHU_AR": "1" }
+      "env": {
+        "BICHU_AR": "1"
+      }
     },
     "development-simulator": {
       "extends": "development",
-      "env": { "BICHU_AR": "0" },
-      "ios": { "simulator": true }
+      "env": {
+        "BICHU_AR": "0"
+      },
+      "ios": {
+        "simulator": true
+      }
     },
     "preview": {
       "distribution": "internal",
       "channel": "preview",
-      "env": { "BICHU_AR": "1" }
+      "env": {
+        "BICHU_AR": "1"
+      }
     },
     "production": {
       "autoIncrement": true,
-      "channel": "production"
+      "channel": "production",
+      "env": {
+        "BICHU_AR": "1"
+      }
     }
   },
   "submit": {

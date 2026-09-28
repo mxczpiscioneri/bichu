@@ -74,20 +74,12 @@ export default function ParentsScreen() {
               details={
                 <AppText variant="caption">
                   Sem conta, sem anúncios e sem rastreamento. O progresso fica salvo só neste aparelho e nenhum dado é
-                  enviado para servidores. O app não usa microfone, localização, contatos nem fotos.
+                  enviado para servidores. A câmera só é usada na realidade aumentada, para mostrar o animal no
+                  ambiente; nenhuma imagem é salva ou enviada. O app não usa microfone, localização, contatos nem fotos.
                 </AppText>
               }
             />
-            <SettingsRow
-              icon="heart"
-              label="Créditos"
-              details={
-                <AppText variant="caption">
-                  Ilustrações, sons e locuções: acervo do Zoo Babies / AnimalSounds. Ícones: Microsoft Fluent Emoji
-                  (licença MIT). Mascote Bichu — Guardião da Floresta.
-                </AppText>
-              }
-            />
+            <SettingsRow icon="heart" label="Créditos" onPress={() => router.push('/credits')} />
           </Card>
 
           <Card style={styles.section}>
