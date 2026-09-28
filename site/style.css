@@ -1,0 +1,16 @@
+:root { --cream: #FBF5E8; --forest: #2F5D2C; --leaf: #6F9F52; --ink: #34362F; --soft: #6A6C62; --sun: #FDF0CC; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cream); color: var(--ink); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 720px; margin: 0 auto; padding: 40px 20px 64px; }
+h1, h2, h3 { color: var(--forest); line-height: 1.25; }
+h1 { font-size: 2rem; margin: 8px 0 4px; }
+h2 { font-size: 1.3rem; margin-top: 2em; }
+h3 { font-size: 1.05rem; margin-bottom: 0.2em; }
+a { color: var(--forest); font-weight: 600; }
+.logo { width: 240px; max-width: 70%; display: block; margin: 0 auto 16px; }
+.lead { font-size: 1.15rem; text-align: center; }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.pills li { background: var(--sun); border-radius: 999px; padding: 4px 14px; font-weight: 600; }
+.meta { color: var(--soft); font-size: 0.9rem; }
+.back { text-decoration: none; }
+.links { margin-top: 2.5em; }
