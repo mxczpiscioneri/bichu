@@ -26,6 +26,17 @@
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "appleTeamId": "GD2JNB5JH9",
+        "ascApiKeyPath": "./credentials/AuthKey_778365UPWA.p8",
+        "ascApiKeyId": "778365UPWA",
+        "ascApiKeyIssuerId": "92050d04-ecae-4857-bec0-02a4c31d4ddc"
+      },
+      "android": {
+        "serviceAccountKeyPath": "./credentials/google-play-service-account.json",
+        "track": "internal"
+      }
+    }
   }
 }
