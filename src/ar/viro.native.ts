@@ -1,4 +1,5 @@
 import Constants from 'expo-constants';
+import { NativeModules, Platform } from 'react-native';
 
 export type ViroModule = typeof import('@reactvision/react-viro');
 
@@ -10,7 +11,7 @@ let cached: ViroModule | null | undefined;
  */
 export function loadViro(): ViroModule | null {
   if (cached !== undefined) return cached;
-  if (Constants.expoConfig?.extra?.arEnabled !== true) {
+  if (Constants.expoConfig?.extra?.arEnabled !== true || !hasViroNative()) {
     cached = null;
     return cached;
   }
@@ -23,4 +24,13 @@ export function loadViro(): ViroModule | null {
     cached = null;
   }
   return cached;
+}
+
+/**
+ * The binary must actually contain Viro's native code. `arEnabled` comes from the JS
+ * bundle's config, so an OTA update built with AR can land on a binary built without
+ * it; rendering the AR navigator there crashes. Check the native module instead.
+ */
+function hasViroNative(): boolean {
+  return Platform.OS === 'ios' ? !!NativeModules.VRTARUtils : !!NativeModules.VRTARSceneNavigatorModule;
 }

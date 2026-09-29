@@ -37,7 +37,62 @@ export default function ArScreen() {
   if (!animal) return <NotFound />;
   const viro = loadViro();
   if (!viro || !isArAvailableFor(animal)) return <ArUnavailable animal={animal} />;
-  return <ArScreenContent animal={animal} viro={viro} />;
+  return <ArPreflight animal={animal} viro={viro} />;
+}
+
+type Preflight = 'checking' | 'ready' | 'unsupported' | 'denied';
+
+/**
+ * ARCore/ARKit refuse to start (and crash the app on Android) without camera access
+ * or on unsupported devices, so both are checked before the AR view mounts.
+ * Only the camera is requested; Viro's defaults would also ask for mic, storage and location.
+ */
+function ArPreflight({ animal, viro }: { animal: Animal; viro: NonNullable<ReturnType<typeof loadViro>> }) {
+  const [state, setState] = useState<Preflight>('checking');
+  const [attempt, setAttempt] = useState(0);
+
+  useEffect(() => {
+    let active = true;
+    const run = async () => {
+      const supported = await viro
+        .isARSupportedOnDevice()
+        .then((result) => result.isARSupported)
+        .catch(() => false);
+      if (!supported) return 'unsupported' as const;
+      const granted = await viro
+        .requestRequiredPermissions(['camera'])
+        .then((result) => result.camera === true)
+        .catch(() => false);
+      return granted ? ('ready' as const) : ('denied' as const);
+    };
+    void run().then((next) => active && setState(next));
+    return () => {
+      active = false;
+    };
+  }, [viro, attempt]);
+
+  if (state === 'ready') return <ArScreenContent animal={animal} viro={viro} />;
+  if (state === 'unsupported') return <ArUnavailable animal={animal} reason="unsupported" />;
+  if (state === 'denied') {
+    return (
+      <ArUnavailable
+        animal={animal}
+        reason="denied"
+        onRetry={() => {
+          setState('checking');
+          setAttempt((n) => n + 1);
+        }}
+      />
+    );
+  }
+  return (
+    <SafeAreaView style={styles.unavailable}>
+      <Mascot pose="explore" height={160} />
+      <AppText variant="subheading" align="center">
+        Preparando a câmera…
+      </AppText>
+    </SafeAreaView>
+  );
 }
 
 function ArScreenContent({ animal, viro }: { animal: Animal; viro: NonNullable<ReturnType<typeof loadViro>> }) {
@@ -135,17 +190,50 @@ function ArChallenge({ animal, onDone }: { animal: Animal; onDone: () => void })
   );
 }
 
-function ArUnavailable({ animal }: { animal: Animal }) {
+const UNAVAILABLE_COPY = {
+  test: {
+    title: 'Realidade aumentada em teste',
+    body: (animal: Animal) =>
+      `Em breve você poderá ver ${withArticle(animal)} no seu mundo. Por enquanto, vamos brincar por aqui!`,
+  },
+  unsupported: {
+    title: 'Este aparelho não tem realidade aumentada',
+    body: (animal: Animal) => `Mas dá para conhecer ${withArticle(animal)} por aqui, com som e desafios!`,
+  },
+  denied: {
+    title: 'Precisamos da câmera',
+    body: (animal: Animal) =>
+      `Para ver ${withArticle(animal)} no seu mundo, peça para um adulto permitir a câmera do Bichu nos ajustes do aparelho.`,
+  },
+} as const;
+
+function ArUnavailable({
+  animal,
+  reason = 'test',
+  onRetry,
+}: {
+  animal: Animal;
+  reason?: keyof typeof UNAVAILABLE_COPY;
+  onRetry?: () => void;
+}) {
+  const copy = UNAVAILABLE_COPY[reason];
   return (
     <SafeAreaView style={styles.unavailable}>
       <Mascot pose="explore" height={180} />
       <AppText variant="title" align="center">
-        Realidade aumentada em teste
+        {copy.title}
       </AppText>
       <AppText variant="body" align="center">
-        {`Em breve você poderá ver ${withArticle(animal)} no seu mundo. Por enquanto, vamos brincar por aqui!`}
+        {copy.body(animal)}
       </AppText>
-      <BigButton label="Voltar" icon="footprints" onPress={() => router.back()} style={styles.back} />
+      {onRetry ? <BigButton label="Tentar de novo" icon="camera" onPress={onRetry} style={styles.back} /> : null}
+      <BigButton
+        label="Voltar"
+        icon="footprints"
+        variant={onRetry ? 'light' : undefined}
+        onPress={() => router.back()}
+        style={styles.back}
+      />
     </SafeAreaView>
   );
 }
