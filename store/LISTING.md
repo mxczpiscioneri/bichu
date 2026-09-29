@@ -79,7 +79,7 @@ SEGURO PARA A FAMÍLIA
 
 | Loja | Tipo | Tamanho | Pasta / arquivo | Status |
 |---|---|---|---|---|
-| Apple | iPhone 6.9" | 1320×2868 | `ios-iphone-6.9/` (6) | ⬜ upload |
+| Apple | iPhone 6.5" (aceito pelo console) | 1284×2778 | `ios-iphone-6.5/` (6) | ⬜ upload |
 | Apple | iPad 13" | 2064×2752 | `ios-ipad-13/` (6) | ⬜ upload |
 | Google | Ícone | 512×512 PNG | exportar de `assets/brand/icon.png` | ⬜ upload |
 | Google | Feature graphic | 1024×500 | `android-feature-graphic-1024x500.png` | ⬜ upload |
