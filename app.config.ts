@@ -87,7 +87,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       'expo-audio',
       {
-        microphonePermission: false,
+        // Must be a string, not false: `false` deletes NSMicrophoneUsageDescription after our
+        // privacy plugin runs, and App Store Connect rejects the upload (ITMS-90683) because
+        // ViroReact's binary references microphone APIs. Bichu never asks for the mic.
+        microphonePermission:
+          'O Bichu não usa o microfone e nunca pede esse acesso. A permissão existe apenas porque a biblioteca de realidade aumentada a declara.',
         recordAudioAndroid: false,
         enableBackgroundPlayback: false,
       },
