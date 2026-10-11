@@ -78,6 +78,8 @@ Fluxo do spike (`app/ar/[animalId].tsx`): abre a câmera → detecta um plano ho
 
 **Modelos 3D:** os 22 animais têm GLB em [`assets/animals/models/`](assets/animals/models/) (Quaternius CC0 + Poly by Google CC BY 3.0; relatório em [`docs/3D_ASSET_REPORT.md`](docs/3D_ASSET_REPORT.md), créditos em [`docs/3D_ATTRIBUTIONS.md`](docs/3D_ATTRIBUTIONS.md)). Por ora só os 5 do spike técnico — leão, elefante, cavalo, golfinho e papagaio — estão ligados no seed (`media.model3d`); nos demais o botão “Ver no meu mundo” continua oculto até o spike ser confirmado em aparelho. ⚠️ Os modelos CC BY exigem uma tela de créditos no app antes de publicar.
 
+Segurança na AR (Política para Famílias do Google Play): ao entrar em realidade aumentada, o Bichu exibe um aviso de segurança pedindo supervisão de um adulto e atenção ao ambiente. A câmera só é solicitada depois de tocar em "Entendi, continuar". O AR usa apenas ARKit/ARCore no próprio aparelho (`xRMode: ['AR']`), sem exigir headsets como Daydream ou Oculus.
+
 Privacidade na AR: só a permissão de câmera é declarada; o plugin `plugins/withChildPrivacy.js` remove as descrições de microfone, fotos e localização que o Viro adiciona por padrão. Nenhuma imagem é salva ou enviada.
 
 ---

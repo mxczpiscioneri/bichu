@@ -113,7 +113,12 @@ Como testar:
 1. Na primeira abertura, toque em "Vamos descobrir!".
 2. Início: toque no Animal do dia ou em qualquer animal para ouvir nome e som.
 3. Aba Brincar: escolha uma brincadeira (tocar ou arrastar).
-4. Realidade aumentada: na tela de um animal, toque em "Ver no meu mundo" (requer aparelho com ARKit). A câmera é usada só para mostrar o animal em 3D; nenhuma imagem é salva ou enviada.
+4. Realidade aumentada: na tela de um animal, toque em "Ver no meu mundo" (requer aparelho com ARKit/ARCore).
+   O app primeiro mostra um aviso de segurança pedindo supervisão de um adulto
+   e atenção ao ambiente. Somente após tocar em "Entendi, continuar" a câmera
+   é solicitada e a experiência de AR é iniciada. A câmera é usada só para
+   mostrar o animal em 3D; nenhuma imagem é salva ou enviada. Não é necessário
+   nenhum headset (Daydream, Oculus etc.).
 5. Área dos pais: engrenagem no canto superior direito, depois mantenha o botão pressionado (gesto de adulto). Links externos (créditos) só existem dentro dessa área protegida.
 
 Política de privacidade: https://bichu-app.vercel.app/privacidade.html
@@ -141,8 +146,8 @@ Política de privacidade: https://bichu-app.vercel.app/privacidade.html
 
 | Plataforma | Permissão | Uso |
 |---|---|---|
-| iOS | Câmera (`NSCameraUsageDescription`) | "O Bichu usa a câmera apenas para mostrar animais no seu ambiente. Nenhuma imagem é salva ou enviada." — pedida só ao abrir o AR |
-| Android | `CAMERA` | só no AR, pedida em tempo de execução; ARCore opcional |
+| iOS | Câmera (`NSCameraUsageDescription`) | "O Bichu usa a câmera apenas para mostrar animais no seu ambiente. Nenhuma imagem é salva ou enviada." — pedida só ao abrir o AR, depois do aviso de segurança |
+| Android | `CAMERA` | só no AR, pedida em tempo de execução depois do aviso de segurança; ARCore opcional |
 | Android | bloqueadas | microfone, localização, armazenamento, mídia, contatos, AD_ID |
 
 ## Antes de enviar para revisão

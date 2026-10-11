@@ -33,11 +33,42 @@ const STATUS_TEXT: Record<ArStatus, (animal: Animal) => string> = {
 
 export default function ArScreen() {
   const { animalId } = useLocalSearchParams<{ animalId: string }>();
+  // Keyed by animal so the notice shows again for every AR session.
+  const [acceptedFor, setAcceptedFor] = useState<string | null>(null);
   const animal = animalId ? getAnimal(animalId) : undefined;
   if (!animal) return <NotFound />;
+  // Google Play Families policy: a safety notice must appear as soon as the AR section opens,
+  // before the camera is requested or the AR view starts.
+  if (acceptedFor !== animal.id) return <ArSafetyNotice onContinue={() => setAcceptedFor(animal.id)} />;
   const viro = loadViro();
   if (!viro || !isArAvailableFor(animal)) return <ArUnavailable animal={animal} />;
   return <ArPreflight animal={animal} viro={viro} />;
+}
+
+/** Shown every time AR opens: adult supervision + awareness of surroundings. */
+function ArSafetyNotice({ onContinue }: { onContinue: () => void }) {
+  return (
+    <SafeAreaView style={styles.unavailable}>
+      <Mascot pose="explore" height={140} />
+      <AppText variant="title" align="center" accessibilityRole="header">
+        Antes de brincar em realidade aumentada
+      </AppText>
+      <View style={styles.safetyCard}>
+        <View style={styles.safetyItem}>
+          <AppText variant="subheading">👨‍👩‍👧 Com um adulto por perto</AppText>
+          <AppText variant="body">Peça para um adulto da família acompanhar você durante toda a brincadeira.</AppText>
+        </View>
+        <View style={styles.safetyItem}>
+          <AppText variant="subheading">👀 Olhe ao seu redor</AppText>
+          <AppText variant="body">
+            Preste atenção nas pessoas, nos móveis, nas escadas e em outros obstáculos enquanto usa a câmera.
+          </AppText>
+        </View>
+      </View>
+      <BigButton label="Entendi, continuar" icon="camera" onPress={onContinue} style={styles.back} />
+      <BigButton label="Voltar" icon="footprints" variant="light" onPress={() => router.back()} style={styles.back} />
+    </SafeAreaView>
+  );
 }
 
 type Preflight = 'checking' | 'ready' | 'unsupported' | 'denied';
@@ -269,4 +300,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.cream,
   },
   back: { alignSelf: 'stretch' },
+  safetyCard: {
+    alignSelf: 'stretch',
+    gap: spacing.md,
+    padding: spacing.lg,
+    borderRadius: radius.lg,
+    backgroundColor: colors.white,
+  },
+  safetyItem: { gap: spacing.xs },
 });
