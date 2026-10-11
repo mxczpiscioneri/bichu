@@ -12,7 +12,7 @@ Status em 28/09/2026: ✅ preenchido no console · ⬜ falta fazer (manual).
 | Apple ID do app | 6817090414 (SKU `bichu`, Team `GD2JNB5JH9`) |
 | Play Console | conta Matheus Piscioneri · app 4975937660493413133 |
 | Idioma principal | Português (Brasil) |
-| Versão | 1.0.0 (iOS build 3 · Android versionCode 5) |
+| Versão | 1.0.1 — aviso de segurança no AR (build numbers incrementados pelo EAS); anterior: 1.0.0 (iOS build 3 · Android versionCode 5) |
 | Preço | Grátis, sem compras no app |
 | Publicador / copyright | 2026 TechHands |
 
