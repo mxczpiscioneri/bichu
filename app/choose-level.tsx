@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
+import { track } from '@/analytics';
 import { Mascot } from '@/components/brand/Mascot';
 import { AppText } from '@/components/ui/AppText';
 import { LineIcon } from '@/components/ui/LineIcon';
@@ -33,6 +34,7 @@ export default function ChooseLevelScreen() {
   const { level: current, setLevel, onboarded, completeOnboarding } = useSettingsStore();
 
   const choose = (level: Level) => {
+    track('mode_selected', { mode: level });
     setLevel(level);
     if (!onboarded) {
       completeOnboarding();

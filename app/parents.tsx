@@ -2,6 +2,7 @@ import { router } from 'expo-router';
 import { useState } from 'react';
 import { Linking, StyleSheet, View } from 'react-native';
 
+import { track } from '@/analytics';
 import { ParentGate } from '@/components/parents/ParentGate';
 import { SettingsRow } from '@/components/parents/SettingsRow';
 import { AppText } from '@/components/ui/AppText';
@@ -23,7 +24,7 @@ const LEVEL_NAMES = { explorer: 'Explorador', adventurer: 'Aventureiro' } as con
 export default function ParentsScreen() {
   const [unlocked, setUnlocked] = useState(false);
   const [confirmReset, setConfirmReset] = useState(false);
-  const { level, soundEnabled, setSoundEnabled } = useSettingsStore();
+  const { level, soundEnabled, setSoundEnabled, analyticsEnabled, setAnalytics } = useSettingsStore();
   const { byAnimal, reset } = useProgressStore();
 
   return (
@@ -45,9 +46,25 @@ export default function ParentsScreen() {
               icon="mascot"
               label="Modo padrão"
               value={LEVEL_NAMES[level]}
-              onPress={() => router.push('/choose-level')}
+              onPress={() => {
+                track('button_click', { button: 'parents_choose_mode' });
+                router.push('/choose-level');
+              }}
             />
             <SettingsRow icon="speaker" label="Som" toggle={{ value: soundEnabled, onChange: setSoundEnabled }} />
+            <SettingsRow
+              icon="lock"
+              label="Estatísticas anônimas de uso"
+              value={analyticsEnabled ? 'Ligado' : 'Desligado'}
+              toggle={{ value: analyticsEnabled, onChange: setAnalytics }}
+              details={
+                <AppText variant="caption">
+                  Contamos de forma anônima (Google Analytics) quantas pessoas usam o Bichu e quais brincadeiras são
+                  iniciadas e concluídas, para melhorar o app. Sem nome, conta, localização precisa, ID de publicidade
+                  ou rastreamento. Ao desligar, o aparelho para de enviar essas contagens.
+                </AppText>
+              }
+            />
             <SettingsRow
               icon="cube"
               label="AR experimental"
@@ -76,22 +93,34 @@ export default function ParentsScreen() {
               details={
                 <>
                   <AppText variant="caption">
-                    Sem conta, sem anúncios e sem rastreamento. O progresso fica salvo só neste aparelho e nenhum dado é
-                    enviado para servidores. A câmera só é usada na realidade aumentada, para mostrar o animal no
-                    ambiente; nenhuma imagem é salva ou enviada. O app não usa microfone, localização, contatos nem
-                    fotos.
+                    Sem login, chat, anúncios ou rastreamento. O progresso fica salvo só neste aparelho. Contamos de
+                    forma anônima (Google Analytics) quantas pessoas usam o app e as brincadeiras jogadas, sem nome,
+                    conta, localização precisa, ID de publicidade ou rastreamento; dá para desligar em
+                    &quot;Estatísticas anônimas de uso&quot;. A câmera só é usada na realidade aumentada, para mostrar o
+                    animal no ambiente; nenhuma imagem é salva ou enviada. O app não usa microfone, localização,
+                    contatos nem fotos.
                   </AppText>
                   <AppText
                     variant="caption"
                     color={colors.forest}
                     accessibilityRole="link"
-                    onPress={() => void Linking.openURL(PRIVACY_URL)}>
+                    onPress={() => {
+                      track('button_click', { button: 'parents_privacy_policy' });
+                      void Linking.openURL(PRIVACY_URL);
+                    }}>
                     Ler a política de privacidade completa
                   </AppText>
                 </>
               }
             />
-            <SettingsRow icon="heart" label="Créditos" onPress={() => router.push('/credits')} />
+            <SettingsRow
+              icon="heart"
+              label="Créditos"
+              onPress={() => {
+                track('button_click', { button: 'parents_credits' });
+                router.push('/credits');
+              }}
+            />
           </Card>
 
           <Card style={styles.section}>
@@ -106,6 +135,7 @@ export default function ParentsScreen() {
                 </PressableScale>
                 <PressableScale
                   onPress={() => {
+                    track('button_click', { button: 'parents_reset_progress' });
                     reset();
                     setConfirmReset(false);
                   }}

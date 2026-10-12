@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
+import { track } from '@/analytics';
 import type { ChallengeTemplate } from '@/challenges/types';
 import { getCollection } from '@/content/collections';
 import { useLayout } from '@/hooks/useLayout';
@@ -33,7 +34,10 @@ export function PlayShortcuts({ templates }: { templates: readonly ChallengeTemp
         return (
           <PressableScale
             key={template.id}
-            onPress={() => router.push({ pathname: '/challenge/[type]', params: { type: template.id } })}
+            onPress={() => {
+              track('button_click', { button: 'home_game_shortcut' });
+              router.push({ pathname: '/challenge/[type]', params: { type: template.id } });
+            }}
             accessibilityLabel={template.title}
             accessibilityHint={template.subtitle}
             style={[styles.game, { width, backgroundColor: tone.background }]}
@@ -69,7 +73,10 @@ export function PlaceShortcuts() {
         return (
           <PressableScale
             key={collection}
-            onPress={() => router.push({ pathname: '/explore', params: { filter: collection } })}
+            onPress={() => {
+              track('button_click', { button: 'home_place_shortcut' });
+              router.push({ pathname: '/explore', params: { filter: collection } });
+            }}
             accessibilityLabel={`Ver animais: ${label}`}
             style={[styles.place, { width }]}
             pressedScale={0.96}>

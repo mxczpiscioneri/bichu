@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
+import { track } from '@/analytics';
 import { colors, radius, shadows, spacing } from '@/theme';
 
 import { Mascot } from '../brand/Mascot';
@@ -45,7 +46,10 @@ export function CollectionProgressCard({
   if (!linkToCollection) return <View style={styles.card}>{content}</View>;
   return (
     <PressableScale
-      onPress={() => router.navigate('/collection')}
+      onPress={() => {
+        track('button_click', { button: 'home_collection' });
+        router.navigate('/collection');
+      }}
       accessibilityLabel={`${title}: ${discovered} de ${total} animais descobertos`}
       style={styles.card}
       pressedScale={0.98}>

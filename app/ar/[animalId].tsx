@@ -1,5 +1,5 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -10,6 +10,7 @@ import { NotFound } from '@/components/feedback/NotFound';
 import { AppText } from '@/components/ui/AppText';
 import { BigButton } from '@/components/ui/BigButton';
 import { RoundButton } from '@/components/ui/RoundButton';
+import { track } from '@/analytics';
 import { ArExperience } from '@/ar/ArExperience';
 import { useArStore, type ArStatus } from '@/ar/arStore';
 import { isArAvailableFor } from '@/ar/availability';
@@ -65,8 +66,25 @@ function ArSafetyNotice({ onContinue }: { onContinue: () => void }) {
           </AppText>
         </View>
       </View>
-      <BigButton label="Entendi, continuar" icon="camera" onPress={onContinue} style={styles.back} />
-      <BigButton label="Voltar" icon="footprints" variant="light" onPress={() => router.back()} style={styles.back} />
+      <BigButton
+        label="Entendi, continuar"
+        icon="camera"
+        onPress={() => {
+          track('button_click', { button: 'ar_safety_continue' });
+          onContinue();
+        }}
+        style={styles.back}
+      />
+      <BigButton
+        label="Voltar"
+        icon="footprints"
+        variant="light"
+        onPress={() => {
+          track('button_click', { button: 'ar_safety_back' });
+          router.back();
+        }}
+        style={styles.back}
+      />
     </SafeAreaView>
   );
 }
@@ -132,6 +150,18 @@ function ArScreenContent({ animal, viro }: { animal: Animal; viro: NonNullable<R
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
+    track('ar_start', { animal_id: animal.id });
+  }, [animal.id]);
+  // Once per AR session: the child managed to place the animal.
+  const placed = status === 'placed';
+  const reportedPlaced = useRef(false);
+  useEffect(() => {
+    if (!placed || reportedPlaced.current) return;
+    reportedPlaced.current = true;
+    track('ar_animal_placed', { animal_id: animal.id });
+  }, [placed, animal.id]);
+
+  useEffect(() => {
     setStatus('starting');
     return () => {
       setStatus('starting');
@@ -184,7 +214,15 @@ function ArScreenContent({ animal, viro }: { animal: Animal; viro: NonNullable<R
                   onPress={() => void AudioService.playAnimalSound(animal.id)}
                 />
               </View>
-              <BigButton label="Desafio" icon="puzzle" variant="warm" onPress={() => setPlaying(true)} />
+              <BigButton
+                label="Desafio"
+                icon="puzzle"
+                variant="warm"
+                onPress={() => {
+                  track('button_click', { button: 'ar_challenge' });
+                  setPlaying(true);
+                }}
+              />
             </View>
           )
         ) : null}
@@ -196,7 +234,7 @@ function ArScreenContent({ animal, viro }: { animal: Animal; viro: NonNullable<R
 /** Same Challenge Engine and state machine as the 2D screen, rendered as an overlay. */
 function ArChallenge({ animal, onDone }: { animal: Animal; onDone: () => void }) {
   const level = useLevel();
-  const session = useChallengeSession({ kind: 'animal', animal }, level);
+  const session = useChallengeSession({ kind: 'animal', animal }, level, 'ar');
   const { current, solved } = session;
 
   if (!current || session.finished) {
@@ -248,6 +286,9 @@ function ArUnavailable({
   onRetry?: () => void;
 }) {
   const copy = UNAVAILABLE_COPY[reason];
+  useEffect(() => {
+    track('ar_unavailable', { reason });
+  }, [reason]);
   return (
     <SafeAreaView style={styles.unavailable}>
       <Mascot pose="explore" height={180} />

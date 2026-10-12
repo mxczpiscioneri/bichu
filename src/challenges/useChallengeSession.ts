@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import { track } from '@/analytics';
+import type { AnalyticsEvents, Surface } from '@/analytics/events';
 import { AudioService } from '@/audio/AudioService';
 import { animals } from '@/content/animals';
 import type { Animal, Level } from '@/domain/animal';
@@ -28,11 +30,20 @@ function buildRounds(source: SessionSource, level: Level): Challenge[] {
     : buildTypeSession({ templateId: source.templateId, level, animals, progress, rng });
 }
 
+type SessionParams = AnalyticsEvents['level_retry'];
+
+/** Anonymous statistics parameters: game id, mode and surface (plus the animal id for animal sessions). */
+function sessionParams(source: SessionSource, level: Level, surface: Surface): SessionParams {
+  return source.kind === 'animal'
+    ? { level_id: 'animal', mode: level, surface, animal_id: source.animal.id }
+    : { level_id: source.templateId, mode: level, surface };
+}
+
 /**
  * Challenge-state machine shared by every renderer (2D screen today, AR
  * overlay later): rounds, attempts, stars and discoveries.
  */
-export function useChallengeSession(source: SessionSource, level: Level) {
+export function useChallengeSession(source: SessionSource, level: Level, surface: Surface = 'screen') {
   const [rounds, setRounds] = useState<Challenge[]>(() => buildRounds(source, level));
   const [index, setIndex] = useState(0);
   const [tried, setTried] = useState<string[]>([]);
@@ -46,6 +57,42 @@ export function useChallengeSession(source: SessionSource, level: Level) {
 
   const current = rounds[index] as Challenge | undefined;
   const finished = rounds.length > 0 && index >= rounds.length;
+
+  // Anonymous statistics: one start per session (also on "Brincar de novo"), then one complete or one quit.
+  const stats = useRef({
+    params: sessionParams(source, level, surface),
+    mistakes: 0,
+    round: 0,
+    session: { done: false },
+  });
+  useEffect(() => {
+    stats.current.round = index;
+  }, [index]);
+  useEffect(() => {
+    if (rounds.length === 0) return;
+    // Same mutable object for the whole hook: the cleanup reads the round reached when leaving.
+    const live = stats.current;
+    const session = { done: false };
+    live.session = session;
+    live.mistakes = 0;
+    track('level_start', { ...live.params, rounds: rounds.length });
+    return () => {
+      if (!session.done) track('level_quit', { ...live.params, round: live.round + 1 });
+    };
+  }, [rounds]);
+  useEffect(() => {
+    if (!finished) return;
+    stats.current.session.done = true;
+    track('level_complete', {
+      ...stats.current.params,
+      rounds: rounds.length,
+      stars: starsEarned,
+      mistakes: stats.current.mistakes,
+      discovered: discovered.length,
+    });
+    // Only when the session ends; rounds, stars and discoveries are final by then.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [finished]);
 
   const playPrompt = useCallback(() => {
     if (!current) return;
@@ -66,6 +113,7 @@ export function useChallengeSession(source: SessionSource, level: Level) {
     (option: ChallengeOption): boolean => {
       if (!current || solved) return false;
       if (!isCorrect(current, option.id)) {
+        stats.current.mistakes += 1;
         setTried((list) => (list.includes(option.id) ? list : [...list, option.id]));
         setLastWrongAt(Date.now());
         return false;
@@ -91,6 +139,7 @@ export function useChallengeSession(source: SessionSource, level: Level) {
   }, []);
 
   const restart = useCallback(() => {
+    track('level_retry', stats.current.params);
     setRounds(buildRounds(sourceRef.current, level));
     setIndex(0);
     setTried([]);

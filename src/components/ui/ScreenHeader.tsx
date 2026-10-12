@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
+import { track } from '@/analytics';
 import { spacing } from '@/theme';
 
 import { AppText } from './AppText';
@@ -25,7 +26,10 @@ export function ScreenHeader({ title, subtitle }: { title: string; subtitle?: st
 export function SettingsButton() {
   return (
     <PressableScale
-      onPress={() => router.push('/parents')}
+      onPress={() => {
+        track('button_click', { button: 'open_parents' });
+        router.push('/parents');
+      }}
       accessibilityLabel="Área dos pais"
       hitSlop={10}
       style={styles.gear}>

@@ -12,6 +12,16 @@ const AR_ENABLED = process.env.BICHU_AR === '1';
 /** EAS project `@mxczpiscioneri/bichu` (builds, submit and OTA updates). */
 const EAS_PROJECT_ID = 'da0bf240-a0b5-4511-9e44-b5ce1f66671a';
 
+/** One GA4 data type for the iOS privacy manifest: not linked to identity, no tracking, analytics only. */
+function analyticsDataType(type: string) {
+  return {
+    NSPrivacyCollectedDataType: type,
+    NSPrivacyCollectedDataTypeLinked: false,
+    NSPrivacyCollectedDataTypeTracking: false,
+    NSPrivacyCollectedDataTypePurposes: ['NSPrivacyCollectedDataTypePurposeAnalytics'],
+  };
+}
+
 const viroPlugins: ExpoConfig['plugins'] = AR_ENABLED
   ? [
       [
@@ -47,9 +57,38 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     appleTeamId: 'GD2JNB5JH9',
     supportsTablet: true,
     config: { usesNonExemptEncryption: false },
+    // Firebase client config (public, versioned on purpose). See docs/ANALYTICS.md.
+    googleServicesFile: './GoogleService-Info.plist',
+    // Merged by Expo with the template manifest and the AR purpose strings (which live in
+    // infoPlist, not here). Collected types = what GA4 sends on its own; never linked, never tracking.
+    privacyManifests: {
+      NSPrivacyTracking: false,
+      NSPrivacyTrackingDomains: [],
+      NSPrivacyCollectedDataTypes: [
+        analyticsDataType('NSPrivacyCollectedDataTypeProductInteraction'),
+        analyticsDataType('NSPrivacyCollectedDataTypeDeviceID'),
+        analyticsDataType('NSPrivacyCollectedDataTypeCoarseLocation'),
+      ],
+      // Same entries the Expo template already declares; repeated so the merge is explicit.
+      NSPrivacyAccessedAPITypes: [
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryUserDefaults',
+          NSPrivacyAccessedAPITypeReasons: ['CA92.1'],
+        },
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryFileTimestamp',
+          NSPrivacyAccessedAPITypeReasons: ['C617.1'],
+        },
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategorySystemBootTime',
+          NSPrivacyAccessedAPITypeReasons: ['35F9.1'],
+        },
+      ],
+    },
   },
   android: {
     package: 'br.com.techhands.bichu',
+    googleServicesFile: './google-services.json',
     adaptiveIcon: {
       backgroundColor: theme.colors.leaf,
       foregroundImage: './assets/brand/android-icon-foreground.png',
@@ -66,7 +105,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       'android.permission.READ_MEDIA_IMAGES',
       'android.permission.READ_MEDIA_VIDEO',
       'android.permission.READ_CONTACTS',
+      // Firebase Analytics (play-services-measurement) would merge these in: no advertising ID,
+      // no Privacy Sandbox (Google Play Families).
       'com.google.android.gms.permission.AD_ID',
+      'android.permission.ACCESS_ADSERVICES_AD_ID',
+      'android.permission.ACCESS_ADSERVICES_ATTRIBUTION',
+      'android.permission.ACCESS_ADSERVICES_TOPICS',
     ],
     predictiveBackGestureEnabled: false,
   },
@@ -98,6 +142,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     ],
     'expo-font',
     ...viroPlugins,
+    // Anonymous usage statistics (GA4). See docs/ANALYTICS.md and firebase.json.
+    '@react-native-firebase/app',
+    // FirebaseAnalyticsCore only: no AdSupport/IDFA, no IdentitySupport, no on-device conversion.
+    ['@react-native-firebase/analytics', { ios: { withoutAdIdSupport: true } }],
+    // RNFB 26 resolves the Firebase Apple SDK through Swift Package Manager, which needs dynamic frameworks.
+    ['expo-build-properties', { ios: { useFrameworks: 'dynamic' } }],
   ],
   experiments: {
     typedRoutes: true,

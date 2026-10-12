@@ -27,10 +27,22 @@ export function SettingsRow({ icon, label, value, onPress, toggle, details }: Ro
   const body = (
     <View style={styles.row}>
       <Icon name={icon} size={28} />
-      <AppText variant="bodyStrong" style={styles.label} numberOfLines={1} adjustsFontSizeToFit>
-        {label}
-      </AppText>
-      {value ? <AppText variant="caption">{value}</AppText> : null}
+      {toggle ? (
+        // Switch rows: the label may wrap and the value ("Ligado") sits under it, so long labels stay readable.
+        <View style={styles.label}>
+          <AppText variant="bodyStrong" numberOfLines={2}>
+            {label}
+          </AppText>
+          {value ? <AppText variant="caption">{value}</AppText> : null}
+        </View>
+      ) : (
+        <>
+          <AppText variant="bodyStrong" style={styles.label} numberOfLines={1} adjustsFontSizeToFit>
+            {label}
+          </AppText>
+          {value ? <AppText variant="caption">{value}</AppText> : null}
+        </>
+      )}
       {toggle ? (
         // Fixed-height slot: the iOS 26 switch draws taller than Yoga measures it.
         <View style={styles.switchSlot}>
@@ -40,6 +52,8 @@ export function SettingsRow({ icon, label, value, onPress, toggle, details }: Ro
             trackColor={{ true: colors.leaf, false: colors.line }}
             thumbColor={colors.white}
             accessibilityLabel={label}
+            accessibilityRole="switch"
+            accessibilityState={{ checked: toggle.value }}
           />
         </View>
       ) : null}

@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
+import { track } from '@/analytics';
 import type { Animal } from '@/domain/animal';
 import { useLayout } from '@/hooks/useLayout';
 import { colors, fonts, radius, shadows, spacing } from '@/theme';
@@ -12,7 +13,10 @@ import { Icon } from '../ui/Icon';
 import { PressableScale } from '../ui/PressableScale';
 
 export function AnimalOfTheDayCard({ animal }: { animal: Animal }) {
-  const open = () => router.push({ pathname: '/animal/[id]', params: { id: animal.id } });
+  const open = () => {
+    track('button_click', { button: 'home_animal_of_day' });
+    router.push({ pathname: '/animal/[id]', params: { id: animal.id } });
+  };
   const { isTablet } = useLayout();
   return (
     <PressableScale

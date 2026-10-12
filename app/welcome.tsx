@@ -3,6 +3,7 @@ import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { track } from '@/analytics';
 import { AnimalGroup } from '@/components/brand/AnimalGroup';
 import { Logo } from '@/components/brand/Logo';
 import { AppText } from '@/components/ui/AppText';
@@ -17,6 +18,7 @@ export default function WelcomeScreen() {
   const completeOnboarding = useSettingsStore((state) => state.completeOnboarding);
   // Children start in Explorer mode; the level is a parents' setting (Área dos pais → Modo padrão).
   const start = () => {
+    track('button_click', { button: 'welcome_start' });
     completeOnboarding();
     router.replace('/');
   };

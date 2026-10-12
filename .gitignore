@@ -14,7 +14,7 @@ expo-env.d.ts
 android/.gradle/
 ios/Pods/
 
-# Secrets & signing — never commit (legacy keystore/Firebase included)
+# Secrets & signing — never commit (legacy keystore included)
 *.jks
 *.keystore
 *.p8
@@ -22,8 +22,9 @@ ios/Pods/
 *.key
 *.pem
 *.mobileprovision
-google-services.json
-GoogleService-Info.plist
+# The root google-services.json and GoogleService-Info.plist ARE versioned: they are the public
+# Firebase client config of the bichu-techhands project (no secret) and prebuild/EAS needs them.
+# See docs/ANALYTICS.md. Service accounts (credentials/) stay out.
 .env
 .env.*
 

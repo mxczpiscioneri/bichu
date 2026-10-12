@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "289363210595",
+    "project_id": "bichu-techhands",
+    "storage_bucket": "bichu-techhands.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289363210595:android:afeb0550338d1f93002356",
+        "android_client_info": {
+          "package_name": "br.com.techhands.bichu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu3Wex8ar0KVvFDHi7l4NR9QTK9nWRdHU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

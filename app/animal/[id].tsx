@@ -20,6 +20,7 @@ import { BigButton } from '@/components/ui/BigButton';
 import { HabitatScene, sceneForAnimal } from '@/components/ui/HabitatScene';
 import { PressableScale } from '@/components/ui/PressableScale';
 import { RoundButton } from '@/components/ui/RoundButton';
+import { track } from '@/analytics';
 import { isArAvailableFor } from '@/ar/availability';
 import { AudioService, clipKeys } from '@/audio/AudioService';
 import { animals, getAnimal } from '@/content/animals';
@@ -60,6 +61,7 @@ function AnimalDetail({ animal }: { animal: Animal }) {
 
   useEffect(() => {
     record(animal.id, { type: 'opened' });
+    track('animal_view', { animal_id: animal.id });
   }, [animal.id, record]);
 
   // Explorer mode is audio-first: say the name, then play the real sound.
@@ -151,16 +153,20 @@ function AnimalDetail({ animal }: { animal: Animal }) {
                   label="Brincar"
                   icon="puzzle"
                   color={palette.strong}
-                  onPress={() =>
-                    router.push({ pathname: '/challenge/[type]', params: { type: 'animal', animalId: animal.id } })
-                  }
+                  onPress={() => {
+                    track('button_click', { button: 'animal_play' });
+                    router.push({ pathname: '/challenge/[type]', params: { type: 'animal', animalId: animal.id } });
+                  }}
                 />
                 {isArAvailableFor(animal) ? (
                   <BigButton
                     label="Ver no meu mundo"
                     icon="camera"
                     variant="light"
-                    onPress={() => router.push({ pathname: '/ar/[animalId]', params: { animalId: animal.id } })}
+                    onPress={() => {
+                      track('button_click', { button: 'animal_ar' });
+                      router.push({ pathname: '/ar/[animalId]', params: { animalId: animal.id } });
+                    }}
                   />
                 ) : null}
               </View>

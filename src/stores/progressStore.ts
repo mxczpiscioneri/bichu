@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+import { track } from '@/analytics';
 import {
   applyProgressEvent,
   emptyProgress,
@@ -26,6 +27,10 @@ export const useProgressStore = create<ProgressState>()(
         const current = get().byAnimal[animalId] ?? emptyProgress(animalId);
         const result = applyProgressEvent(current, event);
         set((state) => ({ byAnimal: { ...state.byAnimal, [animalId]: result.progress } }));
+        if (result.justDiscovered) {
+          const total = Object.values(get().byAnimal).filter((p) => p.discoveredAt).length;
+          track('animal_discovered', { animal_id: animalId, discovered_total: total });
+        }
         return result;
       },
       reset: () => set({ byAnimal: {} }),

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { track } from '@/analytics';
 import { AudioButton } from '@/components/animal/AudioButton';
 import { MascotBubble } from '@/components/brand/MascotBubble';
 import { DragBoard } from '@/components/challenge/DragBoard';
@@ -71,6 +72,18 @@ function ChallengeFlow({ source }: { source: SessionSource }) {
   const celebrating = latestDiscovery ? (getAnimal(latestDiscovery) ?? null) : null;
 
   const close = () => (router.canGoBack() ? router.back() : router.replace('/'));
+  const closeButton = () => {
+    track('button_click', { button: 'challenge_close' });
+    close();
+  };
+  const again = () => {
+    track('button_click', { button: 'result_again' });
+    session.restart();
+  };
+  const done = () => {
+    track('button_click', { button: 'result_back' });
+    close();
+  };
   const { isTablet, padding } = useLayout();
 
   if (rounds.length === 0) {
@@ -87,7 +100,7 @@ function ChallengeFlow({ source }: { source: SessionSource }) {
     <SafeAreaView style={[styles.root, { backgroundColor: background }]} edges={['top', 'bottom']}>
       <View style={styles.header}>
         <RoundProgress total={rounds.length} current={index} />
-        <RoundButton icon="close" size={48} accessibilityLabel="Sair da brincadeira" onPress={close} />
+        <RoundButton icon="close" size={48} accessibilityLabel="Sair da brincadeira" onPress={closeButton} />
       </View>
 
       {finished ? (
@@ -95,8 +108,8 @@ function ChallengeFlow({ source }: { source: SessionSource }) {
           rounds={rounds.length}
           starsEarned={session.starsEarned}
           discovered={session.discovered}
-          onAgain={session.restart}
-          onDone={close}
+          onAgain={again}
+          onDone={done}
         />
       ) : current ? (
         <View style={[styles.body, isTablet && { paddingHorizontal: padding, gap: spacing.lg }]}>
