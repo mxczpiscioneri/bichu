@@ -14,3 +14,8 @@ a { color: var(--forest); font-weight: 600; }
 .meta { color: var(--soft); font-size: 0.9rem; }
 .back { text-decoration: none; }
 .links { margin-top: 2.5em; }
+table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid #E4DCC8; }
+th { color: var(--forest); }
+code { font-size: 0.9em; background: var(--sun); border-radius: 4px; padding: 0 4px; overflow-wrap: anywhere; }
+@media (max-width: 520px) { table, thead, tbody, tr, th, td { display: block; } thead { display: none; } td { border-bottom: none; padding: 4px 0; } tr { border-bottom: 1px solid #E4DCC8; padding: 8px 0; } }

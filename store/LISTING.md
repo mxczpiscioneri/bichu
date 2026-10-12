@@ -2,6 +2,9 @@
 
 Fonte da verdade dos textos e respostas usados na App Store e no Google Play.
 Status em 28/09/2026: ✅ preenchido no console · ⬜ falta fazer (manual).
+Atualizado em 12/10/2026 (branch `feat/google-analytics`): estatísticas anônimas (GA4/Firebase). As respostas de App
+Privacy e Segurança dos dados abaixo **mudaram** e precisam ser atualizadas nos consoles antes do primeiro build com
+Firebase (detalhes em `docs/ANALYTICS.md`).
 
 ## Identidade
 
@@ -22,6 +25,7 @@ Status em 28/09/2026: ✅ preenchido no console · ⬜ falta fazer (manual).
 |---|---|
 | Site / suporte / marketing | https://bichu-app.vercel.app |
 | Política de privacidade | https://bichu-app.vercel.app/privacidade.html |
+| Termos de uso | https://bichu-app.vercel.app/termos.html |
 | Créditos (atribuições CC BY) | https://bichu-app.vercel.app/creditos.html |
 | E-mail público de contato | contato@techhands.com.br |
 
@@ -33,12 +37,12 @@ Status em 28/09/2026: ✅ preenchido no console · ⬜ falta fazer (manual).
 `Descubra os animais brincando: sons reais, nomes, desafios e realidade aumentada`
 
 **Texto promocional (Apple, máx. 170)** —
-`Descubra os animais brincando: sons reais, nomes em sílabas, desafios e realidade aumentada. Sem anúncios e sem coleta de dados.`
+`Descubra os animais brincando: sons reais, nomes em sílabas, desafios e realidade aumentada. Sem anúncios e sem rastreamento.`
 
 **Palavras-chave (Apple, máx. 100)** —
 `animais,sons,bichos,infantil,criança,educativo,fazenda,zoológico,aprender,sílabas,bebê,jogo`
 
-**Descrição completa (Apple e Google, 1.297 caracteres)**
+**Descrição completa (Apple e Google, ~1.350 caracteres)**
 
 ```text
 Bichu é um jeito divertido de a criança descobrir o mundo animal: ver, ouvir, brincar e colecionar.
@@ -70,7 +74,8 @@ FEITO PARA CRIANÇAS DE 2 A 8 ANOS
 
 SEGURO PARA A FAMÍLIA
 • Sem anúncios, sem compras e sem cadastro
-• Não coleta dados; o progresso fica só no aparelho
+• Sem dados pessoais: o progresso fica só no aparelho
+• Só estatísticas anônimas de uso (que os pais podem desligar)
 • Funciona offline
 • Área dos pais protegida para ajustes
 ```
@@ -96,7 +101,7 @@ Ordem das telas: 01 Início · 02 Animal · 03 Desafio · 04 Acerto · 05 Explor
 | Classificação etária | 4+ (Livre no Brasil) — tudo "Nenhum/Não" | ✅ |
 | Kids | Made for Kids · 5 anos ou menos | ✅ |
 | Content Rights | Sim, usa conteúdo de terceiros e tem os direitos | ✅ |
-| App Privacy | Data Not Collected (publicado) | ✅ |
+| App Privacy | **Mudou**: Yes, coleta (veja "App Privacy" abaixo). Antes: Data Not Collected | ⬜ atualizar antes do build com Firebase |
 | Preço / disponibilidade | Grátis · 175 países | ✅ |
 | Sign-in required | Não | ✅ |
 | Contato da revisão | Matheus Piscioneri · +55 16 99748-8817 · mxczpiscioneri@gmail.com | ✅ |
@@ -107,7 +112,9 @@ Ordem das telas: 01 Início · 02 Animal · 03 Desafio · 04 Acerto · 05 Explor
 **Notas para o revisor**
 
 ```text
-Bichu é um app infantil (2 a 8 anos), sem login, sem anúncios, sem compras e sem coleta de dados. Todo o conteúdo funciona offline.
+Bichu é um app infantil (2 a 8 anos), sem login, sem anúncios, sem compras e sem dados pessoais. Todo o conteúdo funciona offline.
+
+Analytics: usamos Firebase Analytics só para contagens anônimas e agregadas (brincadeiras iniciadas/concluídas, animais descobertos, toques em botões). O app é compilado SEM AdSupport/IDFA (FirebaseAnalyticsCore, sem IdentitySupport), com a coleta de IDFV desligada, consentimento de anúncios negado, sem ID de usuário e sem dados pessoais. Os pais podem desligar na Área dos pais → "Estatísticas anônimas de uso".
 
 Como testar:
 1. Na primeira abertura, toque em "Vamos descobrir!".
@@ -136,11 +143,37 @@ Política de privacidade: https://bichu-app.vercel.app/privacidade.html
 | ID de publicidade | Não usa | ✅ |
 | Classificação (IARC) | "Outros apps", educativo · Livre (ClassInd), Livre (ESRB), PEGI 3 | ✅ |
 | Público-alvo | Menores de 5 e 6–8 · Feito para Família · Aprovado por Professores (inscrito) | ✅ |
-| Segurança dos dados | Não coleta nem compartilha · selo Política para famílias | ✅ |
+| Segurança dos dados | **Mudou**: coleta, não compartilha (veja "Segurança dos dados" abaixo) · selo Política para famílias | ⬜ atualizar antes do build com Firebase |
 | Governamental / financeiro / saúde | Não / nenhum / nenhum | ✅ |
 | Detalhes do app | textos salvos como rascunho | ⬜ imagens |
 | Versão | `.aab` 1.0.0 (5) em Teste interno | ⬜ primeiro upload manual |
 | Produção | promover do Teste interno | ⬜ |
+
+### App Privacy (App Store Connect) — respostas novas
+
+"Do you or your third-party partners collect data from this app?" → **Yes**.
+
+| Tipo | Ligado à identidade | Rastreamento | Finalidade |
+|---|---|---|---|
+| Usage Data → Product Interaction | Não | Não | Analytics |
+| Identifiers → Device ID (ID aleatório da instalação do Firebase, não o IDFA) | Não | Não | Analytics |
+| Location → Coarse Location (país/região deduzidos do IP) | Não | Não | Analytics |
+
+Todo o resto: **não coletado** (Contact Info, Health, Financial, Precise Location, Sensitive Info, Contacts, User
+Content, Browsing/Search History, User ID, Purchases, Diagnostics — não há Crashlytics —, Other).
+
+### Segurança dos dados (Play Console) — respostas novas
+
+- O app coleta ou compartilha dados? **Sim**. Criptografados em trânsito? **Sim**.
+- Os usuários podem pedir a exclusão? Não há conta. Explicação: "Não há conta nem dado pessoal. Os pais podem desligar
+  as estatísticas na Área dos pais; ao desinstalar, o identificador da instalação é apagado e o Google apaga o resto
+  em até 2 meses."
+- Tipos (todos: coletado, **não compartilhado**, **não** processado de forma efêmera, **opcional** — interruptor dos
+  pais —, finalidade **Análise**):
+  - Atividade no app → **Interações com o app**
+  - Dispositivo ou outros IDs → **Dispositivo ou outros IDs** (ID da instalação do Firebase)
+  - Local → **Local aproximado** (país/região pelo IP)
+- ID de publicidade: **não usa** (permissão `AD_ID` removida).
 
 ## Permissões
 
@@ -148,7 +181,8 @@ Política de privacidade: https://bichu-app.vercel.app/privacidade.html
 |---|---|---|
 | iOS | Câmera (`NSCameraUsageDescription`) | "O Bichu usa a câmera apenas para mostrar animais no seu ambiente. Nenhuma imagem é salva ou enviada." — pedida só ao abrir o AR, depois do aviso de segurança |
 | Android | `CAMERA` | só no AR, pedida em tempo de execução depois do aviso de segurança; ARCore opcional |
-| Android | bloqueadas | microfone, localização, armazenamento, mídia, contatos, AD_ID |
+| Android | bloqueadas | microfone, localização, armazenamento, mídia, contatos, AD_ID, ACCESS_ADSERVICES_AD_ID/ATTRIBUTION/TOPICS |
+| Android | `INTERNET` | estatísticas anônimas (Google Analytics) e atualizações do app |
 
 ## Antes de enviar para revisão
 

@@ -62,7 +62,7 @@ npx eas-cli@latest build --profile production --platform all
 npx eas-cli@latest update --channel preview --message "…"
 ```
 
-⚠️ **Privacidade:** updates OTA (`expo-updates`, `runtimeVersion` = versão do app) consultam `u.expo.dev` ao abrir o app — a única chamada de rede do Bichu. A requisição leva plataforma, versão/canal e um `EAS-Client-ID` (UUID aleatório e persistente por instalação, gerado pelo `expo-updates`); nenhum dado da criança. Sem internet o app funciona normalmente com o bundle embutido. Avaliar esse identificador na política de privacidade antes de publicar.
+⚠️ **Privacidade:** updates OTA (`expo-updates`, `runtimeVersion` = versão do app) consultam `u.expo.dev` ao abrir o app (a outra chamada de rede são as estatísticas anônimas do Google Analytics, desligáveis pelos pais; veja `docs/ANALYTICS.md`). A requisição leva plataforma, versão/canal e um `EAS-Client-ID` (UUID aleatório e persistente por instalação, gerado pelo `expo-updates`); nenhum dado da criança. Sem internet o app funciona normalmente com o bundle embutido. Avaliar esse identificador na política de privacidade antes de publicar.
 
 ### Realidade aumentada (experimental)
 
@@ -228,7 +228,7 @@ A documentação do handoff é a fonte primária. Pequenas inconsistências enco
 | PRODUCT sugere “Ver em AR” como 4º destino da home | Brief do MVP pede AR contextual: CTA só na tela do animal, quando há modelo e build com AR. |
 | Onde escolher Explorador/Aventureiro sem expor idade à criança | Área dos adultos (`/parents`, prevista no TECHNICAL) com parent gate de “segurar 2,5 s”. |
 | `expo-audio` adiciona microfone e background playback por padrão | Desligados no `app.config.ts`; permissões sensíveis bloqueadas no Android. |
-| Interface de analytics (TECHNICAL §18) | Não implementada: o MVP não coleta nada. Fica para quando houver um provedor compatível com apps infantis. |
+| Interface de analytics (TECHNICAL §18) | `src/analytics/` (`track`, `trackScreen`, `setAnalyticsEnabled`): GA4 via Firebase Analytics, só contagens anônimas, sem IDFA/IDFV/AAID, interruptor "Estatísticas anônimas de uso" na Área dos pais (padrão ligado). Veja [`docs/ANALYTICS.md`](docs/ANALYTICS.md). |
 
 ---
 

@@ -10,38 +10,67 @@
 <main>
   <a class="back" href="./">← Bichu</a>
   <h1>Política de Privacidade</h1>
-  <p class="meta">Última atualização: 28 de setembro de 2026</p>
+  <p class="meta">Última atualização: 12 de outubro de 2026</p>
 
-  <p>O <strong>Bichu</strong> é um aplicativo infantil de descoberta dos animais, publicado pela TechHands. Ele foi feito para crianças e, por isso, foi desenhado para <strong>não coletar dados pessoais</strong>.</p>
+  <p>O <strong>Bichu</strong> é um aplicativo infantil de descoberta dos animais, publicado pela TechHands. Ele foi feito para crianças e, por isso, foi desenhado para <strong>não pedir nem coletar dados pessoais</strong>.</p>
 
-  <h2>O que o Bichu não faz</h2>
+  <h2>1. Resumo</h2>
+  <p>O Bichu não tem cadastro, anúncios, chat nem rastreamento, não acessa microfone, localização, contatos ou fotos e não pede nenhum dado pessoal. A câmera só é usada na realidade aumentada, quando a criança pede, e nada é gravado. O progresso fica guardado só no aparelho. Para melhorar o app, contamos de forma anônima, pelo Google Analytics, quantas pessoas usam o Bichu e quais brincadeiras são iniciadas e concluídas. Os pais podem desligar em Área dos pais → <strong>Estatísticas anônimas de uso</strong>.</p>
+
+  <h2>2. O que o Bichu não faz</h2>
   <ul>
     <li>Não pede cadastro, login, nome, e-mail, idade ou qualquer dado da criança ou do responsável.</li>
     <li>Não exibe anúncios e não usa redes de publicidade.</li>
-    <li>Não usa ferramentas de análise, rastreamento ou perfilamento.</li>
+    <li>Não faz rastreamento entre apps ou sites, nem perfilamento.</li>
     <li>Não tem chat, mensagens, compras dentro do app nem links para redes sociais.</li>
     <li>Não acessa microfone, localização, contatos ou fotos.</li>
   </ul>
 
-  <h2>Câmera (realidade aumentada)</h2>
-  <p>Em aparelhos compatíveis, o Bichu pode usar a câmera para mostrar um animal em 3D no ambiente (realidade aumentada). A câmera só é ativada quando a criança toca em “Ver no meu mundo”, depois da permissão do sistema. As imagens são processadas apenas no aparelho, em tempo real: <strong>nada é gravado, salvo ou enviado</strong>.</p>
+  <h2>3. Estatísticas anônimas de uso (Google Analytics)</h2>
+  <p>Usamos o Google Analytics para Firebase só para ver números agregados (por exemplo, quantas pessoas abriram o app hoje ou quantas concluíram a brincadeira “Onde vive?”). Nunca olhamos o uso de uma criança específica.</p>
+  <table>
+    <thead><tr><th>O que é enviado</th><th>Para que serve</th></tr></thead>
+    <tbody>
+      <tr><td>Eventos do app: abertura, tela visitada (nome fixo como “Início” ou “Bichupédia”), brincadeira iniciada, concluída ou interrompida (com o tipo de brincadeira, o modo Explorador/Aventureiro, a rodada, estrelas, erros e animais descobertos), animal aberto ou descoberto, uso da realidade aumentada (iniciada, animal colocado, indisponível) e toques nos botões principais (de uma lista fixa)</td><td>Saber quais animais e brincadeiras as crianças preferem, onde elas param ou têm dificuldade e quais telas são usadas</td></tr>
+      <tr><td>O que o Google Analytics registra sozinho: um identificador aleatório da instalação (criado pelo Firebase, apagado ao desinstalar o app), modelo e sistema do aparelho, idioma, versão do app, início e duração das sessões, e país/região aproximados deduzidos do endereço IP (o Google Analytics não guarda o IP)</td><td>Contar usuários e sessões, ver quantas pessoas estão usando agora e se o app funciona bem em cada aparelho</td></tr>
+    </tbody>
+  </table>
 
-  <h2>O que fica no aparelho</h2>
-  <p>O progresso da criança (animais descobertos, estrelas e preferências como som ligado e modo de dificuldade) é salvo <strong>apenas no próprio aparelho</strong>. Essas informações não são enviadas para nós nem para terceiros e são apagadas ao desinstalar o app.</p>
+  <h3>O que não fazemos com as estatísticas</h3>
+  <ul>
+    <li>Não enviamos nome, idade, e-mail, conta ou ID de usuário, nem nada digitado. Os eventos só têm números e códigos técnicos.</li>
+    <li>No iPhone/iPad: o app não usa o identificador de publicidade (IDFA; é compilado sem AdSupport) nem o identificador do fornecedor (IDFV).</li>
+    <li>No Android: o app não usa o ID de publicidade (AAID) nem o ANDROID_ID, e remove a permissão <code>AD_ID</code> e as permissões de publicidade do Privacy Sandbox.</li>
+    <li>Sem anúncios, personalização de anúncios, remarketing ou rastreamento entre apps. O consentimento para publicidade fica sempre negado.</li>
+    <li>Sem Google Ads e sem Google Signals; sem localização precisa nem dados granulares de localização e aparelho.</li>
+    <li>Os dados ficam guardados por no máximo 2 meses e só são vistos de forma agregada.</li>
+  </ul>
 
-  <h2>Conexão com a internet</h2>
-  <p>O conteúdo do app funciona offline. Quando há internet, o app pode baixar atualizações de conteúdo e correções pelo serviço de atualizações da Expo (EAS Update). Essa verificação não envia dados pessoais; como em qualquer conexão, o servidor recebe informações técnicas mínimas (como o endereço IP e a versão do app) apenas para entregar a atualização.</p>
+  <h3>Como desligar</h3>
+  <p>Na Área dos pais (engrenagem → segurar o botão), desligue <strong>Estatísticas anônimas de uso</strong>. A partir daí o aparelho não envia mais nenhuma contagem, inclusive nas próximas aberturas. Mais sobre o Google: <a href="https://policies.google.com/privacy">Política de Privacidade do Google</a> e <a href="https://support.google.com/analytics/answer/6004245">como o Google Analytics protege os dados</a>.</p>
 
-  <h2>Área dos pais</h2>
+  <h2>4. Câmera (realidade aumentada)</h2>
+  <p>Em aparelhos compatíveis, o Bichu pode usar a câmera para mostrar um animal em 3D no ambiente (realidade aumentada). A câmera só é ativada quando a criança toca em “Ver no meu mundo”, depois de um aviso de segurança e da permissão do sistema. As imagens são processadas apenas no aparelho, em tempo real: <strong>nada é gravado, salvo ou enviado</strong>.</p>
+
+  <h2>5. O que fica no aparelho</h2>
+  <p>O progresso da criança (animais descobertos, estrelas e preferências como som ligado, modo de dificuldade e o interruptor de estatísticas) é salvo <strong>apenas no próprio aparelho</strong>. Essas informações não são enviadas para nós nem para terceiros e são apagadas ao desinstalar o app.</p>
+
+  <h2>6. Conexão com a internet</h2>
+  <p>O conteúdo do app funciona offline. A rede é usada só para as estatísticas anônimas e para baixar atualizações do app. As atualizações de conteúdo e correções vêm pelo serviço de atualizações da Expo (EAS Update); essa verificação não envia dados pessoais e, como em qualquer conexão, o servidor recebe informações técnicas mínimas (como o endereço IP e a versão do app) apenas para entregar a atualização.</p>
+
+  <h2>7. Como apagar</h2>
+  <p>Desligue o interruptor de estatísticas para parar o envio. Ao desinstalar o app, o progresso e o identificador aleatório da instalação são apagados do aparelho; o Google apaga as estatísticas já enviadas em até 2 meses. Como não pedimos dados pessoais e as estatísticas são anônimas, não conseguimos ligar nenhuma informação a você ou à criança.</p>
+
+  <h2>8. Área dos pais</h2>
   <p>As configurações ficam numa área protegida por um gesto de adulto, para que a criança não altere nada sem querer.</p>
 
-  <h2>Crianças</h2>
-  <p>O Bichu segue as regras de apps para crianças da App Store (Kids) e do Google Play (Famílias), a LGPD e a COPPA: como não coletamos dados pessoais, não há dados de crianças a armazenar, compartilhar ou vender.</p>
+  <h2>9. Crianças e seus direitos</h2>
+  <p>O Bichu segue as regras de apps para crianças da App Store (Kids) e do Google Play (Famílias), a LGPD e a COPPA. Não pedimos dados pessoais e as estatísticas são anônimas: não conseguimos ligar informação a você. Mesmo assim, se tiver qualquer pedido ou dúvida sobre seus direitos, fale com a gente pelo contato abaixo.</p>
 
-  <h2>Mudanças nesta política</h2>
+  <h2>10. Mudanças nesta política</h2>
   <p>Se esta política mudar, a nova versão será publicada nesta página com a data de atualização.</p>
 
-  <h2>Contato</h2>
+  <h2>11. Contato</h2>
   <p>Dúvidas sobre privacidade: <a href="mailto:contato@techhands.com.br">contato@techhands.com.br</a></p>
 </main>
 </body>

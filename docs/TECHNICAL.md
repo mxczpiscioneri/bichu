@@ -419,6 +419,8 @@ Eventos mínimos descritos no PRODUCT.md.
 
 Antes da versão infantil pública, revisar SDKs para conformidade com políticas de apps infantis.
 
+Implementado em `src/analytics/` (GA4 via Firebase Analytics, coleta mínima): veja `docs/ANALYTICS.md`.
+
 ---
 
 ## 19. Permissões
