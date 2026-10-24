@@ -23,7 +23,7 @@ const LEVEL_NAMES = { explorer: 'Explorador', adventurer: 'Aventureiro' } as con
 export default function ParentsScreen() {
   const [unlocked, setUnlocked] = useState(false);
   const [confirmReset, setConfirmReset] = useState(false);
-  const { level, soundEnabled, setSoundEnabled } = useSettingsStore();
+  const { level, soundEnabled, setSoundEnabled, analyticsEnabled, setAnalyticsEnabled } = useSettingsStore();
   const { byAnimal, reset } = useProgressStore();
 
   return (
@@ -48,6 +48,11 @@ export default function ParentsScreen() {
               onPress={() => router.push('/choose-level')}
             />
             <SettingsRow icon="speaker" label="Som" toggle={{ value: soundEnabled, onChange: setSoundEnabled }} />
+            <SettingsRow
+              icon="shield"
+              label="Estatísticas anônimas de uso"
+              toggle={{ value: analyticsEnabled, onChange: setAnalyticsEnabled }}
+            />
             <SettingsRow
               icon="cube"
               label="AR experimental"
@@ -76,8 +81,9 @@ export default function ParentsScreen() {
               details={
                 <>
                   <AppText variant="caption">
-                    Sem conta, sem anúncios e sem rastreamento. O progresso fica salvo só neste aparelho e nenhum dado é
-                    enviado para servidores. A câmera só é usada na realidade aumentada, para mostrar o animal no
+                    Sem conta, sem anúncios e sem rastreamento. O progresso fica salvo só neste aparelho. Contamos de forma
+                    anônima, num servidor nosso, quantas crianças jogam e quais animais descobrem, sem nome, conta,
+                    localização precisa ou ID do aparelho; dá para desligar em “Estatísticas anônimas de uso”. A câmera só é usada na realidade aumentada, para mostrar o animal no
                     ambiente; nenhuma imagem é salva ou enviada. O app não usa microfone, localização, contatos nem
                     fotos.
                   </AppText>

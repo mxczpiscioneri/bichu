@@ -10,9 +10,12 @@ interface SettingsState {
   soundEnabled: boolean;
   /** First-run welcome + mode choice already shown. */
   onboarded: boolean;
+  /** Anonymous usage counts (parents can turn them off). */
+  analyticsEnabled: boolean;
   setLevel: (level: Level) => void;
   setSoundEnabled: (enabled: boolean) => void;
   completeOnboarding: () => void;
+  setAnalyticsEnabled: (enabled: boolean) => void;
 }
 
 export const useSettingsStore = create<SettingsState>()(
@@ -21,18 +24,22 @@ export const useSettingsStore = create<SettingsState>()(
       level: 'explorer',
       soundEnabled: true,
       onboarded: false,
+      analyticsEnabled: true,
       setLevel: (level) => set({ level }),
       setSoundEnabled: (soundEnabled) => set({ soundEnabled }),
       completeOnboarding: () => set({ onboarded: true }),
+      setAnalyticsEnabled: (analyticsEnabled) => set({ analyticsEnabled }),
     }),
     {
       name: 'bichu.settings',
-      version: 2,
+      version: 3,
       storage: localStorage,
-      // v1 had only `level`; existing users skip the welcome flow.
+      // v1 had only `level`; existing users skip the welcome flow. v3 adds analyticsEnabled.
       migrate: (persisted, version) => {
-        const state = (persisted ?? {}) as Partial<SettingsState>;
-        return version < 2 ? { ...state, soundEnabled: true, onboarded: true } : state;
+        let state = (persisted ?? {}) as Partial<SettingsState>;
+        if (version < 2) state = { ...state, soundEnabled: true, onboarded: true };
+        if (version < 3) state = { ...state, analyticsEnabled: true };
+        return state;
       },
     },
   ),
