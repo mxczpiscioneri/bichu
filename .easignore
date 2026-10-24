@@ -1,0 +1,56 @@
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native (Continuous Native Generation)
+/ios
+/android
+.kotlin/
+android/.gradle/
+ios/Pods/
+
+# Secrets & signing — never commit (legacy keystore/Firebase included)
+*.jks
+*.keystore
+*.p8
+*.p12
+*.key
+*.pem
+*.mobileprovision
+google-services.json
+GoogleService-Info.plist
+.env
+.env.*
+
+# Metro / TS
+.metro-health-check*
+*.tsbuildinfo
+*.orig.*
+
+# logs
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# reports
+reports/
+
+.DS_Store
+credentials/
+
+# --- EAS only (.easignore replaces .gitignore for uploads, so the rules above are repeated) ---
+# Not needed to build the app: store assets, product site, docs, tooling.
+store/
+site/
+docs/
+tools/
+legacy/
+.github/
+.claude/
+.vscode/
+# design/ stays: src/theme/tokens.ts and app.config.ts import design/theme.json
