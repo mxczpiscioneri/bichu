@@ -33,7 +33,7 @@ Status em 28/09/2026: ✅ preenchido no console · ⬜ falta fazer (manual).
 `Descubra os animais brincando: sons reais, nomes, desafios e realidade aumentada`
 
 **Texto promocional (Apple, máx. 170)** —
-`Descubra os animais brincando: sons reais, nomes em sílabas, desafios e realidade aumentada. Sem anúncios e sem coleta de dados.`
+`Descubra os animais brincando: sons reais, nomes em sílabas, desafios e realidade aumentada. Sem anúncios e sem dados pessoais.`
 
 **Palavras-chave (Apple, máx. 100)** —
 `animais,sons,bichos,infantil,criança,educativo,fazenda,zoológico,aprender,sílabas,bebê,jogo`
@@ -70,7 +70,7 @@ FEITO PARA CRIANÇAS DE 2 A 8 ANOS
 
 SEGURO PARA A FAMÍLIA
 • Sem anúncios, sem compras e sem cadastro
-• Não coleta dados; o progresso fica só no aparelho
+• Não coleta dados pessoais; o progresso fica só no aparelho
 • Funciona offline
 • Área dos pais protegida para ajustes
 ```
@@ -107,7 +107,9 @@ Ordem das telas: 01 Início · 02 Animal · 03 Desafio · 04 Acerto · 05 Explor
 **Notas para o revisor**
 
 ```text
-Bichu é um app infantil (2 a 8 anos), sem login, sem anúncios, sem compras e sem coleta de dados. Todo o conteúdo funciona offline.
+Bichu é um app infantil (2 a 8 anos), sem login, sem anúncios, sem compras e sem dados pessoais. Todo o conteúdo funciona offline.
+
+Estatísticas anônimas: sem SDK de terceiros. O app envia só contagens agregadas (aberturas, animais descobertos, desafios concluídos) para o nosso próprio servidor (Aptabase self-hosted em stats.4mtecnologia.com.br), por HTTPS. Sem IDFA, IDFV, identificador de aparelho ou de instalação, modelo do aparelho, ID de usuário ou dado pessoal; o IP não é gravado. Os pais podem desligar na Área dos pais.
 
 Como testar:
 1. Na primeira abertura, toque em "Vamos descobrir!".
@@ -136,7 +138,7 @@ Política de privacidade: https://bichu-app.vercel.app/privacidade.html
 | ID de publicidade | Não usa | ✅ |
 | Classificação (IARC) | "Outros apps", educativo · Livre (ClassInd), Livre (ESRB), PEGI 3 | ✅ |
 | Público-alvo | Menores de 5 e 6–8 · Feito para Família · Aprovado por Professores (inscrito) | ✅ |
-| Segurança dos dados | Não coleta nem compartilha · selo Política para famílias | ✅ |
+| Segurança dos dados | Até a 1.0.1: não coleta nem compartilha · selo Política para famílias. **Próxima versão:** ver `store/PRIVACIDADE-PROXIMA-VERSAO.md` | ✅ |
 | Governamental / financeiro / saúde | Não / nenhum / nenhum | ✅ |
 | Detalhes do app | textos salvos como rascunho | ⬜ imagens |
 | Versão | `.aab` 1.0.0 (5) em Teste interno | ⬜ primeiro upload manual |
