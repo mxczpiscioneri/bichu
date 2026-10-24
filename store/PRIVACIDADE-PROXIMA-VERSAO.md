@@ -23,7 +23,8 @@ anônimas de uso". **Só troque as declarações e o site quando essa versão fo
 2. **Play Console → Segurança dos dados**: Local aproximado e Interações no app (coletados,
    não compartilhados, opcionais, Análise). Se o app usar EAS Update, também Identificadores
    do dispositivo (Funcionalidade do app + Análise).
-3. **Site** (`site/privacidade.html`): trocar "nenhum dado é enviado" por uma seção
-   "Estatísticas anônimas de uso" como a de https://bichos-raros.vercel.app/privacidade.
+3. **Site**: `site/privacidade.html` e `site/index.html` **já estão reescritos** no repo
+   (seção "Estatísticas anônimas de uso"), mas não publicados. Ao enviar: trocar a data de
+   "Última atualização" e publicar a pasta `site/` na Vercel (projeto já linkado em `site/.vercel`).
 4. **Notas para o revisor da Apple** (regra 1.3, Kids): sem SDK de terceiros; contagens só
    para o nosso servidor, sem identificadores; os pais podem desligar.
