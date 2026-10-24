@@ -1,4 +1,8 @@
-# Privacidade na próxima versão (estatísticas anônimas)
+# Privacidade com estatísticas anônimas
+
+> **Atualização 24/out/2026:** a coleta foi ao ar no build 1.0.1 por EAS Update (canal
+> production, grupo 466144ac). Site e Segurança dos dados do Play já foram atualizados; falta
+> o App Privacy da Apple (item 1).
 
 A 1.0.1 publicada não coleta nada e está declarada assim nas lojas. A próxima versão passa a
 enviar **estatísticas anônimas** para o nosso Aptabase self-hosted (`src/analytics/`, app
