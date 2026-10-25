@@ -23,9 +23,17 @@ function createScene(viro: ViroModule, animal: Animal) {
     const [scale, setScale] = useState(baseScale);
     const [rotationY, setRotationY] = useState(0);
     const gestureBase = useRef({ scale: baseScale, rotation: 0 });
+    // ViroReact 3 no longer lets the plane selector discover planes on its own:
+    // the scene must forward its anchor events to it, otherwise no surface is
+    // ever found and the animal can never be placed (empty camera).
+    const selectorRef = useRef<InstanceType<ViroModule['ViroARPlaneSelector']>>(null);
 
     return (
       <viro.ViroARScene
+        anchorDetectionTypes={['PlanesHorizontal']}
+        onAnchorFound={(anchor) => selectorRef.current?.handleAnchorFound(anchor)}
+        onAnchorUpdated={(anchor) => selectorRef.current?.handleAnchorUpdated(anchor)}
+        onAnchorRemoved={(anchor) => anchor && selectorRef.current?.handleAnchorRemoved(anchor)}
         onTrackingUpdated={(state) => {
           if (state === viro.ViroTrackingStateConstants.TRACKING_NORMAL) {
             const current = useArStore.getState().status;
@@ -35,6 +43,7 @@ function createScene(viro: ViroModule, animal: Animal) {
         <viro.ViroAmbientLight color="#ffffff" intensity={250} />
         <viro.ViroDirectionalLight color="#ffffff" direction={[0, -1, -0.3]} castsShadow />
         <viro.ViroARPlaneSelector
+          ref={selectorRef}
           alignment="Horizontal"
           minHeight={0.25}
           minWidth={0.25}
