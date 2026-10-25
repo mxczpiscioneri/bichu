@@ -12,6 +12,7 @@ import { BigButton } from '@/components/ui/BigButton';
 import { RoundButton } from '@/components/ui/RoundButton';
 import { ArExperience } from '@/ar/ArExperience';
 import { useArStore, type ArStatus } from '@/ar/arStore';
+import type { SizeMode } from '@/ar/scale';
 import { isArAvailableFor } from '@/ar/availability';
 import { loadViro } from '@/ar/viro';
 import { AudioService, clipKeys } from '@/audio/AudioService';
@@ -22,6 +23,12 @@ import type { Animal } from '@/domain/animal';
 import { withArticle } from '@/domain/language';
 import { useLevel } from '@/stores/settingsStore';
 import { colors, radius, spacing } from '@/theme';
+
+const SIZE_LABEL: Record<SizeMode, string> = {
+  real: 'Tamanho real',
+  enlarged: 'Ampliado para ver melhor',
+  reduced: 'Menor para caber aqui',
+};
 
 const STATUS_TEXT: Record<ArStatus, (animal: Animal) => string> = {
   starting: () => 'Abrindo a câmera…',
@@ -128,6 +135,7 @@ function ArPreflight({ animal, viro }: { animal: Animal; viro: NonNullable<Retur
 
 function ArScreenContent({ animal, viro }: { animal: Animal; viro: NonNullable<ReturnType<typeof loadViro>> }) {
   const status = useArStore((state) => state.status);
+  const sizeMode = useArStore((state) => state.sizeMode);
   const setStatus = useArStore((state) => state.setStatus);
   const [playing, setPlaying] = useState(false);
 
@@ -154,7 +162,7 @@ function ArScreenContent({ animal, viro }: { animal: Animal; viro: NonNullable<R
             Ver no meu mundo
           </AppText>
           <View style={styles.tag}>
-            <AppText variant="overline">Teste</AppText>
+            <AppText variant="overline">{status === 'placed' ? SIZE_LABEL[sizeMode] : 'Teste'}</AppText>
           </View>
         </View>
         <View style={styles.spacer} />

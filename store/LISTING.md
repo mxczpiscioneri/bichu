@@ -57,7 +57,7 @@ BRINQUE
 • Erros viram novas tentativas, com incentivo e sem pressão
 
 VEJA NO SEU MUNDO
-• Realidade aumentada: coloque o animal em 3D na sala e veja o tamanho real (em aparelhos compatíveis)
+• Realidade aumentada: coloque o animal em 3D na sala, em tamanho real sempre que couber (em aparelhos compatíveis)
 
 MONTE SUA BICHUPÉDIA
 • Cada animal descoberto ganha estrela e entra na coleção

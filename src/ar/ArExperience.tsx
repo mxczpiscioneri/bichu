@@ -1,11 +1,11 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { mediaFor } from '@/content/media';
 import type { Animal } from '@/domain/animal';
 
 import { useArStore } from './arStore';
-import { clampScale } from './scale';
+import { clampScale, initialScale, sizeModeFor } from './scale';
 import type { ViroModule } from './viro';
 
 /**
@@ -16,13 +16,15 @@ import type { ViroModule } from './viro';
 function createScene(viro: ViroModule, animal: Animal) {
   const model = mediaFor(animal.id).model3d;
   const meta = animal.media.model3dMeta;
-  const baseScale = meta?.defaultScale ?? 1;
+  const baseScale = initialScale(meta);
 
   return function BichuArScene() {
     const setStatus = useArStore((state) => state.setStatus);
     const [scale, setScale] = useState(baseScale);
     const [rotationY, setRotationY] = useState(0);
     const gestureBase = useRef({ scale: baseScale, rotation: 0 });
+    const setSizeMode = useArStore((state) => state.setSizeMode);
+    useEffect(() => setSizeMode(sizeModeFor(scale, meta)), [scale, setSizeMode]);
     // ViroReact 3 no longer lets the plane selector discover planes on its own:
     // the scene must forward its anchor events to it, otherwise no surface is
     // ever found and the animal can never be placed (empty camera).
