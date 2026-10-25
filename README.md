@@ -141,7 +141,7 @@ Coleções (Explorar e Bichupédia) são filtros declarativos em [`src/content/c
      }
    }
    ```
-   `license` e `author` são obrigatórios (a validação falha sem eles). Como os GLBs já estão em metros, `defaultScale: 1` é o tamanho real. Animações são opcionais e nunca exigidas.
+   `license` e `author` são obrigatórios (a validação falha sem eles). Os GLBs estão em metros e `realWorldHeightMeters` define a escala inicial: o animal aparece em tamanho real quando tem entre 25 cm e 1 m de altura e é ampliado ou reduzido até esse limite fora disso (`src/ar/scale.ts`); `defaultScale` só é usado se a altura não for informada. Animações são opcionais e nunca exigidas.
 3. `npm run assets:registry && npm run validate`, depois rode um build com `BICHU_AR=1`.
 
 ## Como criar um novo tipo de desafio
